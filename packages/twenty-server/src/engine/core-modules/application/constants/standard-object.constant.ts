@@ -22,6 +22,7 @@ import {
   NOTE_TARGET_STANDARD_FIELD_IDS,
   OPPORTUNITY_STANDARD_FIELD_IDS,
   PERSON_STANDARD_FIELD_IDS,
+  PRODUCT_STANDARD_FIELD_IDS,
   TASK_STANDARD_FIELD_IDS,
   TASK_TARGET_STANDARD_FIELD_IDS,
   TIMELINE_ACTIVITY_STANDARD_FIELD_IDS,
@@ -994,6 +995,7 @@ export const STANDARD_OBJECTS = {
         universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.pointOfContact,
       },
       company: { universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.company },
+      product: { universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.product },
       favorites: {
         universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
       },
@@ -1034,6 +1036,9 @@ export const STANDARD_OBJECTS = {
           },
           pointOfContact: {
             universalIdentifier: '20202020-af03-4a03-8a03-0aa0b1ca1bb4',
+          },
+          product: {
+            universalIdentifier: '20202020-af03-4a03-8a03-0aa0b1ca1bb5',
           },
         },
       },
@@ -1168,6 +1173,70 @@ export const STANDARD_OBJECTS = {
           },
           xLink: {
             universalIdentifier: '20202020-af02-4a02-8a02-ae0a1ea11af9',
+          },
+        },
+      },
+    },
+  },
+  product: {
+    universalIdentifier: STANDARD_OBJECT_IDS.product,
+    fields: {
+      id: { universalIdentifier: '20202020-p01a-4081-8a81-5c6d7e8f9aab' },
+      createdAt: {
+        universalIdentifier: '20202020-p01b-4082-9b82-6d7e8f9aabbc',
+      },
+      updatedAt: {
+        universalIdentifier: '20202020-p01c-4083-8c83-7e8f9aabbccd',
+      },
+      deletedAt: {
+        universalIdentifier: '20202020-p01d-4084-9d84-8f9aabbccdde',
+      },
+      name: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.name },
+      description: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.description,
+      },
+      price: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.price },
+      isActive: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.isActive },
+      position: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.position },
+      createdBy: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.createdBy },
+      opportunities: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.opportunities,
+      },
+      favorites: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.favorites },
+      attachments: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.attachments,
+      },
+      taskTargets: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.taskTargets,
+      },
+      noteTargets: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.noteTargets,
+      },
+      timelineActivities: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.timelineActivities,
+      },
+      searchVector: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.searchVector,
+      },
+    },
+    views: {
+      allProducts: {
+        universalIdentifier: '20202020-a003-4a03-8a03-c0aba11c0003',
+        viewFields: {
+          name: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf001',
+          },
+          description: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf002',
+          },
+          price: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf003',
+          },
+          isActive: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf004',
+          },
+          opportunities: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf005',
           },
         },
       },

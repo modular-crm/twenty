@@ -5,6 +5,7 @@ import { type FlatFieldMetadata } from 'src/engine/metadata-modules/flat-field-m
 import { type FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object-metadata/types/flat-object-metadata.type';
 import { prefillCompanies } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-companies';
 import { prefillPeople } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-people';
+import { prefillProducts } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-products';
 import { prefillWorkflows } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-workflows';
 
 export const standardObjectsPrefillData = async (
@@ -17,6 +18,8 @@ export const standardObjectsPrefillData = async (
     await prefillCompanies(entityManager, schemaName);
 
     await prefillPeople(entityManager, schemaName);
+
+    await prefillProducts(entityManager, schemaName);
 
     await prefillWorkflows(
       entityManager,

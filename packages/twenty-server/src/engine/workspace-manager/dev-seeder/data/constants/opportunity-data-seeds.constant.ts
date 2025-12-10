@@ -1,5 +1,6 @@
 import { COMPANY_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/data/constants/company-data-seeds.constant';
 import { PERSON_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/data/constants/person-data-seeds.constant';
+import { PRODUCT_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/data/constants/product-data-seeds.constant';
 import { WORKSPACE_MEMBER_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/data/constants/workspace-member-data-seeds.constant';
 
 type OpportunityDataSeed = {
@@ -12,6 +13,7 @@ type OpportunityDataSeed = {
   position: number;
   pointOfContactId: string;
   companyId: string;
+  productId: string;
   createdBySource: string;
   createdByWorkspaceMemberId: string;
   createdByName: string;
@@ -27,6 +29,7 @@ export const OPPORTUNITY_DATA_SEED_COLUMNS: (keyof OpportunityDataSeed)[] = [
   'position',
   'pointOfContactId',
   'companyId',
+  'productId',
   'createdBySource',
   'createdByWorkspaceMemberId',
   'createdByName',
@@ -169,6 +172,9 @@ const GENERATE_OPPORTUNITY_SEEDS = (): OpportunityDataSeed[] => {
 
     CLOSE_DATE.setDate(CLOSE_DATE.getDate() + DAYS_AHEAD);
 
+    const NUM_PRODUCTS = Object.keys(PRODUCT_DATA_SEED_IDS).length;
+    const PRODUCT_INDEX = ((INDEX - 1) % NUM_PRODUCTS) + 1;
+
     OPPORTUNITY_SEEDS.push({
       id: OPPORTUNITY_DATA_SEED_IDS[`ID_${INDEX}`],
       name: TEMPLATE.name,
@@ -185,6 +191,7 @@ const GENERATE_OPPORTUNITY_SEEDS = (): OpportunityDataSeed[] => {
         COMPANY_DATA_SEED_IDS[
           `ID_${Math.ceil(INDEX / 2)}` as keyof typeof COMPANY_DATA_SEED_IDS
         ] || COMPANY_DATA_SEED_IDS.ID_1,
+      productId: PRODUCT_DATA_SEED_IDS[`ID_${PRODUCT_INDEX}` as keyof typeof PRODUCT_DATA_SEED_IDS],
       createdBySource: 'MANUAL',
       createdByWorkspaceMemberId: WORKSPACE_MEMBER_DATA_SEED_IDS.TIM,
       createdByName: 'Tim Cook',

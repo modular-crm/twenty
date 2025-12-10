@@ -45,6 +45,7 @@ export const ATTACHMENT_STANDARD_FIELD_IDS = {
   dashboard: '20202020-5324-43f3-9dbf-1a33e7de0ce6',
   workflow: '20202020-f1e8-4c9d-8a7b-3f5e1d2c9a8b',
   custom: '20202020-302d-43b3-9aea-aa4f89282a9f',
+  product: '20202020-a110-0001-0000-000000000001',
 } as const;
 
 export const BASE_OBJECT_STANDARD_FIELD_IDS = {
@@ -176,6 +177,7 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   linkedRecordCachedName: '20202020-cfdb-4bef-bbce-a29f41230934',
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
   linkedObjectMetadataId: '20202020-c595-449d-9f89-562758c9ee69',
+  product: '20202020-11ae-0001-0000-000000000001',
 } as const;
 
 export const FAVORITE_STANDARD_FIELD_IDS = {
@@ -193,6 +195,7 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   custom: '20202020-855a-4bc8-9861-79deef37011f',
   favoriteFolder: '20202020-f658-4d12-8b4d-248356aa4bd9',
   dashboard: '20202020-6ef9-45e4-b440-cc986f687c91',
+  product: '20202020-fa10-0001-0000-000000000001',
 } as const;
 
 export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
@@ -292,6 +295,7 @@ export const NOTE_TARGET_STANDARD_FIELD_IDS = {
   company: 'c500fbc0-d6f2-4982-a959-5a755431696c',
   opportunity: '20202020-4e42-417a-a705-76581c9ade79',
   custom: '20202020-3d12-4579-94ee-7117c1bad492',
+  product: '20202020-0e10-0001-0000-000000000001',
 } as const;
 
 export const OPPORTUNITY_STANDARD_FIELD_IDS = {
@@ -312,6 +316,7 @@ export const OPPORTUNITY_STANDARD_FIELD_IDS = {
   attachments: '20202020-87c7-4118-83d6-2f4031005209',
   timelineActivities: '20202020-30e2-421f-96c7-19c69d1cf631',
   searchVector: '428a0da5-4b2e-4ce3-b695-89a8b384e6e3',
+  product: '20202020-0100-0001-0000-000000000001',
 } as const;
 
 export const PERSON_STANDARD_FIELD_IDS = {
@@ -363,6 +368,7 @@ export const TASK_TARGET_STANDARD_FIELD_IDS = {
   company: '20202020-4703-4a4e-948c-487b0c60a92c',
   opportunity: '20202020-6cb2-4c01-a9a5-aca3dbc11d41',
   custom: '20202020-41c1-4c9a-8c75-be0971ef89af',
+  product: '20202020-1a50-0001-0000-000000000001',
 } as const;
 
 export const VIEW_FIELD_STANDARD_FIELD_IDS = {
@@ -536,6 +542,23 @@ export const DASHBOARD_STANDARD_FIELD_IDS = {
   searchVector: '20202020-0bcc-47a4-8360-2e35a7133f7a',
 } as const;
 
+export const PRODUCT_STANDARD_FIELD_IDS = {
+  name: '20202020-0d01-0001-0000-000000000001',
+  sku: '20202020-0d01-0001-0000-000000000002',
+  description: '20202020-0d01-0001-0000-000000000003',
+  price: '20202020-0d01-0001-0000-000000000004',
+  isActive: '20202020-0d01-0001-0000-000000000005',
+  position: '20202020-0d01-0001-0000-000000000006',
+  createdBy: '20202020-0d01-0001-0000-000000000007',
+  opportunities: '20202020-0d01-0001-0000-000000000008',
+  favorites: '20202020-0d01-0001-0000-000000000009',
+  attachments: '20202020-0d01-0001-0000-00000000000a',
+  noteTargets: '20202020-0d01-0001-0000-00000000000b',
+  taskTargets: '20202020-0d01-0001-0000-00000000000c',
+  timelineActivities: '20202020-0d01-0001-0000-00000000000d',
+  searchVector: '20202020-0d01-0001-0000-00000000000e',
+} as const;
+
 export const STANDARD_OBJECT_FIELD_IDS = {
   activityTarget: ACTIVITY_TARGET_STANDARD_FIELD_IDS,
   activity: ACTIVITY_STANDARD_FIELD_IDS,
@@ -562,6 +585,7 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   noteTarget: NOTE_TARGET_STANDARD_FIELD_IDS,
   opportunity: OPPORTUNITY_STANDARD_FIELD_IDS,
   person: PERSON_STANDARD_FIELD_IDS,
+  product: PRODUCT_STANDARD_FIELD_IDS,
   task: TASK_STANDARD_FIELD_IDS,
   taskTarget: TASK_TARGET_STANDARD_FIELD_IDS,
   timelineActivity: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS,
