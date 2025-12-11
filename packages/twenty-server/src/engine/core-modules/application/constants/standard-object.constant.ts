@@ -20,6 +20,7 @@ import {
   MESSAGE_THREAD_STANDARD_FIELD_IDS,
   NOTE_STANDARD_FIELD_IDS,
   NOTE_TARGET_STANDARD_FIELD_IDS,
+  OPPORTUNITY_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
   OPPORTUNITY_STANDARD_FIELD_IDS,
   PERSON_STANDARD_FIELD_IDS,
   PRODUCT_STANDARD_FIELD_IDS,
@@ -966,6 +967,23 @@ export const STANDARD_OBJECTS = {
     },
     views: {},
   },
+  opportunityProductAssociation: {
+    universalIdentifier: STANDARD_OBJECT_IDS.opportunityProductAssociation,
+    fields: {
+      id: {
+        universalIdentifier: '20202020-c01a-4021-8a21-9edf06bfef01',
+      },
+      opportunity: {
+        universalIdentifier:
+          OPPORTUNITY_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS.opportunity,
+      },
+      product: {
+        universalIdentifier:
+          OPPORTUNITY_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS.product,
+      },
+    },
+    views: {},
+  },
   opportunity: {
     universalIdentifier: STANDARD_OBJECT_IDS.opportunity,
     fields: {
@@ -995,7 +1013,7 @@ export const STANDARD_OBJECTS = {
         universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.pointOfContact,
       },
       company: { universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.company },
-      product: { universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.product },
+      // opportunitiesProduct: { universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts },
       favorites: {
         universalIdentifier: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
       },
@@ -1037,7 +1055,7 @@ export const STANDARD_OBJECTS = {
           pointOfContact: {
             universalIdentifier: '20202020-af03-4a03-8a03-0aa0b1ca1bb4',
           },
-          product: {
+          opportunityProducts: {
             universalIdentifier: '20202020-af03-4a03-8a03-0aa0b1ca1bb5',
           },
         },
@@ -1199,9 +1217,9 @@ export const STANDARD_OBJECTS = {
       isActive: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.isActive },
       position: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.position },
       createdBy: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.createdBy },
-      opportunities: {
-        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.opportunities,
-      },
+      // opportunitiesProduct: {
+      //   universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.opportunityProducts,
+      // },
       favorites: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.favorites },
       attachments: {
         universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.attachments,
@@ -1235,7 +1253,7 @@ export const STANDARD_OBJECTS = {
           isActive: {
             universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf004',
           },
-          opportunities: {
+          opportunityProducts: {
             universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf005',
           },
         },

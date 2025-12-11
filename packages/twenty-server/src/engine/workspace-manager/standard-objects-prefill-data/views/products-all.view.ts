@@ -90,17 +90,17 @@ export const productsAllView = ({
           STANDARD_OBJECTS.product.views.allProducts.viewFields.isActive
             .universalIdentifier,
       },
-    {
+      {
         fieldMetadataId:
           productObjectMetadata.fields.find(
-            (field) => field.standardId === PRODUCT_STANDARD_FIELD_IDS.opportunities,
+            (field) => field.standardId === PRODUCT_STANDARD_FIELD_IDS.opportunityProducts,
           )?.id ?? '',
         position: 4,
         isVisible: true,
         size: 100,
         universalIdentifier:
-          STANDARD_OBJECTS.product.views.allProducts.viewFields.opportunities
-            .universalIdentifier,
+          STANDARD_OBJECTS.product.views.allProducts.viewFields.opportunityProducts
+          .universalIdentifier,
       },
     ],
   };

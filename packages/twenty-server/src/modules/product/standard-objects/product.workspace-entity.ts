@@ -1,10 +1,10 @@
 import { msg } from '@lingui/core/macro';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import {
-    ActorMetadata,
-    FieldMetadataType,
-    RelationOnDeleteAction,
-    type CurrencyMetadata,
+  ActorMetadata,
+  FieldMetadataType,
+  RelationOnDeleteAction,
+  type CurrencyMetadata,
 } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
@@ -25,15 +25,15 @@ import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-re
 import { PRODUCT_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-    getTsVectorColumnExpressionFromFields,
-    type FieldTypeAndNameMetadata,
+  getTsVectorColumnExpressionFromFields,
+  type FieldTypeAndNameMetadata,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
+import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 
 const NAME_FIELD_NAME = 'name';
 
@@ -118,16 +118,16 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
 
   // Relations
   @WorkspaceRelation({
-    standardId: PRODUCT_STANDARD_FIELD_IDS.opportunities,
+    standardId: PRODUCT_STANDARD_FIELD_IDS.opportunityProducts,
     type: RelationType.ONE_TO_MANY,
-    label: msg`Opportunities`,
+    label: msg`Opportunity`,
     description: msg`Opportunities linked to this product`,
     icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL,
+    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.SET_NULL ,
   })
-  @WorkspaceIsNullable()
-  opportunities: Relation<OpportunityWorkspaceEntity[]>;
+  @WorkspaceIsFieldUIReadOnly()
+  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: PRODUCT_STANDARD_FIELD_IDS.favorites,

@@ -126,14 +126,14 @@ export const opportunitiesAllView = ({
           opportunityObjectMetadata.fields.find(
             (field) =>
               field.standardId ===
-              OPPORTUNITY_STANDARD_FIELD_IDS.product,
+              OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
           )?.id ?? '',
         position: 6,
         isVisible: true,
         size: 150,
         universalIdentifier:
           STANDARD_OBJECTS.opportunity.views.allOpportunities.viewFields
-            .product.universalIdentifier,
+            .opportunityProducts.universalIdentifier,
       },
     ],
   };

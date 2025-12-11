@@ -109,6 +109,10 @@ import {
   PRODUCT_DATA_SEED_COLUMNS,
   PRODUCT_DATA_SEEDS,
 } from 'src/engine/workspace-manager/dev-seeder/data/constants/product-data-seeds.constant';
+import {
+  OPPORTUNITY_PRODUCT_DATA_SEED_COLUMNS,
+  OPPORTUNITY_PRODUCT_DATA_SEEDS,
+} from 'src/engine/workspace-manager/dev-seeder/data/constants/opportunity-product-data-seeds.constant';
 import { TimelineActivitySeederService } from 'src/engine/workspace-manager/dev-seeder/data/services/timeline-activity-seeder.service';
 import { prefillWorkflows } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-workflows';
 
@@ -235,6 +239,11 @@ const getRecordSeedsBatches = (
       tableName: 'calendarChannelEventAssociation',
       pgColumns: CALENDAR_CHANNEL_EVENT_ASSOCIATION_DATA_SEED_COLUMNS,
       recordSeeds: CALENDAR_CHANNEL_EVENT_ASSOCIATION_DATA_SEEDS,
+    },
+    {
+      tableName: 'opportunityProductAssociation',
+      pgColumns: OPPORTUNITY_PRODUCT_DATA_SEED_COLUMNS,
+      recordSeeds: OPPORTUNITY_PRODUCT_DATA_SEEDS,
     },
     {
       tableName: 'calendarEventParticipant',

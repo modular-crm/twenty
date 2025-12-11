@@ -50,4 +50,5 @@ export const STANDARD_OBJECT_IDS = {
   workspaceMember: '20202020-3319-4234-a34c-82d5c0e881a6',
   workflowAutomatedTrigger: '20202020-3319-4234-a34c-7f3b9d2e4d1f',
   product: '20202020-a1b2-c3d4-e5f6-789012345678',
+  opportunityProductAssociation: '20202020-0d02-0001-0000-000000000001',
 } as const;

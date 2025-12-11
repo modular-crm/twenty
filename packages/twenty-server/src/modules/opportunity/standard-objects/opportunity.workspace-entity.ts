@@ -34,10 +34,9 @@ import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/com
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
-import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
-
 const NAME_FIELD_NAME = 'name';
 
 export const SEARCH_FIELDS_FOR_OPPORTUNITY: FieldTypeAndNameMetadata[] = [
@@ -164,20 +163,16 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   companyId: string | null;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.product,
-    type: RelationType.MANY_TO_ONE,
+    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
+    type: RelationType.ONE_TO_MANY,
     label: msg`Product`,
-    description: msg`Opportunity product`,
+    description: msg`Products linked to this Opportunity`,
     icon: 'IconPackage',
-    inverseSideTarget: () => ProductWorkspaceEntity,
-    inverseSideFieldKey: 'opportunities',
-    onDelete: RelationOnDeleteAction.SET_NULL,
+    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
-  @WorkspaceIsNullable()
-  product: Relation<ProductWorkspaceEntity> | null;
-
-  @WorkspaceJoinColumn('product')
-  productId: string | null;
+  @WorkspaceIsFieldUIReadOnly()
+  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
