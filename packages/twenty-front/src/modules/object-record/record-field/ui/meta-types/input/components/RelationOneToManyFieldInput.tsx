@@ -12,6 +12,7 @@ import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldCont
 import { FieldInputEventContext } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { useRelationField } from '@/object-record/record-field/ui/meta-types/hooks/useRelationField';
 import { useAddNewRecordAndOpenRightDrawer } from '@/object-record/record-field/ui/meta-types/input/hooks/useAddNewRecordAndOpenRightDrawer';
+import { useUpdateOpportunityProductFromCell } from '@/object-record/record-field/ui/meta-types/input/hooks/useUpdateOpportunityProductFromCell';
 import { useUpdateRelationOneToManyFieldInput } from '@/object-record/record-field/ui/meta-types/input/hooks/useUpdateRelationOneToManyFieldInput';
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/ui/states/contexts/RecordFieldComponentInstanceContext';
 import { recordFieldInputLayoutDirectionComponentState } from '@/object-record/record-field/ui/states/recordFieldInputLayoutDirectionComponentState';
@@ -155,7 +156,21 @@ export const RelationOneToManyFieldInput = () => {
     ],
   );
 
-  const canCreateNew = !isRelationFromActivityTargets;
+  const isRelationFromOpportunityProduct =
+    fieldName === 'opportunityProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Opportunity ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  const { updateOpportunityProductFromCell } =
+    useUpdateOpportunityProductFromCell({
+      objectNameSingular: objectMetadataNameSingular as
+        | CoreObjectNameSingular.Opportunity
+        | CoreObjectNameSingular.Product,
+      recordId,
+    });
+
+  const canCreateNew =
+    !isRelationFromActivityTargets && !isRelationFromOpportunityProduct;
 
   return (
     <MultipleRecordPicker
@@ -168,6 +183,11 @@ export const RelationOneToManyFieldInput = () => {
             morphItem,
             activityTargetWithTargetRecords: activityTargetObjectRecords,
             recordPickerInstanceId: instanceId,
+          });
+        } else if (isRelationFromOpportunityProduct) {
+          updateOpportunityProductFromCell({
+            morphItem,
+            currentOpportunityProducts: fieldValue as any[],
           });
         } else {
           updateRelation(morphItem);

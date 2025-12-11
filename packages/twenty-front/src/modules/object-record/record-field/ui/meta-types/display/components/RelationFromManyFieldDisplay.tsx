@@ -108,6 +108,45 @@ export const RelationFromManyFieldDisplay = () => {
           .filter(isDefined)}
       </StyledContainer>
     );
+  }
+
+  const isRelationFromOpportunityProduct =
+    fieldName === 'opportunityProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Opportunity ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  if (isRelationFromOpportunityProduct) {
+    const targetObjectNameSingular =
+      objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+        ? CoreObjectNameSingular.Product
+        : CoreObjectNameSingular.Opportunity;
+
+    const relationFieldName =
+      objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+        ? 'product'
+        : 'opportunity';
+
+    return (
+      <ExpandableList isChipCountDisplayed={isFocused}>
+        {fieldValue
+          ?.filter(isDefined)
+          .map((record) => {
+            const targetRecord = record[relationFieldName];
+            if (!isDefined(targetRecord)) {
+              return undefined;
+            }
+            return (
+              <RecordChip
+                key={record.id}
+                objectNameSingular={targetObjectNameSingular}
+                record={targetRecord}
+                forceDisableClick={disableChipClick}
+              />
+            );
+          })
+          .filter(isDefined)}
+      </ExpandableList>
+    );
   } else if (isRelationFromActivityTargets) {
     return (
       <ExpandableList isChipCountDisplayed={isFocused}>

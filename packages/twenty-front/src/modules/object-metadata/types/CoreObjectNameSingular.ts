@@ -24,6 +24,8 @@ export enum CoreObjectNameSingular {
   Person = 'person',
   Task = 'task',
   TaskTarget = 'taskTarget',
+  Product = 'product',
+  OpportunityProductAssociation = 'opportunityProductAssociation',
   Webhook = 'webhook',
   WorkspaceMember = 'workspaceMember',
   MessageThreadSubscriber = 'messageThreadSubscriber',
