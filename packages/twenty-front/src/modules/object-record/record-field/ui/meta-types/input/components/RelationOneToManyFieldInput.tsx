@@ -12,7 +12,7 @@ import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldCont
 import { FieldInputEventContext } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { useRelationField } from '@/object-record/record-field/ui/meta-types/hooks/useRelationField';
 import { useAddNewRecordAndOpenRightDrawer } from '@/object-record/record-field/ui/meta-types/input/hooks/useAddNewRecordAndOpenRightDrawer';
-import { useUpdateOpportunityProductFromCell } from '@/object-record/record-field/ui/meta-types/input/hooks/useUpdateOpportunityProductFromCell';
+import { useUpdateProductAssociationFromCell } from '@/object-record/record-field/ui/meta-types/input/hooks/useUpdateProductAssociationFromCell';
 import { useUpdateRelationOneToManyFieldInput } from '@/object-record/record-field/ui/meta-types/input/hooks/useUpdateRelationOneToManyFieldInput';
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/ui/states/contexts/RecordFieldComponentInstanceContext';
 import { recordFieldInputLayoutDirectionComponentState } from '@/object-record/record-field/ui/states/recordFieldInputLayoutDirectionComponentState';
@@ -161,16 +161,63 @@ export const RelationOneToManyFieldInput = () => {
     (objectMetadataNameSingular === CoreObjectNameSingular.Opportunity ||
       objectMetadataNameSingular === CoreObjectNameSingular.Product);
 
-  const { updateOpportunityProductFromCell } =
-    useUpdateOpportunityProductFromCell({
-      objectNameSingular: objectMetadataNameSingular as
-        | CoreObjectNameSingular.Opportunity
-        | CoreObjectNameSingular.Product,
+  const isRelationFromLeadProduct =
+    fieldName === 'leadProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Lead ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  const isRelationFromDealProduct =
+    fieldName === 'dealProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Deal ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  const isRelationFromProductAssociation = isRelationFromOpportunityProduct || isRelationFromLeadProduct || isRelationFromDealProduct;
+
+  let associationObjectNameSingular: CoreObjectNameSingular = CoreObjectNameSingular.OpportunityProductAssociation;
+  let relationFieldName = 'product';
+  let sourceFieldName = 'opportunity';
+
+  if (isRelationFromOpportunityProduct) {
+    associationObjectNameSingular = CoreObjectNameSingular.OpportunityProductAssociation;
+    if (objectMetadataNameSingular === CoreObjectNameSingular.Product) {
+      relationFieldName = 'opportunity';
+      sourceFieldName = 'product';
+    } else {
+      relationFieldName = 'product';
+      sourceFieldName = 'opportunity';
+    }
+  } else if (isRelationFromLeadProduct) {
+    associationObjectNameSingular = CoreObjectNameSingular.LeadProductAssociation;
+    if (objectMetadataNameSingular === CoreObjectNameSingular.Product) {
+      relationFieldName = 'lead';
+      sourceFieldName = 'product';
+    } else {
+      relationFieldName = 'product';
+      sourceFieldName = 'lead';
+    }
+  } else if (isRelationFromDealProduct) {
+    associationObjectNameSingular = CoreObjectNameSingular.DealProductAssociation;
+    if (objectMetadataNameSingular === CoreObjectNameSingular.Product) {
+      relationFieldName = 'deal';
+      sourceFieldName = 'product';
+    } else {
+      relationFieldName = 'product';
+      sourceFieldName = 'deal';
+    }
+  }
+
+  const { updateProductAssociationFromCell } =
+    useUpdateProductAssociationFromCell({
+      objectNameSingular: objectMetadataNameSingular as any,
       recordId,
+      associationObjectNameSingular,
+      fieldName,
+      relationFieldName,
+      sourceFieldName,
     });
 
   const canCreateNew =
-    !isRelationFromActivityTargets && !isRelationFromOpportunityProduct;
+    !isRelationFromActivityTargets && !isRelationFromProductAssociation;
 
   return (
     <MultipleRecordPicker
@@ -184,10 +231,10 @@ export const RelationOneToManyFieldInput = () => {
             activityTargetWithTargetRecords: activityTargetObjectRecords,
             recordPickerInstanceId: instanceId,
           });
-        } else if (isRelationFromOpportunityProduct) {
-          updateOpportunityProductFromCell({
+        } else if (isRelationFromProductAssociation) {
+          updateProductAssociationFromCell({
             morphItem,
-            currentOpportunityProducts: fieldValue as any[],
+            currentRecordAssociations: fieldValue as any[],
           });
         } else {
           updateRelation(morphItem);

@@ -4,24 +4,30 @@ import { getLabelIdentifierFieldMetadataItem } from '@/object-metadata/utils/get
 import { generateDepthRecordGqlFieldsFromFields } from '@/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromFields';
 import { isDefined } from 'twenty-shared/utils';
 
-export type GenerateOpportunityProductGqlFields = {
+export type GenerateProductAssociationGqlFields = {
   objectMetadataItems: Pick<
     ObjectMetadataItem,
     'id' | 'nameSingular' | 'fields' | 'labelIdentifierFieldMetadataId'
   >[];
   sourceObjectNameSingular:
     | CoreObjectNameSingular.Opportunity
+    | CoreObjectNameSingular.Lead
+    | CoreObjectNameSingular.Deal
     | CoreObjectNameSingular.Product;
+  associationObjectNameSingular:
+    | CoreObjectNameSingular.OpportunityProductAssociation
+    | CoreObjectNameSingular.LeadProductAssociation
+    | CoreObjectNameSingular.DealProductAssociation;
 };
 
-export const generateOpportunityProductGqlFields = ({
+export const generateProductAssociationGqlFields = ({
   objectMetadataItems,
   sourceObjectNameSingular,
-}: GenerateOpportunityProductGqlFields) => {
-  const opportunityProductObjectMetadataItem = objectMetadataItems.find(
+  associationObjectNameSingular,
+}: GenerateProductAssociationGqlFields) => {
+  const associationObjectMetadataItem = objectMetadataItems.find(
     (objectMetadataItem) =>
-      objectMetadataItem.nameSingular ===
-      CoreObjectNameSingular.OpportunityProductAssociation,
+      objectMetadataItem.nameSingular === associationObjectNameSingular,
   );
 
   const sourceObjectMetadataItem = objectMetadataItems.find(
@@ -30,7 +36,7 @@ export const generateOpportunityProductGqlFields = ({
   );
 
   if (
-    !isDefined(opportunityProductObjectMetadataItem) ||
+    !isDefined(associationObjectMetadataItem) ||
     !isDefined(sourceObjectMetadataItem)
   ) {
     return {};
@@ -49,7 +55,7 @@ export const generateOpportunityProductGqlFields = ({
     },
     ...generateDepthRecordGqlFieldsFromFields({
       depth: 1,
-      fields: opportunityProductObjectMetadataItem.fields.filter(
+      fields: associationObjectMetadataItem.fields.filter(
         (fieldMetadataItem) =>
           fieldMetadataItem.name !== sourceObjectNameSingular,
       ),

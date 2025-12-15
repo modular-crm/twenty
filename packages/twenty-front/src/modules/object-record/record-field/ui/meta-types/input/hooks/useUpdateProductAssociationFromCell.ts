@@ -8,60 +8,55 @@ import { useRecoilCallback, useSetRecoilState } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { v4 } from 'uuid';
 
-export const useUpdateOpportunityProductFromCell = ({
+export const useUpdateProductAssociationFromCell = ({
   objectNameSingular,
   recordId,
+  associationObjectNameSingular,
+  fieldName,
+  relationFieldName,
+  sourceFieldName,
 }: {
-  objectNameSingular:
-    | CoreObjectNameSingular.Opportunity
-    | CoreObjectNameSingular.Product;
+  objectNameSingular: CoreObjectNameSingular;
   recordId: string;
+  associationObjectNameSingular: CoreObjectNameSingular;
+  fieldName: string;
+  relationFieldName: string;
+  sourceFieldName: string;
 }) => {
-  const { createOneRecord: createOneOpportunityProduct } = useCreateOneRecord({
-    objectNameSingular: CoreObjectNameSingular.OpportunityProductAssociation,
+  const { createOneRecord: createOneAssociation } = useCreateOneRecord({
+    objectNameSingular: associationObjectNameSingular,
   });
 
-  const { deleteOneRecord: deleteOneOpportunityProduct } = useDeleteOneRecord({
-    objectNameSingular: CoreObjectNameSingular.OpportunityProductAssociation,
+  const { deleteOneRecord: deleteOneAssociation } = useDeleteOneRecord({
+    objectNameSingular: associationObjectNameSingular,
   });
 
   const setRecordFromStore = useSetRecoilState(
     recordStoreFamilyState(recordId),
   );
 
-  const updateOpportunityProductFromCell = useRecoilCallback(
+  const updateProductAssociationFromCell = useRecoilCallback(
     ({ snapshot }) =>
       async ({
         morphItem,
-        currentOpportunityProducts,
+        currentRecordAssociations,
       }: {
         morphItem: RecordPickerPickableMorphItem;
-        currentOpportunityProducts: any[];
+        currentRecordAssociations: any[];
       }) => {
-        const isOpportunity =
-          objectNameSingular === CoreObjectNameSingular.Opportunity;
+        let newAssociations = [...(currentRecordAssociations || [])];
 
-        const relationFieldName = isOpportunity ? 'product' : 'opportunity';
-        // The field on the junction object that points to the "other" side.
-        // If we are on Opportunity, we are picking Products. So we set productId.
-        // Field name is 'product'. Join column is 'productId'.
-
-        // The field on the junction object that points to "us" (source).
-        const sourceFieldName = isOpportunity ? 'opportunity' : 'product';
-
-        let newOpportunityProducts = [...currentOpportunityProducts];
-
-        const existingLink = currentOpportunityProducts.find(
+        const existingLink = newAssociations.find(
           (op) => op[relationFieldName]?.id === morphItem.recordId,
         );
 
         if (isDefined(existingLink)) {
           if (!morphItem.isSelected) {
             // Remove
-            newOpportunityProducts = newOpportunityProducts.filter(
+            newAssociations = newAssociations.filter(
               (op) => op.id !== existingLink.id,
             );
-            await deleteOneOpportunityProduct(existingLink.id);
+            await deleteOneAssociation(existingLink.id);
           }
         } else {
           if (morphItem.isSelected) {
@@ -79,18 +74,18 @@ export const useUpdateOpportunityProductFromCell = ({
             const newId = v4();
             const newOp = {
               id: newId,
-              __typename: 'OpportunityProductAssociation',
+              __typename: associationObjectNameSingular.charAt(0).toUpperCase() + associationObjectNameSingular.slice(1),
               [sourceFieldName]: { id: recordId },
               [`${sourceFieldName}Id`]: recordId,
-              [relationFieldName]: targetRecord, // Set the full object for display
+              [relationFieldName]: targetRecord,
               [`${relationFieldName}Id`]: morphItem.recordId,
             };
 
-            newOpportunityProducts.push(newOp);
+            newAssociations.push(newOp);
 
-            await createOneOpportunityProduct({
+            await createOneAssociation({
               ...newOp,
-              [relationFieldName]: undefined, // Don't send the full object to API
+              [relationFieldName]: undefined,
               [sourceFieldName]: undefined,
             });
           }
@@ -103,18 +98,22 @@ export const useUpdateOpportunityProductFromCell = ({
 
           return {
             ...currentRecord,
-            opportunityProducts: newOpportunityProducts,
+            [fieldName]: newAssociations,
           };
         });
       },
     [
-      createOneOpportunityProduct,
-      deleteOneOpportunityProduct,
+      createOneAssociation,
+      deleteOneAssociation,
       objectNameSingular,
       recordId,
-      setRecordFromStore, // We'll use this if we implement optimistic update properly
+      setRecordFromStore,
+      associationObjectNameSingular,
+      fieldName,
+      relationFieldName,
+      sourceFieldName
     ],
   );
 
-  return { updateOpportunityProductFromCell };
+  return { updateProductAssociationFromCell };
 };

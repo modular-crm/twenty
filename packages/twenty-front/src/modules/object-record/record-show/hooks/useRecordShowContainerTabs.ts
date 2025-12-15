@@ -12,6 +12,8 @@ import { TASK_RECORD_LAYOUT } from '@/object-record/record-show/layouts/task-rec
 import { WORKFLOW_RECORD_LAYOUT } from '@/object-record/record-show/layouts/workflow-record-layout';
 import { WORKFLOW_RUN_RECORD_LAYOUT } from '@/object-record/record-show/layouts/workflow-run-record-layout';
 import { WORKFLOW_VERSION_RECORD_LAYOUT } from '@/object-record/record-show/layouts/workflow-version-record-layout';
+import { LEAD_RECORD_LAYOUT } from '@/object-record/record-show/layouts/lead-record-layout';
+import { DEAL_RECORD_LAYOUT } from '@/object-record/record-show/layouts/deal-record-layout';
 import { type RecordLayout } from '@/object-record/record-show/types/RecordLayout';
 import { evaluateTabVisibility } from '@/object-record/record-show/utils/evaluateTabVisibility';
 import { type RecordLayoutTab } from '@/ui/layout/tab-list/types/RecordLayoutTab';
@@ -33,6 +35,8 @@ const OBJECT_SPECIFIC_LAYOUTS: Partial<
   [CoreObjectNameSingular.Workflow]: WORKFLOW_RECORD_LAYOUT,
   [CoreObjectNameSingular.WorkflowVersion]: WORKFLOW_VERSION_RECORD_LAYOUT,
   [CoreObjectNameSingular.WorkflowRun]: WORKFLOW_RUN_RECORD_LAYOUT,
+  [CoreObjectNameSingular.Lead]: LEAD_RECORD_LAYOUT,
+  [CoreObjectNameSingular.Deal]: DEAL_RECORD_LAYOUT,
 };
 
 export const useRecordShowContainerTabs = (

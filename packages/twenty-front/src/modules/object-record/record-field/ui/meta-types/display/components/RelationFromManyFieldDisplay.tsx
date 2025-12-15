@@ -115,16 +115,51 @@ export const RelationFromManyFieldDisplay = () => {
     (objectMetadataNameSingular === CoreObjectNameSingular.Opportunity ||
       objectMetadataNameSingular === CoreObjectNameSingular.Product);
 
-  if (isRelationFromOpportunityProduct) {
-    const targetObjectNameSingular =
-      objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
-        ? CoreObjectNameSingular.Product
-        : CoreObjectNameSingular.Opportunity;
+  const isRelationFromLeadProduct =
+    fieldName === 'leadProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Lead ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
 
-    const relationFieldName =
-      objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
-        ? 'product'
-        : 'opportunity';
+  const isRelationFromDealProduct =
+    fieldName === 'dealProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Deal ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  if (isRelationFromOpportunityProduct || isRelationFromLeadProduct || isRelationFromDealProduct) {
+    let targetObjectNameSingular = CoreObjectNameSingular.Product;
+    let relationFieldName = 'product';
+
+    if (isRelationFromOpportunityProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Opportunity;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+          ? 'product'
+          : 'opportunity';
+    } else if (isRelationFromLeadProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Lead
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Lead;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Lead
+          ? 'product'
+          : 'lead';
+    } else if (isRelationFromDealProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Deal
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Deal;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Deal
+          ? 'product'
+          : 'deal';
+    }
 
     return (
       <ExpandableList isChipCountDisplayed={isFocused}>

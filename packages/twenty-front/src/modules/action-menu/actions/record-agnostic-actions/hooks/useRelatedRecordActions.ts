@@ -58,12 +58,49 @@ export const useRelatedRecordActions = ({
     }
 
     const targetObjectNameSingular = targetObjectMetadataItem.nameSingular;
-    const targetObjectLabelSingular =
-      targetObjectNameSingular === CoreObjectNameSingular.TaskTarget
-        ? 'task'
-        : targetObjectNameSingular === CoreObjectNameSingular.NoteTarget
-          ? 'note'
-          : targetObjectMetadataItem.labelSingular.toLowerCase();
+
+    const isOpportunityProductAssociation =
+      targetObjectNameSingular ===
+      CoreObjectNameSingular.OpportunityProductAssociation;
+    const isLeadProductAssociation =
+      targetObjectNameSingular === CoreObjectNameSingular.LeadProductAssociation;
+    const isDealProductAssociation =
+      targetObjectNameSingular === CoreObjectNameSingular.DealProductAssociation;
+
+    const isProductAssociation =
+      isOpportunityProductAssociation ||
+      isLeadProductAssociation ||
+      isDealProductAssociation;
+
+    let targetObjectLabelSingular =
+      targetObjectMetadataItem.labelSingular.toLowerCase();
+    let permissionCheckObject = targetObjectNameSingular;
+
+    if (targetObjectNameSingular === CoreObjectNameSingular.TaskTarget) {
+      targetObjectLabelSingular = 'task';
+      permissionCheckObject = CoreObjectNameSingular.Task;
+    } else if (targetObjectNameSingular === CoreObjectNameSingular.NoteTarget) {
+      targetObjectLabelSingular = 'note';
+      permissionCheckObject = CoreObjectNameSingular.Note;
+    } else if (isProductAssociation) {
+      if (
+        sourceObjectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+      ) {
+        if (isOpportunityProductAssociation) {
+          targetObjectLabelSingular = 'opportunity';
+          permissionCheckObject = CoreObjectNameSingular.Opportunity;
+        } else if (isLeadProductAssociation) {
+          targetObjectLabelSingular = 'lead';
+          permissionCheckObject = CoreObjectNameSingular.Lead;
+        } else if (isDealProductAssociation) {
+          targetObjectLabelSingular = 'deal';
+          permissionCheckObject = CoreObjectNameSingular.Deal;
+        }
+      } else {
+        targetObjectLabelSingular = 'product';
+        permissionCheckObject = CoreObjectNameSingular.Product;
+      }
+    }
 
     const actionKey = `create-related-${targetObjectLabelSingular}`;
 
@@ -94,13 +131,7 @@ export const useRelatedRecordActions = ({
             isRecordDeleted: isDefined(selectedRecord.deletedAt),
           }) &&
           objectPermissions.canUpdateObjectRecords &&
-          getTargetObjectWritePermission(
-            targetObjectNameSingular === CoreObjectNameSingular.TaskTarget
-              ? CoreObjectNameSingular.Task
-              : targetObjectNameSingular === CoreObjectNameSingular.NoteTarget
-                ? CoreObjectNameSingular.Note
-                : targetObjectNameSingular,
-          )) ??
+          getTargetObjectWritePermission(permissionCheckObject)) ??
         false,
       availableOn: [
         ActionViewType.SHOW_PAGE,

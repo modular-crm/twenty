@@ -84,6 +84,7 @@ export const DASHBOARD_ACTIONS_CONFIG = inheritActionsFromDefaultConfig({
     NoSelectionRecordActionKeys.GO_TO_SETTINGS,
     NoSelectionRecordActionKeys.GO_TO_TASKS,
     NoSelectionRecordActionKeys.GO_TO_NOTES,
+    NoSelectionRecordActionKeys.GO_TO_PRODUCTS,
   ],
   propertiesToOverwrite: {
     [SingleRecordActionKeys.NAVIGATE_TO_NEXT_RECORD]: {
@@ -142,6 +143,9 @@ export const DASHBOARD_ACTIONS_CONFIG = inheritActionsFromDefaultConfig({
     },
     [NoSelectionRecordActionKeys.GO_TO_NOTES]: {
       position: 18,
+    },
+    [NoSelectionRecordActionKeys.GO_TO_PRODUCTS]: {
+      position: 19,
     },
   },
 });
