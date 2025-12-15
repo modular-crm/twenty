@@ -3,17 +3,19 @@ name: twenty
 services:
   server:
     build:
-      context: ../../
+      context: .
       dockerfile: packages/twenty-docker/twenty/Dockerfile
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
-    ports:
-      - "3000:3000"
+    # Internal-only: use expose instead of ports for no public access
+    # Networking handled by Coolify's "Connect to Predefined Network" feature
+    expose:
+      - "3000"
     environment:
       NODE_PORT: 3000
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
       SERVER_URL: ${SERVER_URL}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
       DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION}
 
@@ -50,18 +52,19 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      redis:
+      twenty-redis:
         condition: service_healthy
     healthcheck:
       test: curl --fail http://localhost:3000/healthz
-      interval: 5s
-      timeout: 5s
-      retries: 20
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
     restart: always
 
   worker:
     build:
-      context: ../../
+      context: .
       dockerfile: packages/twenty-docker/twenty/Dockerfile
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
@@ -69,7 +72,7 @@ services:
     environment:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
       SERVER_URL: ${SERVER_URL}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
       DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
       DISABLE_CRON_JOBS_REGISTRATION: "true" # it already runs on the server
 
@@ -125,7 +128,7 @@ services:
       retries: 10
     restart: always
 
-  redis:
+  twenty-redis:
     image: redis
     restart: always
     command: ["--maxmemory-policy", "noeviction"]
