@@ -30,6 +30,8 @@ import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/pro
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { WorkflowWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.attachment,
@@ -240,6 +242,38 @@ export class AttachmentWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('opportunity')
   opportunityId: string | null;
+
+  @WorkspaceRelation({
+    standardId: ATTACHMENT_STANDARD_FIELD_IDS.lead,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Lead`,
+    description: msg`Attachment lead`,
+    icon: 'IconBuildingSkyscraper',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    inverseSideFieldKey: 'attachments',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  lead: Relation<LeadWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('lead')
+  leadId: string | null;
+
+  @WorkspaceRelation({
+    standardId: ATTACHMENT_STANDARD_FIELD_IDS.deal,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Deal`,
+    description: msg`Attachment deal`,
+    icon: 'IconBuildingSkyscraper',
+    inverseSideTarget: () => DealWorkspaceEntity,
+    inverseSideFieldKey: 'attachments',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  deal: Relation<DealWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('deal')
+  dealId: string | null;
 
   @WorkspaceRelation({
     standardId: ATTACHMENT_STANDARD_FIELD_IDS.dashboard,

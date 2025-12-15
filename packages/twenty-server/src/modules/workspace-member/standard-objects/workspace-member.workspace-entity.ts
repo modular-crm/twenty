@@ -39,6 +39,8 @@ import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/f
 import { MessageParticipantWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-participant.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
 
 export enum WorkspaceMemberDateFormatEnum {
   SYSTEM = 'SYSTEM',
@@ -278,6 +280,30 @@ export class WorkspaceMemberWorkspaceEntity extends BaseWorkspaceEntity {
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   assignedTasks: Relation<TaskWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: WORKSPACE_MEMBER_STANDARD_FIELD_IDS.assignedLeads,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Assigned leads`,
+    description: msg`Leads assigned to the workspace member`,
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    inverseSideFieldKey: 'owner',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  assignedLeads: Relation<LeadWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: WORKSPACE_MEMBER_STANDARD_FIELD_IDS.assignedDeals,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Assigned deals`,
+    description: msg`Deals assigned to the workspace member`,
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => DealWorkspaceEntity,
+    inverseSideFieldKey: 'owner',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  assignedDeals: Relation<DealWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: WORKSPACE_MEMBER_STANDARD_FIELD_IDS.favorites,

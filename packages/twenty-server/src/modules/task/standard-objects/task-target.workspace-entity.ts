@@ -20,6 +20,7 @@ import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-obj
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.taskTarget,
@@ -95,6 +96,22 @@ export class TaskTargetWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('opportunity')
   opportunityId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TASK_TARGET_STANDARD_FIELD_IDS.lead,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Lead`,
+    description: msg`TaskTarget lead`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    inverseSideFieldKey: 'taskTargets',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  lead: Relation<LeadWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('lead')
+  leadId: string | null;
 
   @WorkspaceRelation({
     standardId: TASK_TARGET_STANDARD_FIELD_IDS.product,

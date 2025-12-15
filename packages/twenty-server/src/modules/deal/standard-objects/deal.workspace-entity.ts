@@ -1,127 +1,166 @@
 import { msg } from '@lingui/core/macro';
-import {
-    ActorMetadata,
-    type CurrencyMetadata,
-    FieldMetadataType,
-    RelationOnDeleteAction,
-} from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
+import {
+  ActorMetadata,
+  type CurrencyMetadata,
+  FieldMetadataType,
+  RelationOnDeleteAction,
+} from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
 
-import { SEARCH_VECTOR_FIELD } from 'src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants';
 import { IndexType } from 'src/engine/metadata-modules/index-metadata/types/indexType.types';
+import { SEARCH_VECTOR_FIELD } from 'src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants';
 import { BaseWorkspaceEntity } from 'src/engine/twenty-orm/base.workspace-entity';
 import { WorkspaceEntity } from 'src/engine/twenty-orm/decorators/workspace-entity.decorator';
 import { WorkspaceFieldIndex } from 'src/engine/twenty-orm/decorators/workspace-field-index.decorator';
 import { WorkspaceField } from 'src/engine/twenty-orm/decorators/workspace-field.decorator';
-import { WorkspaceIsDeprecated } from 'src/engine/twenty-orm/decorators/workspace-is-deprecated.decorator';
 import { WorkspaceIsFieldUIReadOnly } from 'src/engine/twenty-orm/decorators/workspace-is-field-ui-readonly.decorator';
 import { WorkspaceIsNullable } from 'src/engine/twenty-orm/decorators/workspace-is-nullable.decorator';
 import { WorkspaceIsSearchable } from 'src/engine/twenty-orm/decorators/workspace-is-searchable.decorator';
 import { WorkspaceIsSystem } from 'src/engine/twenty-orm/decorators/workspace-is-system.decorator';
 import { WorkspaceJoinColumn } from 'src/engine/twenty-orm/decorators/workspace-join-column.decorator';
 import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-relation.decorator';
-import { OPPORTUNITY_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
+import { DEAL_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-    type FieldTypeAndNameMetadata,
-    getTsVectorColumnExpressionFromFields,
+  type FieldTypeAndNameMetadata,
+  getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { DealProductAssociationWorkspaceEntity } from 'src/modules/deal/standard-objects/deal-product-association.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
-import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
-import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 const NAME_FIELD_NAME = 'name';
 
-export const SEARCH_FIELDS_FOR_OPPORTUNITY: FieldTypeAndNameMetadata[] = [
+export const SEARCH_FIELDS_FOR_DEAL: FieldTypeAndNameMetadata[] = [
   { name: NAME_FIELD_NAME, type: FieldMetadataType.TEXT },
 ];
 
 @WorkspaceEntity({
-  standardId: STANDARD_OBJECT_IDS.opportunity,
+  standardId: STANDARD_OBJECT_IDS.deal,
 
-  namePlural: 'opportunities',
-  labelSingular: msg`Opportunity`,
-  labelPlural: msg`Opportunities`,
-  description: msg`An opportunity`,
-  icon: STANDARD_OBJECT_ICONS.opportunity,
+  namePlural: 'deals',
+  labelSingular: msg`Deal`,
+  labelPlural: msg`Deals`,
+  description: msg`A deal`,
+  icon: STANDARD_OBJECT_ICONS.deal,
   shortcut: 'O',
-  labelIdentifierStandardId: OPPORTUNITY_STANDARD_FIELD_IDS.name,
+  labelIdentifierStandardId: DEAL_STANDARD_FIELD_IDS.title,
 })
 @WorkspaceIsSearchable()
-export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
+export class DealWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.name,
+    standardId: DEAL_STANDARD_FIELD_IDS.title,
     type: FieldMetadataType.TEXT,
     label: msg`Name`,
-    description: msg`The opportunity name`,
+    description: msg`The lead name`,
     icon: 'IconTargetArrow',
   })
   @WorkspaceIsNullable()
   name: string;
 
+    @WorkspaceField({
+        standardId: DEAL_STANDARD_FIELD_IDS.status,
+        type: FieldMetadataType.SELECT,
+        label: msg`Status`,
+        description: msg`Deal status`,
+        icon: 'IconCheck',
+        defaultValue: "'TODO'",
+        options: [
+            { value: 'TODO', label: 'To do', position: 0, color: 'sky' },
+            {
+                value: 'IN_PROGRESS',
+                label: 'In progress',
+                position: 1,
+                color: 'purple',
+            },
+            {
+                value: 'DONE',
+                label: 'Done',
+                position: 2,
+                color: 'green',
+            },
+        ],
+    })
+    @WorkspaceIsNullable()
+    status: string | null;
+
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.amount,
+    standardId: DEAL_STANDARD_FIELD_IDS.estimatedAmount,
     type: FieldMetadataType.CURRENCY,
-    label: msg`Amount`,
-    description: msg`Opportunity amount`,
+    label: msg`Estimated Amount`,
+    description: msg`Estimated Amount`,
     icon: 'IconCurrencyDollar',
   })
   @WorkspaceIsNullable()
-  amount: CurrencyMetadata | null;
+  estimatedAmount: CurrencyMetadata | null;
 
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.closeDate,
+    standardId: DEAL_STANDARD_FIELD_IDS.closeDate,
     type: FieldMetadataType.DATE_TIME,
-    label: msg`Close date`,
-    description: msg`Opportunity close date`,
+    label: msg`Close Date`,
+    description: msg`Deal close date`,
     icon: 'IconCalendarEvent',
   })
   @WorkspaceIsNullable()
+  @WorkspaceFieldIndex()
   closeDate: Date | null;
 
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-    type: FieldMetadataType.SELECT,
-    label: msg`Stage`,
-    description: msg`Opportunity stage`,
-    icon: 'IconProgressCheck',
-    options: [
-      { value: 'NEW', label: 'New', position: 0, color: 'red' },
-      { value: 'SCREENING', label: 'Screening', position: 1, color: 'purple' },
-      { value: 'MEETING', label: 'Meeting', position: 2, color: 'sky' },
-      {
-        value: 'PROPOSAL',
-        label: 'Proposal',
-        position: 3,
-        color: 'turquoise',
-      },
-      { value: 'CUSTOMER', label: 'Customer', position: 4, color: 'yellow' },
-    ],
-    defaultValue: "'NEW'",
+    standardId: DEAL_STANDARD_FIELD_IDS.referralAttribution,
+    type: FieldMetadataType.TEXT,
+    label: msg`Referral Attribution`,
+    description: msg`Referral Attribution`,
+    icon: 'IconHierarchy2',
   })
-  @WorkspaceFieldIndex()
-  stage: string;
+  @WorkspaceIsNullable()
+  referralAttribution: string | null;
 
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.position,
-    type: FieldMetadataType.POSITION,
+    standardId: DEAL_STANDARD_FIELD_IDS.approvalStatus,
+    type: FieldMetadataType.SELECT,
+    label: msg`Approval Status`,
+    description: msg`Deal approval status`,
+    icon: 'IconCheck',
+    defaultValue: "'PENDING'",
+    options: [
+        { value: 'PENDING', label: 'Pending', position: 0, color: 'sky' },
+        {
+            value: 'APPROVED',
+            label: 'Approved',
+            position: 1,
+            color: 'purple',
+        },
+        {
+            value: 'REJECTED',
+            label: 'Rejected',
+            position: 2,
+            color: 'red',
+        },
+    ],
+  })
+  @WorkspaceIsNullable()
+  approvalStatus: string | null;
+
+  @WorkspaceField({
+    standardId: DEAL_STANDARD_FIELD_IDS.position,
+    type: FieldMetadataType.NUMBER,
     label: msg`Position`,
-    description: msg`Opportunity record position`,
     icon: 'IconHierarchy2',
+    description: msg`Lead record position`,
     defaultValue: 0,
   })
   @WorkspaceIsSystem()
   position: number;
 
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.createdBy,
+    standardId: DEAL_STANDARD_FIELD_IDS.createdBy,
     type: FieldMetadataType.ACTOR,
     label: msg`Created by`,
     icon: 'IconCreativeCommonsSa',
@@ -131,29 +170,13 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   createdBy: ActorMetadata;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.pointOfContact,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Point of Contact`,
-    description: msg`Opportunity point of contact`,
-    icon: 'IconUser',
-    inverseSideTarget: () => PersonWorkspaceEntity,
-    inverseSideFieldKey: 'pointOfContactForOpportunities',
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  pointOfContact: Relation<PersonWorkspaceEntity> | null;
-
-  @WorkspaceJoinColumn('pointOfContact')
-  pointOfContactId: string | null;
-
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.company,
+    standardId: DEAL_STANDARD_FIELD_IDS.company,
     type: RelationType.MANY_TO_ONE,
     label: msg`Company`,
-    description: msg`Opportunity company`,
+    description: msg`Company`,
     icon: 'IconBuildingSkyscraper',
     inverseSideTarget: () => CompanyWorkspaceEntity,
-    inverseSideFieldKey: 'opportunities',
+    inverseSideFieldKey: 'deals',
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   @WorkspaceIsNullable()
@@ -163,21 +186,53 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   companyId: string | null;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Product`,
-    description: msg`Products linked to this Opportunity`,
-    icon: 'IconPackage',
-    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
+    standardId: DEAL_STANDARD_FIELD_IDS.owner,
+    label: msg`Owner`,
+    description: msg`Deal owner`,
+    icon: 'IconUserCircle',
+    type: RelationType.MANY_TO_ONE,
+    inverseSideTarget: () => WorkspaceMemberWorkspaceEntity,
+    inverseSideFieldKey: 'assignedDeals',
+    onDelete: RelationOnDeleteAction.SET_NULL,
   })
-  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
+  @WorkspaceIsNullable()
+  owner: Relation<WorkspaceMemberWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('owner')
+  ownerId: string | null;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
+    standardId: DEAL_STANDARD_FIELD_IDS.pointOfContact,
+    label: msg`Point of Contact`,
+    description: msg`Deal point of contact`,
+    icon: 'IconUser',
+    type: RelationType.MANY_TO_ONE,
+    inverseSideTarget: () => PersonWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContactForDeals',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  pointOfContact: Relation<PersonWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pointOfContact')
+  pointOfContactId: string | null;
+
+  @WorkspaceRelation({
+    standardId: DEAL_STANDARD_FIELD_IDS.dealProducts,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Product`,
+    description: msg`Products linked to this Deal`,
+    icon: 'IconPackage',
+    inverseSideTarget: () => DealProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  dealProducts: Relation<DealProductAssociationWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: DEAL_STANDARD_FIELD_IDS.favorites,
     type: RelationType.ONE_TO_MANY,
     label: msg`Favorites`,
-    description: msg`Favorites linked to the opportunity`,
+    description: msg`Favorites linked to the lead`,
     icon: 'IconHeart',
     inverseSideTarget: () => FavoriteWorkspaceEntity,
     onDelete: RelationOnDeleteAction.CASCADE,
@@ -187,22 +242,10 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   favorites: Relation<FavoriteWorkspaceEntity[]>;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.taskTargets,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Tasks`,
-    description: msg`Tasks tied to the opportunity`,
-    icon: 'IconCheckbox',
-    inverseSideTarget: () => TaskTargetWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsFieldUIReadOnly()
-  taskTargets: Relation<TaskTargetWorkspaceEntity[]>;
-
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.noteTargets,
+    standardId: DEAL_STANDARD_FIELD_IDS.noteTargets,
     type: RelationType.ONE_TO_MANY,
     label: msg`Notes`,
-    description: msg`Notes tied to the opportunity`,
+    description: msg`Notes tied to the lead`,
     icon: 'IconNotes',
     inverseSideTarget: () => NoteTargetWorkspaceEntity,
     onDelete: RelationOnDeleteAction.CASCADE,
@@ -211,10 +254,10 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.attachments,
+    standardId: DEAL_STANDARD_FIELD_IDS.attachments,
     type: RelationType.ONE_TO_MANY,
     label: msg`Attachments`,
-    description: msg`Attachments linked to the opportunity`,
+    description: msg`Attachments linked to the lead`,
     icon: 'IconFileImport',
     inverseSideTarget: () => AttachmentWorkspaceEntity,
     onDelete: RelationOnDeleteAction.CASCADE,
@@ -224,10 +267,10 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   attachments: Relation<AttachmentWorkspaceEntity[]>;
 
   @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.timelineActivities,
+    standardId: DEAL_STANDARD_FIELD_IDS.timelineActivities,
     type: RelationType.ONE_TO_MANY,
     label: msg`Timeline Activities`,
-    description: msg`Timeline Activities linked to the opportunity.`,
+    description: msg`Timeline Activities linked to the lead.`,
     icon: 'IconTimelineEvent',
     inverseSideTarget: () => TimelineActivityWorkspaceEntity,
     onDelete: RelationOnDeleteAction.SET_NULL,
@@ -237,25 +280,14 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
 
   @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.probabilityDeprecated,
-    type: FieldMetadataType.TEXT,
-    label: msg`Probability`,
-    description: msg`Opportunity probability`,
-    icon: 'IconProgressCheck',
-    defaultValue: "'0'",
-  })
-  @WorkspaceIsDeprecated()
-  probability: string;
-
-  @WorkspaceField({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.searchVector,
+    standardId: DEAL_STANDARD_FIELD_IDS.searchVector,
     type: FieldMetadataType.TS_VECTOR,
     label: SEARCH_VECTOR_FIELD.label,
     description: SEARCH_VECTOR_FIELD.description,
     icon: 'IconUser',
     generatedType: 'STORED',
     asExpression: getTsVectorColumnExpressionFromFields(
-      SEARCH_FIELDS_FOR_OPPORTUNITY,
+      SEARCH_FIELDS_FOR_DEAL,
     ),
   })
   @WorkspaceIsNullable()

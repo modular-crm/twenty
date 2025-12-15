@@ -41,6 +41,8 @@ import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/perso
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
 
 const NAME_FIELD_NAME = 'name';
 const DOMAIN_NAME_FIELD_NAME = 'domainName';
@@ -233,6 +235,30 @@ export class CompanyWorkspaceEntity extends BaseWorkspaceEntity {
   })
   @WorkspaceIsNullable()
   opportunities: Relation<OpportunityWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: COMPANY_STANDARD_FIELD_IDS.leads,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Leads`,
+    description: msg`Leads linked to the company.`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  leads: Relation<LeadWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: COMPANY_STANDARD_FIELD_IDS.deals,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Deals`,
+    description: msg`Deals linked to the company.`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => DealWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  deals: Relation<DealWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: COMPANY_STANDARD_FIELD_IDS.favorites,

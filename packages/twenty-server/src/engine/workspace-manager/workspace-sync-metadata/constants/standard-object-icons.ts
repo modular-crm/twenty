@@ -42,4 +42,6 @@ export const STANDARD_OBJECT_ICONS = {
   workflowAutomatedTrigger: 'IconSettingsAutomation',
   workspaceMember: 'IconUserCircle',
   product: 'IconPackage',
+  lead: 'IconTargetArrow',
+  deal: 'IconTargetArrow',
 } as const;
