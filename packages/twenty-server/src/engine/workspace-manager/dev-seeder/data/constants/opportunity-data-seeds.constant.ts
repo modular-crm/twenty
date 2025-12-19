@@ -170,9 +170,6 @@ const GENERATE_OPPORTUNITY_SEEDS = (): OpportunityDataSeed[] => {
 
     CLOSE_DATE.setDate(CLOSE_DATE.getDate() + DAYS_AHEAD);
 
-    const NUM_PRODUCTS = Object.keys(PRODUCT_DATA_SEED_IDS).length;
-    const PRODUCT_INDEX = ((INDEX - 1) % NUM_PRODUCTS) + 1;
-
     OPPORTUNITY_SEEDS.push({
       id: OPPORTUNITY_DATA_SEED_IDS[`ID_${INDEX}`],
       name: TEMPLATE.name,

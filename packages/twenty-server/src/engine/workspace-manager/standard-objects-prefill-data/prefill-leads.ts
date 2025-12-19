@@ -9,11 +9,11 @@ import {
     STRIPE_ID,
 } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-companies';
 
-export const LEAD_1_ID = '20202020-0001-0001-0001-000000000001';
-export const LEAD_2_ID = '20202020-0001-0001-0001-000000000002';
-export const LEAD_3_ID = '20202020-0001-0001-0001-000000000003';
-export const LEAD_4_ID = '20202020-0001-0001-0001-000000000004';
-export const LEAD_5_ID = '20202020-0001-0001-0001-000000000005';
+export const LEAD_1_ID = 'abd52fd5-d66f-4779-a1f5-0315e8bf5c86';
+export const LEAD_2_ID = 'f2d74106-33ae-4fd7-be0e-ed6b40efb751'
+export const LEAD_3_ID = '84cf6181-5a98-454c-a744-6d8f148feab6'
+export const LEAD_4_ID = 'b874ea3c-f0fe-43bd-a009-f05a7eff5237'
+export const LEAD_5_ID = '8eb6f086-548b-4439-8a99-90e87f4789cf'
 
 export const prefillLeads = async (
   entityManager: EntityManager,

@@ -93,7 +93,7 @@ export class LeadWorkspaceEntity extends BaseWorkspaceEntity {
     options: [
       { value: 'Vertical1', label: 'Vertical1', position: 0, color: 'red' },
       { value: 'Vertical2', label: 'Vertical2', position: 1, color: 'purple' },
-      { value: 'Vertical3', label: 'Vertical4', position: 2, color: 'sky' },
+      { value: 'Vertical3', label: 'Vertical3', position: 2, color: 'sky' },
     ],
     defaultValue: "'Vertical1'",
   })

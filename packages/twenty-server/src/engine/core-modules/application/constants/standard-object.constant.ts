@@ -1463,6 +1463,12 @@ export const STANDARD_OBJECTS = {
       opportunityProducts: {
         universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.opportunityProducts,
       },
+      leadProducts: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.leadProducts,
+      },
+      dealProducts: {
+        universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.dealProducts,
+      },
       favorites: { universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.favorites },
       attachments: {
         universalIdentifier: PRODUCT_STANDARD_FIELD_IDS.attachments,

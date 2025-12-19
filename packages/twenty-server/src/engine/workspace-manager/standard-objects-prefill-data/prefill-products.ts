@@ -3,10 +3,10 @@ import { type EntityManager } from 'typeorm';
 
 export const PRODUCT_1_ID = 'a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d';
 export const PRODUCT_2_ID = 'b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e';
-export const PRODUCT_3_ID = 'c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f';
-export const PRODUCT_4_ID = 'd4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a';
-export const PRODUCT_5_ID = 'e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b';
-export const PRODUCT_6_ID = 'f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c';
+export const PRODUCT_3_ID = 'c3d4e5f6-a7b8-4c9d-8e1f-2a3b4c5d6e7f';
+export const PRODUCT_4_ID = 'd4e5f6a7-b8c9-4d0e-8f2a-3b4c5d6e7f8a';
+export const PRODUCT_5_ID = 'e5f6a7b8-c9d0-4e1f-8a3b-4c5d6e7f8a9b';
+export const PRODUCT_6_ID = 'f6a7b8c9-d0e1-4f2a-8b4c-5d6e7f8a9b0c';
 
 export const prefillProducts = async (
   entityManager: EntityManager,
