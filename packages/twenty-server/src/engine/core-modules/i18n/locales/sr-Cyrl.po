@@ -54,6 +54,11 @@ msgstr "Повезани налог"
 msgid "A dashboard"
 msgstr "Табла"
 
+#. js-lingui-id: v3Dw0y
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "A deal"
+msgstr ""
+
 #. js-lingui-id: HCoswz
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
 msgid "A favorite that can be accessed from the left menu"
@@ -68,6 +73,11 @@ msgstr "Фасцикла омиљених"
 #: src/modules/messaging/common/standard-objects/message-thread.workspace-entity.ts
 msgid "A group of related messages (e.g. email thread, chat thread)"
 msgstr "Група повезаних порука (нпр. е-маил низ, низ ћаскања)"
+
+#. js-lingui-id: 31Wl+c
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "A lead"
+msgstr ""
 
 #. js-lingui-id: 1Pylbk
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
@@ -98,6 +108,11 @@ msgstr ""
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "A person"
 msgstr "Особа"
+
+#. js-lingui-id: 5Yfq1c
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "A product in the catalog"
+msgstr ""
 
 #. js-lingui-id: Q2De+v
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/utils/validate-role-label-uniqueness.util.ts
@@ -176,6 +191,11 @@ msgstr "Неопходна акција да се ресетује лозинк�
 msgid "Action Needed to Set Password"
 msgstr "Неопходна акција да се постави лозинка"
 
+#. js-lingui-id: F6pfE9
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Active"
+msgstr ""
+
 #. js-lingui-id: Du6bPw
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Address"
@@ -221,11 +241,14 @@ msgstr "Агрегирани / филтрирани догађај који се
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-runs-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/timeline-activities-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/products-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/notes-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/messages-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/message-threads-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/leads-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/deals-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/dashboards-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/companies-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/calendar-events-all.view.ts
@@ -273,6 +296,11 @@ msgstr "Пословна прилика"
 msgid "Annual Recurring Revenue: The actual or estimated annual revenue of the company"
 msgstr "Годишњи рекурентни приход: Стварни или процењени годишњи приход компаније"
 
+#. js-lingui-id: KmA7HS
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Approval Status"
+msgstr ""
+
 #. js-lingui-id: mU5fvk
 #: src/engine/core-modules/approved-access-domain/services/approved-access-domain.service.ts
 msgid "Approved access domain already registered."
@@ -298,6 +326,16 @@ msgstr "Април"
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "ARR"
 msgstr "АРР"
+
+#. js-lingui-id: hCG3+/
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Assigned deals"
+msgstr ""
+
+#. js-lingui-id: nXmKAc
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Assigned leads"
+msgstr ""
 
 #. js-lingui-id: Ek7xGj
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -349,6 +387,11 @@ msgstr "Компанија прилога"
 msgid "Attachment dashboard"
 msgstr "Табла прилога"
 
+#. js-lingui-id: F1yvW0
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Attachment deal"
+msgstr ""
+
 #. js-lingui-id: u3pBxa
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Attachment file category"
@@ -358,6 +401,11 @@ msgstr "Категорија датотеке прилога"
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Attachment full path"
 msgstr "Пуна путања прилога"
+
+#. js-lingui-id: 1BD86M
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Attachment lead"
+msgstr ""
 
 #. js-lingui-id: wjocwa
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -379,6 +427,11 @@ msgstr "Прилог повезан са продајном приликом"
 msgid "Attachment person"
 msgstr "Прилог повезан са особом"
 
+#. js-lingui-id: yyIjh1
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Attachment product"
+msgstr ""
+
 #. js-lingui-id: Tx1DxS
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Attachment task"
@@ -397,9 +450,12 @@ msgstr "Радни ток за прилоге"
 #. js-lingui-id: w/Sphq
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -427,10 +483,21 @@ msgstr "Прилози повезани с контактом."
 msgid "Attachments linked to the dashboard"
 msgstr "Прилози повезани са контролном таблом"
 
+#. js-lingui-id: jj5e3U
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Attachments linked to the lead"
+msgstr ""
+
 #. js-lingui-id: kw0mLu
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Attachments linked to the opportunity"
 msgstr "Прилози повезани са продајном приликом"
+
+#. js-lingui-id: S+3XvD
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Attachments linked to the product"
+msgstr ""
 
 #. js-lingui-id: 83l3Yd
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
@@ -692,6 +759,11 @@ msgstr "Град"
 msgid "Close date"
 msgstr "Датум затварања"
 
+#. js-lingui-id: An9RcX
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Close Date"
+msgstr ""
+
 #. js-lingui-id: 96YB1a
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "Color Scheme"
@@ -702,13 +774,21 @@ msgstr "Шема боја"
 msgid "Companies"
 msgstr "Компаније"
 
+#. js-lingui-id: 5B2+NL
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "company"
+msgstr ""
+
 #. js-lingui-id: 7i8j3G
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Company"
@@ -834,9 +914,12 @@ msgstr ""
 #. js-lingui-id: NCIYDF
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -947,6 +1030,86 @@ msgstr "Формат датума"
 msgid "Date when the record was deleted"
 msgstr "Датум када је запис избрисан"
 
+#. js-lingui-id: 3jX0AP
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Deal"
+msgstr ""
+
+#. js-lingui-id: tlEI+J
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Deal approval status"
+msgstr ""
+
+#. js-lingui-id: DD22Ud
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Deal close date"
+msgstr ""
+
+#. js-lingui-id: 5SC+4W
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Deal owner"
+msgstr ""
+
+#. js-lingui-id: HP0/YL
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Deal point of contact"
+msgstr ""
+
+#. js-lingui-id: 7VBJlF
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+msgid "Deal Product Association"
+msgstr ""
+
+#. js-lingui-id: U/9+C8
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+msgid "Deal Product Associations"
+msgstr ""
+
+#. js-lingui-id: UkQC8c
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Deal Products"
+msgstr ""
+
+#. js-lingui-id: q+it0C
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Deal Products tied to the {label}"
+msgstr ""
+
+#. js-lingui-id: jCdLER
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Deal status"
+msgstr ""
+
+#. js-lingui-id: ZlGycp
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Deals"
+msgstr ""
+
+#. js-lingui-id: jUpAVT
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Deals assigned to the workspace member"
+msgstr ""
+
+#. js-lingui-id: 0JkXT3
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Deals linked to the company."
+msgstr ""
+
+#. js-lingui-id: KOHaEu
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Deals linked to this product"
+msgstr ""
+
 #. js-lingui-id: r6zgGo
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "December"
@@ -978,6 +1141,7 @@ msgid "Deleted at"
 msgstr "Избрисано"
 
 #. js-lingui-id: Nu4oKW
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -995,6 +1159,12 @@ msgstr "Смер"
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
 msgid "Display Name"
 msgstr "Приказно име"
+
+#. js-lingui-id: R0nC3x
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Division"
+msgstr ""
 
 #. js-lingui-id: IymH4t
 #: src/engine/core-modules/public-domain/public-domain.service.ts
@@ -1079,6 +1249,12 @@ msgstr "Датум завршетка"
 msgid "Environment variable CLOUDFLARE_API_KEY must be defined to use this feature."
 msgstr "Променљива окружења CLOUDFLARE_API_KEY мора бити дефинисана да би се користила ова функција."
 
+#. js-lingui-id: ty4QyG
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Estimated Amount"
+msgstr ""
+
 #. js-lingui-id: k//6Xs
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 msgid "Event company"
@@ -1088,6 +1264,11 @@ msgstr "Компанија догађаја"
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 msgid "Event dashboard"
 msgstr "Контролна табла догађаја"
+
+#. js-lingui-id: B1ww3S
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event deal"
+msgstr ""
 
 #. js-lingui-id: kJDmsI
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -1107,6 +1288,11 @@ msgstr "Спољни ИД догађаја"
 #: src/modules/calendar/common/standard-objects/calendar-channel-event-association.workspace-entity.ts
 msgid "Event ID"
 msgstr "ИД догађаја"
+
+#. js-lingui-id: 98mJp7
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event lead"
+msgstr ""
 
 #. js-lingui-id: PYs3rP
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -1134,6 +1320,11 @@ msgstr "Учесници догађаја"
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 msgid "Event person"
 msgstr "Особа догађаја"
+
+#. js-lingui-id: Fxqlx6
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event product"
+msgstr ""
 
 #. js-lingui-id: mMq0Wy
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -1198,6 +1389,12 @@ msgstr "Извршилац"
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "Очекивало се да иста поља ограничења буду доследно коришћена у свим операцијама за {connectFieldName}."
 
+#. js-lingui-id: pfqmi0
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Expected Volume"
+msgstr ""
+
 #. js-lingui-id: 5KfWxA
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
@@ -1239,6 +1436,11 @@ msgstr "Омиљена компанија"
 msgid "Favorite dashboard"
 msgstr "Омиљена контролна табла"
 
+#. js-lingui-id: 4fiH6x
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+msgid "Favorite deal"
+msgstr ""
+
 #. js-lingui-id: TDlZ/o
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1254,6 +1456,11 @@ msgstr "Позиција омиљеног фолдера"
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 msgid "Favorite Folders"
 msgstr "Омиљени фолдери"
+
+#. js-lingui-id: VF4xX7
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+msgid "Favorite lead"
+msgstr ""
 
 #. js-lingui-id: dz/fFp
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1274,6 +1481,11 @@ msgstr "Омиљена особа"
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
 msgid "Favorite position"
 msgstr "Омиљена позиција"
+
+#. js-lingui-id: nDd0kV
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+msgid "Favorite product"
+msgstr ""
 
 #. js-lingui-id: OaQVQH
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1306,11 +1518,14 @@ msgstr "Омиљени члан радног простора"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
@@ -1337,6 +1552,12 @@ msgstr "Омиљени повезани са контактом"
 msgid "Favorites linked to the dashboard"
 msgstr "Омиљени повезани са контролном таблом"
 
+#. js-lingui-id: 5hZWr6
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Favorites linked to the lead"
+msgstr ""
+
 #. js-lingui-id: GOfcBt
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 msgid "Favorites linked to the note"
@@ -1346,6 +1567,11 @@ msgstr "Омиљени повезани са белешком"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Favorites linked to the opportunity"
 msgstr "Омиљени повезани са приликом"
+
+#. js-lingui-id: A28Dfs
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Favorites linked to the product"
+msgstr ""
 
 #. js-lingui-id: L5ccWD
 #: src/modules/task/standard-objects/task.workspace-entity.ts
@@ -1935,6 +2161,78 @@ msgstr "Последње време измене записа"
 msgid "Last update"
 msgstr "Последње ажурирање"
 
+#. js-lingui-id: IITbPp
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Lead"
+msgstr ""
+
+#. js-lingui-id: lhNi4x
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Lead owner"
+msgstr ""
+
+#. js-lingui-id: BpPpTt
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+msgid "Lead Product Association"
+msgstr ""
+
+#. js-lingui-id: wyCVAO
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+msgid "Lead Product Associations"
+msgstr ""
+
+#. js-lingui-id: wTVfbp
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Lead Products"
+msgstr ""
+
+#. js-lingui-id: BjryyA
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Lead Products tied to the {label}"
+msgstr ""
+
+#. js-lingui-id: qZE5e2
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Lead record position"
+msgstr ""
+
+#. js-lingui-id: LhgWCf
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Leads"
+msgstr ""
+
+#. js-lingui-id: ImdyKD
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Leads assigned to the workspace member"
+msgstr ""
+
+#. js-lingui-id: gGmnXQ
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Leads linked to the company."
+msgstr ""
+
+#. js-lingui-id: olrZMT
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Leads linked to this product"
+msgstr ""
+
+#. js-lingui-id: iQmbPb
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "License"
+msgstr ""
+
 #. js-lingui-id: wR9USP
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -1958,6 +2256,11 @@ msgstr "Идентификатор повезаног записа"
 msgid "Linkedin"
 msgstr "ЛинкедИн"
 
+#. js-lingui-id: bsfzTP
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "List of deals for which that person is the point of contact"
+msgstr ""
+
 #. js-lingui-id: LeFv/R
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "List of opportunities for which that person is the point of contact"
@@ -1973,6 +2276,12 @@ msgstr "Локација"
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "March"
 msgstr "Март"
+
+#. js-lingui-id: L+qiq+
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Market"
+msgstr ""
 
 #. js-lingui-id: hw7Mwk
 #: src/engine/api/common/common-query-runners/common-create-many-query-runner/common-create-many-query-runner.service.ts
@@ -2199,10 +2508,13 @@ msgstr "Пронађено је више записа са истим једин
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
@@ -2356,9 +2668,12 @@ msgid "Note title"
 msgstr "Наслов белешке"
 
 #. js-lingui-id: 1DBGsz
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 msgid "Notes"
@@ -2379,15 +2694,36 @@ msgstr "Белешке везане за фирму"
 msgid "Notes tied to the contact"
 msgstr "Белешке везане за контакт"
 
+#. js-lingui-id: APRP4U
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Notes tied to the lead"
+msgstr ""
+
 #. js-lingui-id: 0bi/Eh
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Notes tied to the opportunity"
 msgstr "Белешке везане за прилику"
 
+#. js-lingui-id: dKl2K4
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Notes tied to the product"
+msgstr ""
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
 msgstr "Циљ белешке фирма"
+
+#. js-lingui-id: WWhkt1
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget deal"
+msgstr ""
+
+#. js-lingui-id: b5m7ct
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget lead"
+msgstr ""
 
 #. js-lingui-id: /mH0jo
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
@@ -2403,6 +2739,11 @@ msgstr "Циљ белешке прилика"
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget person"
 msgstr "Циљ белешке особа"
+
+#. js-lingui-id: UOAGNT
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget product"
+msgstr ""
 
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -2505,9 +2846,17 @@ msgstr "Прилике"
 msgid "Opportunities linked to the company."
 msgstr "Прилике повезане са фирмом."
 
+#. js-lingui-id: TnUuzS
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Opportunities linked to this product"
+msgstr ""
+
 #. js-lingui-id: SV/iis
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -2539,6 +2888,27 @@ msgstr "Контакт особа за прилику"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Opportunity probability"
 msgstr "Вероватноћа прилике"
+
+#. js-lingui-id: ceqBqq
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+msgid "Opportunity Product Association"
+msgstr ""
+
+#. js-lingui-id: qZ/5lX
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+msgid "Opportunity Product Associations"
+msgstr ""
+
+#. js-lingui-id: TdZm9+
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Opportunity Products"
+msgstr ""
+
+#. js-lingui-id: 4caQm7
+#: src/engine/twenty-orm/custom.workspace-entity.ts
+msgid "Opportunity Products tied to the {label}"
+msgstr ""
 
 #. js-lingui-id: Q1dzBp
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -2616,6 +2986,12 @@ msgstr "Вредност опције мора бити низ од најмањ
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Options are required for enum fields"
 msgstr "Опције су обавезне за поља енума"
+
+#. js-lingui-id: LtI9AS
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Owner"
+msgstr ""
 
 #. js-lingui-id: AODALE
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
@@ -2721,6 +3097,7 @@ msgstr "Молимо одаберите валидан тип везе (IMAP, SM
 
 #. js-lingui-id: P04j61
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 msgid "Point of Contact"
 msgstr "Контакт особа"
 
@@ -2730,11 +3107,14 @@ msgstr "Контакт особа"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
@@ -2752,10 +3132,74 @@ msgstr "Предпочетена шема боја"
 msgid "Preferred language"
 msgstr "Предпочетни језик"
 
+#. js-lingui-id: a7u1N9
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Price"
+msgstr ""
+
 #. js-lingui-id: WJIL29
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Probability"
 msgstr "Вероватноћа"
+
+#. js-lingui-id: K47k8R
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+#: src/modules/product/standard-objects/opportunity-product-association.workspace-entity.ts
+#: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead-product-association.workspace-entity.ts
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal-product-association.workspace-entity.ts
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Product"
+msgstr ""
+
+#. js-lingui-id: J0SnI6
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Product description"
+msgstr ""
+
+#. js-lingui-id: mZW+k8
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Product name"
+msgstr ""
+
+#. js-lingui-id: Ok9ssy
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Product price"
+msgstr ""
+
+#. js-lingui-id: jGuXaa
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Product record position"
+msgstr ""
+
+#. js-lingui-id: N0qXpE
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Products"
+msgstr ""
+
+#. js-lingui-id: Ak7wKQ
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Products linked to this Deal"
+msgstr ""
+
+#. js-lingui-id: WzH7rS
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Products linked to this Lead"
+msgstr ""
+
+#. js-lingui-id: cXWKmJ
+#: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
+msgid "Products linked to this Opportunity"
+msgstr ""
 
 #. js-lingui-id: t/0e9D
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/utils/validate-agent-required-properties.util.ts
@@ -2813,6 +3257,18 @@ msgstr "Примљено у"
 #: src/modules/calendar/common/standard-objects/calendar-channel-event-association.workspace-entity.ts
 msgid "Recurring Event ID"
 msgstr "ИД понављајућег догађаја"
+
+#. js-lingui-id: aROqtw
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Referral Attribution"
+msgstr ""
+
+#. js-lingui-id: 5kYx0p
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Referral Code"
+msgstr ""
 
 #. js-lingui-id: 2rvMKg
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -3031,6 +3487,12 @@ msgstr "Серверлес функција са истим идентитето
 msgid "Settings"
 msgstr "Подешавања"
 
+#. js-lingui-id: EbsiDE
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Settlement Type"
+msgstr ""
+
 #. js-lingui-id: RyE+Of
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/utils/validate-role-required-properties-are-defined.util.ts
 msgid "Some of the information provided is invalid. Please check your input and try again."
@@ -3085,6 +3547,7 @@ msgstr "Стање извршења радног процеса"
 
 #. js-lingui-id: uAQUqI
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 msgid "Status"
 msgstr "Статус"
 
@@ -3216,8 +3679,10 @@ msgstr "Наслов задатка"
 
 #. js-lingui-id: GtycJ/
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 msgid "Tasks"
@@ -3243,15 +3708,30 @@ msgstr "Задаци везани за компанију"
 msgid "Tasks tied to the contact"
 msgstr "Задаци везани за контакт"
 
+#. js-lingui-id: TLzsYh
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Tasks tied to the lead"
+msgstr ""
+
 #. js-lingui-id: 1TfX9U
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Tasks tied to the opportunity"
 msgstr "Задаци везани за прилику"
 
+#. js-lingui-id: vtszG6
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Tasks tied to the product"
+msgstr ""
+
 #. js-lingui-id: pP0Dt9
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget company"
 msgstr "Циљ компаније задатка"
+
+#. js-lingui-id: Sv+QTe
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+msgid "TaskTarget lead"
+msgstr ""
 
 #. js-lingui-id: UJ2aPi
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
@@ -3262,6 +3742,11 @@ msgstr "Циљ прилике задатка"
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget person"
 msgstr "Циљ особе задатка"
+
+#. js-lingui-id: oBciZc
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+msgid "TaskTarget product"
+msgstr ""
 
 #. js-lingui-id: pciKLT
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
@@ -3322,9 +3807,12 @@ msgstr "URL веб сајта компаније. Користимо ову ад
 #. js-lingui-id: zGBDEH
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -3376,6 +3864,12 @@ msgstr "Фасцикла којој омиљени припада"
 #: src/modules/workflow/common/workspace-services/workflow-version-validation.workspace-service.ts
 msgid "The initial version of a workflow can not be deleted"
 msgstr "Почетна верзија тока рада не може се избрисати"
+
+#. js-lingui-id: fFJrYx
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "The lead name"
+msgstr ""
 
 #. js-lingui-id: hx2IZ4
 #: src/engine/metadata-modules/object-permission/object-permission.service.ts
@@ -3524,8 +4018,11 @@ msgstr "Временска зона"
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/product/standard-objects/product.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
@@ -3542,6 +4039,12 @@ msgstr "Активности на временској линији везане
 msgid "Timeline activities linked to the dashboard"
 msgstr "Активности на временској линији везане за контролну таблу"
 
+#. js-lingui-id: RagqAw
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/deal/standard-objects/deal.workspace-entity.ts
+msgid "Timeline Activities linked to the lead."
+msgstr ""
+
 #. js-lingui-id: 4/UzU5
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 msgid "Timeline Activities linked to the note."
@@ -3551,6 +4054,11 @@ msgstr "Активности на временској линији везане
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Timeline Activities linked to the opportunity."
 msgstr "Активности на временској линији везане за прилику."
+
+#. js-lingui-id: npGY4b
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Timeline Activities linked to the product"
+msgstr ""
 
 #. js-lingui-id: yvPwuF
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
@@ -3739,6 +4247,12 @@ msgstr "Тригер верзије"
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "Versions"
 msgstr "Верзије"
+
+#. js-lingui-id: mX/isJ
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+#: src/modules/lead/standard-objects/lead.workspace-entity.ts
+msgid "Vertical"
+msgstr ""
 
 #. js-lingui-id: HhN1Bv
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-view-validator.service.ts
@@ -4003,6 +4517,11 @@ msgstr "Среда"
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
 msgid "Welcome to Twenty: Please Confirm Your Email"
 msgstr "Добродошли у Twenty: Молимо потврдите ваш имејл"
+
+#. js-lingui-id: 8uQxSA
+#: src/modules/product/standard-objects/product.workspace-entity.ts
+msgid "Whether the product is active"
+msgstr ""
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts

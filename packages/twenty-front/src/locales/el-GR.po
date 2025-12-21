@@ -4693,6 +4693,11 @@ msgstr "Πηγαίνετε στις Ευκαιρίες"
 msgid "Go to People"
 msgstr "Πηγαίνετε στους Ανθρώπους"
 
+#. js-lingui-id: dbqLFu
+#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
+msgid "Go to Products"
+msgstr ""
+
 #. js-lingui-id: iS69s6
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
@@ -5674,6 +5679,11 @@ msgstr ""
 msgid "Link copied to clipboard"
 msgstr "Ο σύνδεσμος αντιγράφηκε στο πρόχειρο"
 
+#. js-lingui-id: dmYOjD
+#: src/modules/activities/products/components/LinkProductButton.tsx
+msgid "Link Product"
+msgstr ""
+
 #. js-lingui-id: 82kQhK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -6601,6 +6611,11 @@ msgstr "Δεν βρέθηκε μέθοδος πληρωμής. Ενημερώσ�
 msgid "No permissions have been set for individual objects."
 msgstr "Δεν έχουν οριστεί δικαιώματα για μεμονωμένα αντικείμενα."
 
+#. js-lingui-id: bvZvpj
+#: src/modules/object-record/record-show/components/ProductCard.tsx
+msgid "No Products"
+msgstr ""
+
 #. js-lingui-id: ePgApM
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
 msgid "No record is required to trigger this workflow"
@@ -7405,6 +7420,11 @@ msgstr "Pro"
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Processing..."
 msgstr "Επεξεργασία..."
+
+#. js-lingui-id: N0qXpE
+#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
+msgid "Products"
+msgstr ""
 
 #. js-lingui-id: vERlcd
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
@@ -9214,6 +9234,11 @@ msgstr "έπειτα"
 #: src/modules/activities/files/components/FilesCard.tsx
 msgid "There are no associated files with this record."
 msgstr "Δεν υπάρχουν συσχετισμένα αρχεία με αυτήν την καταχώρηση."
+
+#. js-lingui-id: xWkCfj
+#: src/modules/object-record/record-show/components/ProductCard.tsx
+msgid "There are no products associated with this record."
+msgstr ""
 
 #. js-lingui-id: /cSDOy
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
