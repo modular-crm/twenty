@@ -22,11 +22,14 @@ import { DashboardWorkspaceEntity } from 'src/modules/dashboard/standard-objects
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { WorkflowRunWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-run.workspace-entity';
 import { WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
 import { WorkflowWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.timelineActivity,
@@ -168,6 +171,38 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
   opportunityId: string | null;
 
   @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.lead,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Lead`,
+    description: msg`Event lead`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  lead: Relation<LeadWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('lead')
+  leadId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.deal,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Deal`,
+    description: msg`Event deal`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => DealWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  deal: Relation<DealWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('deal')
+  dealId: string | null;
+
+  @WorkspaceRelation({
     standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.note,
     type: RelationType.MANY_TO_ONE,
     label: msg`Note`,
@@ -262,6 +297,22 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('dashboard')
   dashboardId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.product,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Product`,
+    description: msg`Event product`,
+    icon: 'IconPackage',
+    inverseSideTarget: () => ProductWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  product: Relation<ProductWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('product')
+  productId: string | null;
 
   @WorkspaceDynamicRelation({
     type: RelationType.MANY_TO_ONE,

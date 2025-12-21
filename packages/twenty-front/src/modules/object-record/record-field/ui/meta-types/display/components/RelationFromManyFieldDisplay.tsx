@@ -108,6 +108,80 @@ export const RelationFromManyFieldDisplay = () => {
           .filter(isDefined)}
       </StyledContainer>
     );
+  }
+
+  const isRelationFromOpportunityProduct =
+    fieldName === 'opportunityProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Opportunity ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  const isRelationFromLeadProduct =
+    fieldName === 'leadProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Lead ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  const isRelationFromDealProduct =
+    fieldName === 'dealProducts' &&
+    (objectMetadataNameSingular === CoreObjectNameSingular.Deal ||
+      objectMetadataNameSingular === CoreObjectNameSingular.Product);
+
+  if (isRelationFromOpportunityProduct || isRelationFromLeadProduct || isRelationFromDealProduct) {
+    let targetObjectNameSingular = CoreObjectNameSingular.Product;
+    let relationFieldName = 'product';
+
+    if (isRelationFromOpportunityProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Opportunity;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Opportunity
+          ? 'product'
+          : 'opportunity';
+    } else if (isRelationFromLeadProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Lead
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Lead;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Lead
+          ? 'product'
+          : 'lead';
+    } else if (isRelationFromDealProduct) {
+      targetObjectNameSingular =
+        objectMetadataNameSingular === CoreObjectNameSingular.Deal
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Deal;
+
+      relationFieldName =
+        objectMetadataNameSingular === CoreObjectNameSingular.Deal
+          ? 'product'
+          : 'deal';
+    }
+
+    return (
+      <ExpandableList isChipCountDisplayed={isFocused}>
+        {fieldValue
+          ?.filter(isDefined)
+          .map((record) => {
+            const targetRecord = record[relationFieldName];
+            if (!isDefined(targetRecord)) {
+              return undefined;
+            }
+            return (
+              <RecordChip
+                key={record.id}
+                objectNameSingular={targetObjectNameSingular}
+                record={targetRecord}
+                forceDisableClick={disableChipClick}
+              />
+            );
+          })
+          .filter(isDefined)}
+      </ExpandableList>
+    );
   } else if (isRelationFromActivityTargets) {
     return (
       <ExpandableList isChipCountDisplayed={isFocused}>

@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
-import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
+import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
@@ -22,11 +22,14 @@ import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/stand
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { WorkflowRunWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-run.workspace-entity';
 import { WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
 import { WorkflowWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.favorite,
@@ -132,6 +135,38 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
   opportunityId: string;
 
   @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.lead,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Lead`,
+    description: msg`Favorite lead`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => LeadWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  lead: Relation<LeadWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('lead')
+  leadId: string;
+
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.deal,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Deal`,
+    description: msg`Favorite deal`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => DealWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  deal: Relation<DealWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('deal')
+  dealId: string;
+
+  @WorkspaceRelation({
     standardId: FAVORITE_STANDARD_FIELD_IDS.workflow,
     type: RelationType.MANY_TO_ONE,
     label: msg`Workflow`,
@@ -226,6 +261,22 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('dashboard')
   dashboardId: string;
+
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.product,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Product`,
+    description: msg`Favorite product`,
+    icon: 'IconPackage',
+    inverseSideTarget: () => ProductWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  product: Relation<ProductWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('product')
+  productId: string;
 
   @WorkspaceField({
     standardId: FAVORITE_STANDARD_FIELD_IDS.view,

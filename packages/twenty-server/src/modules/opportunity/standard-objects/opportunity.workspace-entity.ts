@@ -1,9 +1,9 @@
 import { msg } from '@lingui/core/macro';
 import {
-  ActorMetadata,
-  type CurrencyMetadata,
-  FieldMetadataType,
-  RelationOnDeleteAction,
+    ActorMetadata,
+    type CurrencyMetadata,
+    FieldMetadataType,
+    RelationOnDeleteAction,
 } from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 
@@ -26,17 +26,17 @@ import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-re
 import { OPPORTUNITY_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-  type FieldTypeAndNameMetadata,
-  getTsVectorColumnExpressionFromFields,
+    type FieldTypeAndNameMetadata,
+    getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
-
 const NAME_FIELD_NAME = 'name';
 
 export const SEARCH_FIELDS_FOR_OPPORTUNITY: FieldTypeAndNameMetadata[] = [
@@ -161,6 +161,17 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('company')
   companyId: string | null;
+
+  @WorkspaceRelation({
+    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Product`,
+    description: msg`Products linked to this Opportunity`,
+    icon: 'IconPackage',
+    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,

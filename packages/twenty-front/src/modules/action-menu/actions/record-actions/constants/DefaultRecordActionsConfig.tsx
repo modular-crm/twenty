@@ -692,6 +692,38 @@ export const DEFAULT_RECORD_ACTIONS_CONFIG: Record<
     ),
     hotKeys: ['G', 'T'],
   },
+    [NoSelectionRecordActionKeys.GO_TO_PRODUCTS]: {
+    type: ActionType.Navigation,
+    scope: ActionScope.Global,
+    key: NoSelectionRecordActionKeys.GO_TO_PRODUCTS,
+    label: msg`Go to Products`,
+    shortLabel: msg`Products`,
+    position: 27,
+    Icon: IconCheckbox,
+    isPinned: false,
+    availableOn: [
+      ActionViewType.INDEX_PAGE_NO_SELECTION,
+      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.INDEX_PAGE_BULK_SELECTION,
+      ActionViewType.SHOW_PAGE,
+      ActionViewType.PAGE_EDIT_MODE,
+    ],
+    shouldBeRegistered: ({
+      objectMetadataItem,
+      viewType,
+      getTargetObjectReadPermission,
+    }) =>
+      getTargetObjectReadPermission(CoreObjectNameSingular.Product) &&
+      (objectMetadataItem?.nameSingular !== CoreObjectNameSingular.Product ||
+        viewType === ActionViewType.SHOW_PAGE),
+    component: (
+      <ActionLink
+        to={AppPath.RecordIndexPage}
+        params={{ objectNamePlural: CoreObjectNamePlural.Product }}
+      />
+    ),
+    hotKeys: ['G', 'P'],
+  },
   [NoSelectionRecordActionKeys.GO_TO_NOTES]: {
     type: ActionType.Navigation,
     scope: ActionScope.Global,

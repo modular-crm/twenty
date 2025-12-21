@@ -42,9 +42,12 @@ export const ATTACHMENT_STANDARD_FIELD_IDS = {
   person: '20202020-0158-4aa2-965c-5cdafe21ffa2',
   company: '20202020-ceab-4a28-b546-73b06b4c08d5',
   opportunity: '20202020-7374-499d-bea3-9354890755b5',
+  lead: '20202020-7374-499d-bea3-9354890755b6',
+  deal: '20202020-7374-499d-bea3-9354890755b7',
   dashboard: '20202020-5324-43f3-9dbf-1a33e7de0ce6',
   workflow: '20202020-f1e8-4c9d-8a7b-3f5e1d2c9a8b',
   custom: '20202020-302d-43b3-9aea-aa4f89282a9f',
+  product: '20202020-a110-0001-0000-000000000001',
 } as const;
 
 export const BASE_OBJECT_STANDARD_FIELD_IDS = {
@@ -135,6 +138,8 @@ export const COMPANY_STANDARD_FIELD_IDS = {
   taskTargets: '20202020-cb17-4a61-8f8f-3be6730480de',
   noteTargets: '20202020-bae0-4556-a74a-a9c686f77a88',
   opportunities: '20202020-add3-4658-8e23-d70dccb6d0ec',
+  leads: '20202020-add3-4658-8e23-d70dccb6d0e1',
+  deals: '20202020-add3-4658-8e23-d70dccb6d0e2',
   favorites: '20202020-4d1d-41ac-b13b-621631298d55',
   attachments: '20202020-c1b5-4120-b0f0-987ca401ed53',
   timelineActivities: '20202020-0414-4daf-9c0d-64fe7b27f89f',
@@ -166,6 +171,8 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   person: '20202020-c414-45b9-a60a-ac27aa96229f',
   company: '20202020-04ad-4221-a744-7a8278a5ce21',
   opportunity: '20202020-7664-4a35-a3df-580d389fd527',
+  lead: '20202020-7664-4a35-a3df-580d389fd528',
+  deal: '20202020-7664-4a35-a3df-580d389fd529',
   task: '20202020-b2f5-415c-9135-a31dfe49501b',
   note: '20202020-ec55-4135-8da5-3a20badc0156',
   workflow: '20202020-616c-4ad3-a2e9-c477c341e295',
@@ -176,6 +183,7 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   linkedRecordCachedName: '20202020-cfdb-4bef-bbce-a29f41230934',
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
   linkedObjectMetadataId: '20202020-c595-449d-9f89-562758c9ee69',
+  product: '20202020-11ae-0001-0000-000000000001',
 } as const;
 
 export const FAVORITE_STANDARD_FIELD_IDS = {
@@ -184,6 +192,8 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   person: '20202020-c428-4f40-b6f3-86091511c41c',
   company: '20202020-cff5-4682-8bf9-069169e08279',
   opportunity: '20202020-dabc-48e1-8318-2781a2b32aa2',
+  lead: '20202020-dabc-48e1-8318-2781a2b32aa3',
+  deal: '20202020-dabc-48e1-8318-2781a2b32aa4',
   workflow: '20202020-b11b-4dc8-999a-6bd0a947b463',
   workflowVersion: '20202020-e1b8-4caf-b55a-3ab4d4cbcd21',
   workflowRun: '20202020-db5a-4fe4-9a13-9afa22b1e762',
@@ -193,6 +203,7 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   custom: '20202020-855a-4bc8-9861-79deef37011f',
   favoriteFolder: '20202020-f658-4d12-8b4d-248356aa4bd9',
   dashboard: '20202020-6ef9-45e4-b440-cc986f687c91',
+  product: '20202020-fa10-0001-0000-000000000001',
 } as const;
 
 export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
@@ -291,7 +302,10 @@ export const NOTE_TARGET_STANDARD_FIELD_IDS = {
   person: '20202020-38ca-4aab-92f5-8a605ca2e4c5',
   company: 'c500fbc0-d6f2-4982-a959-5a755431696c',
   opportunity: '20202020-4e42-417a-a705-76581c9ade79',
+  lead: '20202020-4e42-417a-a705-76581c9ade78',
+  deal: '20202020-4e42-417a-a705-76581c9ade77',
   custom: '20202020-3d12-4579-94ee-7117c1bad492',
+  product: '20202020-0e10-0001-0000-000000000001',
 } as const;
 
 export const OPPORTUNITY_STANDARD_FIELD_IDS = {
@@ -312,6 +326,7 @@ export const OPPORTUNITY_STANDARD_FIELD_IDS = {
   attachments: '20202020-87c7-4118-83d6-2f4031005209',
   timelineActivities: '20202020-30e2-421f-96c7-19c69d1cf631',
   searchVector: '428a0da5-4b2e-4ce3-b695-89a8b384e6e3',
+  opportunityProducts: '20202020-0100-0001-0000-000000000001',
 } as const;
 
 export const PERSON_STANDARD_FIELD_IDS = {
@@ -329,6 +344,7 @@ export const PERSON_STANDARD_FIELD_IDS = {
   createdBy: '20202020-f6ab-4d98-af24-a3d5b664148a',
   company: '20202020-e2f3-448e-b34c-2d625f0025fd',
   pointOfContactForOpportunities: '20202020-911b-4a7d-b67b-918aa9a5b33a',
+  pointOfContactForDeals: '20202020-911b-4a7d-b67b-918aa9a5b33b',
   // TODO: check if activityTargets field can be deleted
   activityTargets: '20202020-dee7-4b7f-b50a-1f50bd3be452',
   taskTargets: '20202020-584b-4d3e-88b6-53ab1fa03c3a',
@@ -362,7 +378,9 @@ export const TASK_TARGET_STANDARD_FIELD_IDS = {
   person: '20202020-c8a0-4e85-a016-87e2349cfbec',
   company: '20202020-4703-4a4e-948c-487b0c60a92c',
   opportunity: '20202020-6cb2-4c01-a9a5-aca3dbc11d41',
+  lead: '20202020-6cb2-4c01-a9a5-aca3dbc11d42',
   custom: '20202020-41c1-4c9a-8c75-be0971ef89af',
+  product: '20202020-1a50-0001-0000-000000000001',
 } as const;
 
 export const VIEW_FIELD_STANDARD_FIELD_IDS = {
@@ -493,6 +511,8 @@ export const WORKSPACE_MEMBER_STANDARD_FIELD_IDS = {
   authoredActivities: '20202020-f139-4f13-a82f-a65a8d290a74',
   assignedActivities: '20202020-5c97-42b6-8ca9-c07622cbb33f',
   assignedTasks: '20202020-61dc-4a1c-99e8-38ebf8d2bbeb',
+  assignedLeads: '20202020-61dc-4a1c-99e8-38ebf8d4b411',
+  assignedDeals: '20202020-61dc-4a1c-99e8-38ebf8d4b422',
   favorites: '20202020-f3c1-4faf-b343-cf7681038757',
   accountOwnerForCompanies: '20202020-dc29-4bd4-a3c1-29eafa324bee',
   authoredAttachments: '20202020-000f-4947-917f-1b09851024fe',
@@ -523,6 +543,9 @@ export const CUSTOM_OBJECT_STANDARD_FIELD_IDS = {
   attachments: '20202020-8d59-46ca-b7b2-73d167712134',
   timelineActivities: '20202020-f1ef-4ba4-8f33-1a4577afa477',
   searchVector: '70e56537-18ef-4811-b1c7-0a444006b815',
+  opportunityProducts: '20202020-0860-4566-b865-bff3c626c303',
+  leadProducts: '20202020-0860-4566-b865-bff3c626c304',
+  dealProducts: '20202020-0860-4566-b865-bff3c626c305',
 } as const;
 
 export const DASHBOARD_STANDARD_FIELD_IDS = {
@@ -534,6 +557,87 @@ export const DASHBOARD_STANDARD_FIELD_IDS = {
   favorites: '20202020-f032-478f-88fa-6426ff6f1e4c',
   attachments: '20202020-bf6f-4220-8c55-2764f1175870',
   searchVector: '20202020-0bcc-47a4-8360-2e35a7133f7a',
+} as const;
+
+export const PRODUCT_STANDARD_FIELD_IDS = {
+  name: '20202020-0d01-0001-0000-000000000001',
+  sku: '20202020-0d01-0001-0000-000000000002',
+  description: '20202020-0d01-0001-0000-000000000003',
+  price: '20202020-0d01-0001-0000-000000000004',
+  isActive: '20202020-0d01-0001-0000-000000000005',
+  position: '20202020-0d01-0001-0000-000000000006',
+  createdBy: '20202020-0d01-0001-0000-000000000007',
+  opportunityProducts: '20202020-0d01-0001-0000-000000000008',
+  leadProducts: '20202020-0d01-0001-0000-000000000009',
+  dealProducts: '20202020-0d01-0001-0000-00000000000a',
+  favorites: '20202020-0d01-0001-0000-00000000000b',
+  attachments: '20202020-0d01-0001-0000-00000000000c',
+  noteTargets: '20202020-0d01-0001-0000-00000000000d',
+  taskTargets: '20202020-0d01-0001-0000-00000000000e',
+  timelineActivities: '20202020-0d01-0001-0000-00000000000f',
+  searchVector: '20202020-0d01-0001-0000-000000000010',
+} as const;
+
+export const OPPORTUNITY_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS = {
+  product: '20202020-0d02-0001-0000-000000000002',
+  opportunity: '20202020-0d02-0001-0000-000000000003',
+  custom: '20202020-0d02-0001-0000-000000000004',
+  opportunityId: '20202020-0d02-0001-0000-00000000000f',
+  productId: '20202020-0d02-0001-0000-000000000010',
+} as const;
+
+export const LEAD_STANDARD_FIELD_IDS = {
+  title: 'a51f8d60-1648-465f-9896-e2a184e818db',
+  division: '6ccd8538-b976-4959-9b7f-dd123ccf6472',
+  market: '997dfc06-499c-420e-873e-a7a45f49a9de',
+  vertical: 'b068eaab-e41b-4331-819a-ce2b6a893f25',
+  license: 'ffb0745d-7c2f-4892-bf67-f828de164eb6',
+  settlementType: '305102a0-c225-444e-a1f6-2b6c0cb9f7b6',
+  referralCode: '73749b98-9eff-4a4a-a2ab-63cc792c027e',
+  expectedVolume: '92bdac56-af2e-40a9-9d3e-a41985b2591e',
+  position: '0ff75788-2b0c-46c1-a4e5-713e54bac226',
+  createdBy: '360da68e-d0ec-4411-91cb-32d78b511761',
+  company: 'f8a34df6-837c-42f6-86fe-3a61750e85e3',
+  owner: '1e1af08f-71f3-43fc-8f6e-7b6874f0ef68',
+  leadProducts: 'aaaff2e3-a4fa-4c34-b60b-5d6e1465ab04',
+  favorites: 'd41a180f-fcd4-4c1d-8c0d-1eb060a744f1',
+  taskTargets: 'c3f26d55-1fb6-4e58-9676-97fb52d86768',
+  noteTargets: 'b7edc8ff-ddc8-4d21-a65f-38ac14b65e87',
+  attachments: '16bb1909-08c8-4cf5-a2d8-005fad26ea99',
+  timelineActivities: '118c1ac0-d190-4e00-adc3-9243a8b152e4',
+  searchVector: '3ad85e79-bd53-4883-a9ec-ff2b24bf6c22',
+} as const;
+
+export const LEAD_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS = {
+  lead: '20202020-0d02-0001-0000-000000000005',
+  product: '20202020-0d02-0001-0000-000000000006',
+  custom: '20202020-0d02-0001-0000-000000000007',
+} as const;
+
+export const DEAL_STANDARD_FIELD_IDS = {
+  title: '6230a232-a4ec-4e74-9f00-dcde2c35fa81',
+  status: '34cccf5b-5cf4-4164-9160-c3aca82090bb',
+  estimatedAmount: '28e23cfe-8b8e-4bbc-997f-0dd4a2e06d38',
+  closeDate: 'df48624a-d692-43fd-8c88-68aa41ca356c',
+  referralAttribution: '81d7c952-86cd-4fe2-a97d-6c7470e76cf9',
+  approvalStatus: '3778a403-bfdf-4117-a07d-cb07e7e44373',
+  position: '60040f2d-e34a-4c34-b74d-356120e0b252',
+  createdBy: '849285f6-f25d-4d07-b349-42413a640134',
+  company: '7aacaf2b-9ee2-4a90-9c7f-be5a1b095e93',
+  dealProducts: 'a806b41b-c55d-49a5-a8ee-528d1b17d3c1',
+  owner: 'd144c1d6-5f62-4a44-96dc-d2caa82abbf1',
+  pointOfContact: '48ba3dc6-b323-425a-97d0-507fb8e950a9',
+  favorites: '3b1a54b6-bf49-405e-b055-4a0053d9f782',
+  attachments: 'd5b4a8ed-731a-407d-8591-642c3ca85fcc',
+  noteTargets: '0bb9297f-aece-4245-a3b0-dc79c79e5322',
+  timelineActivities: 'cd47ccae-bca3-459d-9e04-bafab9848124',
+  searchVector: 'cb310267-eeac-42f7-b229-3300a079f37f',
+} as const;
+
+export const DEAL_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS = {
+  deal: '20202020-0d02-0001-0000-000000000008',
+  product: '20202020-0d02-0001-0000-000000000009',
+  custom: '20202020-0d02-0001-0000-00000000000a',
 } as const;
 
 export const STANDARD_OBJECT_FIELD_IDS = {
@@ -562,6 +666,8 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   noteTarget: NOTE_TARGET_STANDARD_FIELD_IDS,
   opportunity: OPPORTUNITY_STANDARD_FIELD_IDS,
   person: PERSON_STANDARD_FIELD_IDS,
+  product: PRODUCT_STANDARD_FIELD_IDS,
+  opportunityProductAssociation: OPPORTUNITY_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
   task: TASK_STANDARD_FIELD_IDS,
   taskTarget: TASK_TARGET_STANDARD_FIELD_IDS,
   timelineActivity: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS,
@@ -574,4 +680,8 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   workflowRun: WORKFLOW_RUN_STANDARD_FIELD_IDS,
   workflowVersion: WORKFLOW_VERSION_STANDARD_FIELD_IDS,
   workspaceMember: WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
+  lead: LEAD_STANDARD_FIELD_IDS,
+  leadProductAssociation: LEAD_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
+  deal: DEAL_STANDARD_FIELD_IDS,
+  dealProductAssociation: DEAL_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
 } as const;

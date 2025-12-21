@@ -49,4 +49,10 @@ export const STANDARD_OBJECT_IDS = {
   workflowVersion: '20202020-d65d-4ab9-9344-d77bfb376a3d',
   workspaceMember: '20202020-3319-4234-a34c-82d5c0e881a6',
   workflowAutomatedTrigger: '20202020-3319-4234-a34c-7f3b9d2e4d1f',
+  product: '20202020-a1b2-c3d4-e5f6-789012345678',
+  opportunityProductAssociation: '20202020-0d02-0001-0000-000000000001',
+  deal: '80d3c976-dfb7-4f8a-9246-7cdd57ea0cbb',
+  dealProductAssociation: 'e0c20baf-99ab-4553-bbd6-73e3726f9640',
+  lead: 'c6d81c9c-e8f1-4020-9f7e-048498920414',
+  leadProductAssociation: 'ca065189-bad1-4f7d-a82d-6b93bfa76b37',
 } as const;

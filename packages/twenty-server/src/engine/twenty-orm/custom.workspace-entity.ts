@@ -26,8 +26,11 @@ import {
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
+import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+import { LeadProductAssociationWorkspaceEntity } from 'src/modules/lead/standard-objects/lead-product-association.workspace-entity';
+import { DealProductAssociationWorkspaceEntity } from 'src/modules/deal/standard-objects/deal-product-association.workspace-entity';
 
 export const SEARCH_FIELDS_FOR_CUSTOM_OBJECT: FieldTypeAndNameMetadata[] = [
   {
@@ -100,6 +103,54 @@ export class CustomWorkspaceEntity extends BaseWorkspaceEntity {
   })
   @WorkspaceIsNullable()
   taskTargets: TaskTargetWorkspaceEntity[];
+
+  @WorkspaceRelation({
+    standardId: CUSTOM_OBJECT_STANDARD_FIELD_IDS.opportunityProducts,
+    label: msg`Opportunity Products`,
+    type: RelationType.ONE_TO_MANY,
+    description: (objectMetadata) => {
+      const label = objectMetadata.labelSingular;
+
+      return msg`Opportunity Products tied to the ${label}`;
+    },
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  opportunityProducts: OpportunityProductAssociationWorkspaceEntity[];
+
+  @WorkspaceRelation({
+    standardId: CUSTOM_OBJECT_STANDARD_FIELD_IDS.leadProducts,
+    label: msg`Lead Products`,
+    type: RelationType.ONE_TO_MANY,
+    description: (objectMetadata) => {
+      const label = objectMetadata.labelSingular;
+
+      return msg`Lead Products tied to the ${label}`;
+    },
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => LeadProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  leadProducts: LeadProductAssociationWorkspaceEntity[];
+
+  @WorkspaceRelation({
+    standardId: CUSTOM_OBJECT_STANDARD_FIELD_IDS.dealProducts,
+    label: msg`Deal Products`,
+    type: RelationType.ONE_TO_MANY,
+    description: (objectMetadata) => {
+      const label = objectMetadata.labelSingular;
+
+      return msg`Deal Products tied to the ${label}`;
+    },
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => DealProductAssociationWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  dealProducts: DealProductAssociationWorkspaceEntity[];
 
   @WorkspaceRelation({
     standardId: CUSTOM_OBJECT_STANDARD_FIELD_IDS.favorites,

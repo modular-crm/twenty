@@ -6,6 +6,7 @@ import { getLabelIdentifierFieldMetadataItem } from '@/object-metadata/utils/get
 import { hasObjectMetadataItemPositionField } from '@/object-metadata/utils/hasObjectMetadataItemPositionField';
 import { generateActivityTargetGqlFields } from '@/object-record/graphql/record-gql-fields/utils/generateActivityTargetGqlFields';
 import { generateDepthRecordGqlFieldsFromFields } from '@/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromFields';
+import { generateProductAssociationGqlFields } from '@/object-record/graphql/record-gql-fields/utils/generateProductAssociationGqlFields';
 import { visibleRecordFieldsComponentSelector } from '@/object-record/record-field/states/visibleRecordFieldsComponentSelector';
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
@@ -78,6 +79,33 @@ export const useRecordsFieldVisibleGqlFields = ({
       activityObjectNameSingular: CoreObjectNameSingular.Task,
       objectMetadataItems,
       loadRelations: isObjectAnActivity ? 'relations' : 'activity',
+    }),
+    opportunityProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Opportunity,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.OpportunityProductAssociation,
+    }),
+    leadProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Lead,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.LeadProductAssociation,
+    }),
+    dealProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Deal,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.DealProductAssociation,
     }),
   };
 };

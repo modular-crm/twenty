@@ -19,6 +19,8 @@ import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/not
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
+import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
@@ -27,6 +29,10 @@ import { WorkflowRunWorkspaceEntity } from 'src/modules/workflow/common/standard
 import { WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
 import { WorkflowWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
+import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
+import { DealProductAssociationWorkspaceEntity } from 'src/modules/deal/standard-objects/deal-product-association.workspace-entity';
+import { LeadProductAssociationWorkspaceEntity } from 'src/modules/lead/standard-objects/lead-product-association.workspace-entity';
 
 // TODO: Maybe we should automate this with the DiscoverService of Nest.JS
 export const standardObjectMetadataDefinitions = [
@@ -57,6 +63,12 @@ export const standardObjectMetadataDefinitions = [
   NoteTargetWorkspaceEntity,
   OpportunityWorkspaceEntity,
   PersonWorkspaceEntity,
+  ProductWorkspaceEntity,
+  OpportunityProductAssociationWorkspaceEntity,
   TaskWorkspaceEntity,
   TaskTargetWorkspaceEntity,
+  LeadWorkspaceEntity,
+  DealWorkspaceEntity,
+  DealProductAssociationWorkspaceEntity,
+  LeadProductAssociationWorkspaceEntity,
 ];

@@ -121,6 +121,20 @@ export const opportunitiesAllView = ({
           STANDARD_OBJECTS.opportunity.views.allOpportunities.viewFields
             .pointOfContact.universalIdentifier,
       },
+      {
+        fieldMetadataId:
+          opportunityObjectMetadata.fields.find(
+            (field) =>
+              field.standardId ===
+              OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
+          )?.id ?? '',
+        position: 6,
+        isVisible: true,
+        size: 150,
+        universalIdentifier:
+          STANDARD_OBJECTS.opportunity.views.allOpportunities.viewFields
+            .opportunityProducts.universalIdentifier,
+      },
     ],
   };
 };

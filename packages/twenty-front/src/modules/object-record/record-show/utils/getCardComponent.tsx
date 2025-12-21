@@ -5,6 +5,7 @@ import { NotesCard } from '@/activities/notes/components/NotesCard';
 import { TasksCard } from '@/activities/tasks/components/TasksCard';
 import { TimelineCard } from '@/activities/timeline-activities/components/TimelineCard';
 import { FieldsCard } from '@/object-record/record-show/components/FieldsCard';
+import { ProductCard } from '@/object-record/record-show/components/ProductCard';
 import {
   type CardConfiguration,
   type CardTypeToConfiguration,
@@ -84,6 +85,9 @@ export const getCardComponent = <T extends CardType>(
 
     case CardType.WorkflowRunCard:
       return <CardRenderer Component={WorkflowRunCard} />;
+
+    case CardType.ProductCard:
+      return <CardRenderer Component={ProductCard} />;
 
     case CardType.DashboardCard:
       throw new Error('Dashboard are handled separately currently');

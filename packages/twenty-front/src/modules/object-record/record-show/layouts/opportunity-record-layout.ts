@@ -31,5 +31,19 @@ export const OPPORTUNITY_RECORD_LAYOUT: RecordLayout = {
         ifRelationsMissing: [],
       },
     },
+    products: {
+      title: 'Products',
+      position: 600,
+      icon: 'IconPackage',
+      cards: [{ type: CardType.ProductCard }],
+      hide: {
+        ifMobile: false,
+        ifDesktop: false,
+        ifInRightDrawer: false,
+        ifFeaturesDisabled: [],
+        ifRequiredObjectsInactive: [],
+        ifRelationsMissing: [],
+      },
+    },
   },
 };

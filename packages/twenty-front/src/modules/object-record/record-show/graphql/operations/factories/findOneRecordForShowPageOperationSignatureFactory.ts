@@ -2,6 +2,7 @@ import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSi
 import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { generateActivityTargetGqlFields } from '@/object-record/graphql/record-gql-fields/utils/generateActivityTargetGqlFields';
 import { generateDepthRecordGqlFieldsFromObject } from '@/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromObject';
+import { generateProductAssociationGqlFields } from '@/object-record/graphql/record-gql-fields/utils/generateProductAssociationGqlFields';
 import { type RecordGqlOperationSignatureFactory } from '@/object-record/graphql/types/RecordGqlOperationSignatureFactory';
 
 type FindOneRecordForShowPageOperationSignatureFactory = {
@@ -35,6 +36,33 @@ export const buildFindOneRecordForShowPageOperationSignature: RecordGqlOperation
       activityObjectNameSingular: CoreObjectNameSingular.Task,
       loadRelations: 'both',
       objectMetadataItems,
+    }),
+    opportunityProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Opportunity,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.OpportunityProductAssociation,
+    }),
+    leadProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Lead,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.LeadProductAssociation,
+    }),
+    dealProducts: generateProductAssociationGqlFields({
+      objectMetadataItems,
+      sourceObjectNameSingular:
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Product
+          ? CoreObjectNameSingular.Product
+          : CoreObjectNameSingular.Deal,
+      associationObjectNameSingular:
+        CoreObjectNameSingular.DealProductAssociation,
     }),
   },
 });
