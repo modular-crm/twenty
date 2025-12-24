@@ -25,6 +25,7 @@ export const prefillLeads = async (
     .into(`${schemaName}.lead`, [
       'id',
       'name',
+      'status',
       'division',
       'market',
       'vertical',
@@ -43,6 +44,7 @@ export const prefillLeads = async (
       {
         id: LEAD_1_ID,
         name: 'Airbnb Enterprise Expansion',
+        status: 'TODO',
         division: 'North America',
         market: 'Enterprise',
         vertical: 'Vertical1',
@@ -59,6 +61,7 @@ export const prefillLeads = async (
       {
         id: LEAD_2_ID,
         name: 'Anthropic Research Partnership',
+        status: 'TODO',
         division: 'Global',
         market: 'Research',
         vertical: 'Vertical2',
@@ -75,6 +78,7 @@ export const prefillLeads = async (
       {
         id: LEAD_3_ID,
         name: 'Stripe Payments Integration',
+        status: 'TODO',
         division: 'EMEA',
         market: 'FinTech',
         vertical: 'Vertical1',
@@ -91,6 +95,7 @@ export const prefillLeads = async (
       {
         id: LEAD_4_ID,
         name: 'Figma Design Tools',
+        status: 'TODO',
         division: 'North America',
         market: 'SaaS',
         vertical: 'Vertical3',
@@ -107,6 +112,7 @@ export const prefillLeads = async (
       {
         id: LEAD_5_ID,
         name: 'Notion Workspace Upgrade',
+        status: 'TODO',
         division: 'Global',
         market: 'SaaS',
         vertical: 'Vertical2',

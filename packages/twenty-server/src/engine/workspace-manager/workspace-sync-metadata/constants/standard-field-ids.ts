@@ -596,6 +596,7 @@ export const LEAD_STANDARD_FIELD_IDS = {
   referralCode: '73749b98-9eff-4a4a-a2ab-63cc792c027e',
   expectedVolume: '92bdac56-af2e-40a9-9d3e-a41985b2591e',
   position: '0ff75788-2b0c-46c1-a4e5-713e54bac226',
+  status: '0ff75788-2b0c-46c1-a4e5-713e54bac227',
   createdBy: '360da68e-d0ec-4411-91cb-32d78b511761',
   company: 'f8a34df6-837c-42f6-86fe-3a61750e85e3',
   owner: '1e1af08f-71f3-43fc-8f6e-7b6874f0ef68',
