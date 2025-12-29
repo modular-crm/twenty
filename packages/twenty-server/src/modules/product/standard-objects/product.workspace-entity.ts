@@ -56,6 +56,7 @@ export const SEARCH_FIELDS_FOR_PRODUCT: FieldTypeAndNameMetadata[] = [
 })
 @WorkspaceIsSearchable()
 export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
+  @WorkspaceIsUnique()
   @WorkspaceField({
     standardId: PRODUCT_STANDARD_FIELD_IDS.name,
     type: FieldMetadataType.TEXT,
@@ -65,7 +66,6 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
   })
   @WorkspaceIsNullable()
   name: string;
-  @WorkspaceIsUnique()
 
   @WorkspaceField({
     standardId: PRODUCT_STANDARD_FIELD_IDS.description,
@@ -126,7 +126,7 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
     description: msg`Opportunities linked to this product`,
     icon: 'IconTargetArrow',
     inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL ,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
   opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
 
@@ -137,7 +137,7 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
     description: msg`Leads linked to this product`,
     icon: 'IconTargetArrow',
     inverseSideTarget: () => LeadProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL ,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
   @WorkspaceIsFieldUIReadOnly()
   leadProducts: Relation<LeadProductAssociationWorkspaceEntity[]>;
@@ -149,7 +149,7 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
     description: msg`Deals linked to this product`,
     icon: 'IconTargetArrow',
     inverseSideTarget: () => DealProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL ,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
   @WorkspaceIsFieldUIReadOnly()
   dealProducts: Relation<DealProductAssociationWorkspaceEntity[]>;

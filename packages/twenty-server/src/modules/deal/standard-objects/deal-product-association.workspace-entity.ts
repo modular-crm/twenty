@@ -44,7 +44,7 @@ export class DealProductAssociationWorkspaceEntity extends BaseWorkspaceEntity {
     icon: 'IconPackage',
     inverseSideTarget: () => ProductWorkspaceEntity,
     inverseSideFieldKey: 'dealProducts',
-    onDelete: RelationOnDeleteAction.SET_NULL,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
   @WorkspaceIsNullable()
   product: Relation<ProductWorkspaceEntity> | null;

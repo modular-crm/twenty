@@ -142,6 +142,32 @@ export class LeadWorkspaceEntity extends BaseWorkspaceEntity {
   expectedVolume: string | null;
 
   @WorkspaceField({
+      standardId: LEAD_STANDARD_FIELD_IDS.status,
+      type: FieldMetadataType.SELECT,
+      label: msg`Status`,
+      description: msg`Lead status`,
+      icon: 'IconCheck',
+      defaultValue: "'TODO'",
+      options: [
+          { value: 'TODO', label: 'To do', position: 0, color: 'sky' },
+          {
+              value: 'IN_PROGRESS',
+              label: 'In progress',
+              position: 1,
+              color: 'purple',
+          },
+          {
+              value: 'DONE',
+              label: 'Done',
+              position: 2,
+              color: 'green',
+          },
+      ],
+  })
+  @WorkspaceIsNullable()
+  status: string | null;
+
+  @WorkspaceField({
     standardId: LEAD_STANDARD_FIELD_IDS.position,
     type: FieldMetadataType.NUMBER,
     label: msg`Position`,
