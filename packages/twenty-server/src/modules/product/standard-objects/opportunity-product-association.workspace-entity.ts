@@ -43,7 +43,7 @@ export class OpportunityProductAssociationWorkspaceEntity extends BaseWorkspaceE
     icon: 'IconPackage',
     inverseSideTarget: () => ProductWorkspaceEntity,
     inverseSideFieldKey: 'opportunityProducts',
-    onDelete: RelationOnDeleteAction.SET_NULL,
+    onDelete: RelationOnDeleteAction.CASCADE,
   })
   @WorkspaceIsNullable()
   product: Relation<ProductWorkspaceEntity> | null;
