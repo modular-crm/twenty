@@ -35,6 +35,8 @@ import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/not
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { PipelineWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline.workspace-entity';
+import { PipelineStageWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline-stage.workspace-entity';
 const NAME_FIELD_NAME = 'name';
 
 export const SEARCH_FIELDS_FOR_LEAD: FieldTypeAndNameMetadata[] = [
@@ -309,4 +311,37 @@ export class LeadWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsSystem()
   @WorkspaceFieldIndex({ indexType: IndexType.GIN })
   searchVector: string;
+
+  @WorkspaceRelation({
+    standardId: LEAD_STANDARD_FIELD_IDS.pipeline,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Pipeline`,
+    description: msg`Pipeline`,
+    icon: 'IconLayoutKanban',
+    inverseSideTarget: () => PipelineWorkspaceEntity,
+    inverseSideFieldKey: 'leads',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  pipeline: Relation<PipelineWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pipeline')
+  pipelineId: string | null;
+
+  @WorkspaceRelation({
+    standardId: LEAD_STANDARD_FIELD_IDS.pipelineStage,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Stage`, // "Pipeline Stage" might be better but "Stage" is cleaner in UI
+    description: msg`Pipeline Stage`,
+    icon: 'IconList',
+    inverseSideTarget: () => PipelineStageWorkspaceEntity,
+    inverseSideFieldKey: 'leads',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  pipelineStage: Relation<PipelineStageWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pipelineStage')
+  pipelineStageId: string | null;
+
 }

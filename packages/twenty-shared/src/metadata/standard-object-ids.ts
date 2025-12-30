@@ -55,4 +55,6 @@ export const STANDARD_OBJECT_IDS = {
   dealProductAssociation: 'e0c20baf-99ab-4553-bbd6-73e3726f9640',
   lead: 'c6d81c9c-e8f1-4020-9f7e-048498920414',
   leadProductAssociation: 'ca065189-bad1-4f7d-a82d-6b93bfa76b37',
+  pipeline: 'b25165dc-a9b7-4f10-9327-2def7a3c69fb',
+  pipelineStage: '99f4d526-ad47-44b2-b95b-9969d9326fab',
 } as const;

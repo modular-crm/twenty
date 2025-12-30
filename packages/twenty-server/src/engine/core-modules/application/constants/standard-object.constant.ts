@@ -42,6 +42,8 @@ import {
   WORKFLOW_STANDARD_FIELD_IDS,
   WORKFLOW_VERSION_STANDARD_FIELD_IDS,
   WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
+  PIPELINE_STANDARD_FIELD_IDS,
+  PIPELINE_STAGE_STANDARD_FIELD_IDS,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 
 export const STANDARD_OBJECTS = {
@@ -2256,6 +2258,111 @@ export const STANDARD_OBJECTS = {
           },
           createdAt: {
             universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1f8',
+          },
+        },
+      },
+    },
+  },
+  pipeline: {
+    universalIdentifier: STANDARD_OBJECT_IDS.pipeline,
+    fields: {
+      id: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1f9',
+      },
+      createdAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1fa',
+      },
+      updatedAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1fb',
+      },
+      deletedAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1fc',
+      },
+      name: {
+        universalIdentifier: PIPELINE_STANDARD_FIELD_IDS.name,
+      },
+      deals: {
+        universalIdentifier: PIPELINE_STANDARD_FIELD_IDS.deals,
+      },
+      leads: {
+        universalIdentifier: PIPELINE_STANDARD_FIELD_IDS.leads,
+      },
+      isDefault: {
+        universalIdentifier: PIPELINE_STANDARD_FIELD_IDS.isDefault,
+      },
+      pipelineStage: {
+        universalIdentifier: PIPELINE_STANDARD_FIELD_IDS.pipelineStages,
+      },
+    },
+    views: {
+      allPipelines: {
+        universalIdentifier: '20202020-a003-4a03-8a03-c0aba11c0004',
+        viewFields: {
+          name: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf006',
+          },
+          isDefault: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf008',
+          },
+          pipelineStages: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf009',
+          },
+          createdAt: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf010',
+          },
+        },
+      },
+    },
+  },
+  pipelineStage: {
+    universalIdentifier: STANDARD_OBJECT_IDS.pipelineStage,
+    fields: {
+      id: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1fd',
+      },
+      createdAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1fe',
+      },
+      updatedAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe1ff',
+      },
+      deletedAt: {
+        universalIdentifier: '20202020-ef01-4e01-8e01-a0bcaeabe200',
+      },
+      name: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.name,
+      },
+      color: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.color,
+      },
+      position: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.position,
+      },
+      pipeline: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.pipeline,
+      },
+      leads: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.leads,
+      },
+      deals: {
+        universalIdentifier: PIPELINE_STAGE_STANDARD_FIELD_IDS.deals,
+      },
+    },
+    views: {
+      allPipelineStages: {
+        universalIdentifier: '20202020-a003-4a03-8a03-c0aba11c0005',
+        viewFields: {
+          name: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf0a1',
+          },
+          color: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf0a2',
+          },
+          pipeline: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf0a3',
+          },
+          createdAt: {
+            universalIdentifier: '20202020-af03-4a03-8a03-c0aba11cf0a4',
           },
         },
       },

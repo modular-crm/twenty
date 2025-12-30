@@ -40,6 +40,8 @@ import { workflowRunsAllView } from 'src/engine/workspace-manager/standard-objec
 import { workflowVersionsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-versions-all.view';
 import { workflowsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workflows-all.view';
 import { workspaceMembersAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workspace-members-all.view';
+import { pipelineAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/pipeline-all.view';
+import { pipelineStageAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/pipelineStage-all.view';
 
 type PrefillCoreViewsArgs = {
   coreDataSource: DataSource;
@@ -104,7 +106,9 @@ export const prefillCoreViews = async ({
     timelineActivitiesAllView,
     productsAllView,
     leadsAllView,
-    dealsAllView
+    dealsAllView,
+    pipelineAllView,
+    pipelineStageAllView,
   ].map((seeder) =>
     seeder({
       objectMetadataItems,
