@@ -8,10 +8,12 @@ import { WorkspaceEntity } from 'src/engine/twenty-orm/decorators/workspace-enti
 import { WorkspaceField } from 'src/engine/twenty-orm/decorators/workspace-field.decorator';
 import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-relation.decorator';
 import { PIPELINE_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
-
+import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { PipelineStageWorkspaceEntity } from './pipeline-stage.workspace-entity';
 import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
 import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
+import { WorkspaceIsNullable } from 'src/engine/twenty-orm/decorators/workspace-is-nullable.decorator';
+import { WorkspaceIsSystem } from 'src/engine/twenty-orm/decorators/workspace-is-system.decorator';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.pipeline,
@@ -75,4 +77,17 @@ export class PipelineWorkspaceEntity extends BaseWorkspaceEntity {
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   deals: Relation<DealWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: PIPELINE_STANDARD_FIELD_IDS.timelineActivities,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Timeline Activities`,
+    description: msg`Timeline Activities linked to the pipeline.`,
+    icon: 'IconTimelineEvent',
+    inverseSideTarget: () => TimelineActivityWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
 }

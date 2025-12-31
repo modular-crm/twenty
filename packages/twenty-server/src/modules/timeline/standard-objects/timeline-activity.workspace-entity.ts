@@ -30,6 +30,8 @@ import { WorkflowWorkspaceEntity } from 'src/modules/workflow/common/standard-ob
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
 import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.workspace-entity';
+import { PipelineWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline.workspace-entity';
+import { PipelineStageWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline-stage.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.timelineActivity,
@@ -201,6 +203,40 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('deal')
   dealId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.pipeline,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Pipeline`,
+    description: msg`Event pipeline`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => PipelineWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  pipeline: Relation<PipelineWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pipeline')
+  pipelineId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.pipelineStage,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Pipeline Stage`,
+    description: msg`Event pipeline stage`,
+    icon: 'IconTargetArrow',
+    inverseSideTarget: () => PipelineStageWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  pipelineStage: Relation<PipelineStageWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pipelineStage')
+  pipelineStageId: string | null;
 
   @WorkspaceRelation({
     standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.note,
