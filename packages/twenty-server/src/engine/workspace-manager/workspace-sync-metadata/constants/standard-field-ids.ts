@@ -184,6 +184,8 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
   linkedObjectMetadataId: '20202020-c595-449d-9f89-562758c9ee69',
   product: '20202020-11ae-0001-0000-000000000001',
+  pipeline: '20202020-11ae-0001-0000-000000000002',
+  pipelineStage: '20202020-11ae-0001-0000-000000000003',
 } as const;
 
 export const FAVORITE_STANDARD_FIELD_IDS = {
@@ -607,6 +609,8 @@ export const LEAD_STANDARD_FIELD_IDS = {
   attachments: '16bb1909-08c8-4cf5-a2d8-005fad26ea99',
   timelineActivities: '118c1ac0-d190-4e00-adc3-9243a8b152e4',
   searchVector: '3ad85e79-bd53-4883-a9ec-ff2b24bf6c22',
+  pipeline: '55d886a6-002f-4771-846c-25b3e623e353',
+  pipelineStage: 'aa8d403d-95e7-4e5e-92a0-faecc7613664',
 } as const;
 
 export const LEAD_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS = {
@@ -633,12 +637,33 @@ export const DEAL_STANDARD_FIELD_IDS = {
   noteTargets: '0bb9297f-aece-4245-a3b0-dc79c79e5322',
   timelineActivities: 'cd47ccae-bca3-459d-9e04-bafab9848124',
   searchVector: 'cb310267-eeac-42f7-b229-3300a079f37f',
+  pipeline: '3cb9ce2c-16c4-447f-9d0c-e3610a8f4bd2',
+  pipelineStage: 'c3d3225c-d51a-4ca0-a580-94e6ba7bd91d',
 } as const;
 
 export const DEAL_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS = {
   deal: '20202020-0d02-0001-0000-000000000008',
   product: '20202020-0d02-0001-0000-000000000009',
   custom: '20202020-0d02-0001-0000-00000000000a',
+} as const;
+
+export const PIPELINE_STANDARD_FIELD_IDS = {
+  name: '20c8a717-2dfd-4a61-be00-15c00699e609',
+  isDefault: '6e7c391d-5ef6-4d17-90f9-19d25b2285b7',
+  pipelineStages: '09428e49-aa76-4ccb-b90c-045ff51a8c7f',
+  leads: '8a86c0cd-41e8-486b-9d48-2b45a7897c5e',
+  deals: '79156b9a-9a8e-42d1-8baf-52cc4b9e3b58',
+  timelineActivities: '2d78bd57-f6fd-4219-8188-87e957fa77a3',
+} as const;
+
+export const PIPELINE_STAGE_STANDARD_FIELD_IDS = {
+  name: '1618865e-4aaa-4450-8b45-5bbdfa8cb185',
+  color: 'f6579478-f0d8-41f1-846c-f10dda46dcf3',
+  position: '7945d5bf-18ae-4daf-8dbe-f666d147d3f6',
+  pipeline: '038af165-1be0-44e8-b215-f429ae336751',
+  leads: '91635c39-f627-493e-98fc-321f5b659ff8',
+  deals: 'c946b244-5072-49b3-a8f8-f0a6cf5452a8',
+  timelineActivities: '2d78bd57-f6fd-4219-8188-87e957fa77a4',
 } as const;
 
 export const STANDARD_OBJECT_FIELD_IDS = {
@@ -685,4 +710,6 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   leadProductAssociation: LEAD_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
   deal: DEAL_STANDARD_FIELD_IDS,
   dealProductAssociation: DEAL_PRODUCT_ASSOCIATION_STANDARD_FIELD_IDS,
+  pipeline: PIPELINE_STANDARD_FIELD_IDS,
+  pipelineStage: PIPELINE_STAGE_STANDARD_FIELD_IDS,
 } as const;

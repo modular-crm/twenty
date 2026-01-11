@@ -33,6 +33,8 @@ import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.work
 import { LeadWorkspaceEntity } from 'src/modules/lead/standard-objects/lead.workspace-entity';
 import { DealProductAssociationWorkspaceEntity } from 'src/modules/deal/standard-objects/deal-product-association.workspace-entity';
 import { LeadProductAssociationWorkspaceEntity } from 'src/modules/lead/standard-objects/lead-product-association.workspace-entity';
+import { PipelineWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline.workspace-entity';
+import { PipelineStageWorkspaceEntity } from 'src/modules/pipeline/standard-objects/pipeline-stage.workspace-entity';
 
 // TODO: Maybe we should automate this with the DiscoverService of Nest.JS
 export const standardObjectMetadataDefinitions = [
@@ -71,4 +73,6 @@ export const standardObjectMetadataDefinitions = [
   DealWorkspaceEntity,
   DealProductAssociationWorkspaceEntity,
   LeadProductAssociationWorkspaceEntity,
+  PipelineWorkspaceEntity,
+  PipelineStageWorkspaceEntity,
 ];
