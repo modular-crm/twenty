@@ -84,6 +84,11 @@ export const computeWhereConditionParts = ({
         sql: `"${objectNameSingular}"."${key}" IN (:...${key}${uuid})`,
         params: { [`${key}${uuid}`]: value },
       };
+    case 'notIn':
+      return {
+        sql: `"${objectNameSingular}"."${key}" NOT IN (:...${key}${uuid})`,
+        params: { [`${key}${uuid}`]: value },
+      };
     case 'is':
       return {
         sql: `"${objectNameSingular}"."${key}" IS ${value === 'NULL' ? 'NULL' : 'NOT NULL'}${hasNullEquivalentFieldValue ? ` OR "${objectNameSingular}"."${key}" = :${key}${secondUuid}` : ''}`,
