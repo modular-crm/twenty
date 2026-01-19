@@ -11,6 +11,8 @@ export type FilterOperator = {
   ilike?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   in?: any[];
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // notIn?: any[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   is?: 'NULL' | any;
 };

@@ -26,6 +26,7 @@ import { WorkspaceIsSystem } from 'src/engine/twenty-orm/decorators/workspace-is
   shortcut: 'S',
   labelIdentifierStandardId: PIPELINE_STAGE_STANDARD_FIELD_IDS.name,
 })
+@WorkspaceIsSystem()
 export class PipelineStageWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceField({
     standardId: PIPELINE_STAGE_STANDARD_FIELD_IDS.name,

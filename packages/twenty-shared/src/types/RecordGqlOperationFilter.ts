@@ -5,6 +5,7 @@ export type IsFilter = 'NULL' | 'NOT_NULL';
 export type UUIDFilter = {
   eq?: UUIDFilterValue;
   in?: UUIDFilterValue[];
+  notIn?: UUIDFilterValue[];
   neq?: UUIDFilterValue;
   is?: IsFilter;
 };
@@ -12,6 +13,7 @@ export type UUIDFilter = {
 export type RelationFilter = {
   is?: IsFilter;
   in?: UUIDFilterValue[];
+  notIn?: UUIDFilterValue[];
 };
 
 export type BooleanFilter = {
@@ -22,6 +24,7 @@ export type BooleanFilter = {
 export type StringFilter = {
   eq?: string;
   in?: string[];
+  notIn?: string[];
   neq?: string;
   startsWith?: string;
   like?: string;
@@ -34,6 +37,7 @@ export type StringFilter = {
 export type RatingFilter = {
   eq?: string;
   in?: string[];
+  notIn?: string[];
   is?: IsFilter;
 };
 
@@ -42,6 +46,7 @@ export type FloatFilter = {
   gt?: number;
   gte?: number;
   in?: number[];
+  notIn?: number[];
   lt?: number;
   lte?: number;
   neq?: number;
@@ -53,6 +58,7 @@ export type DateFilter = {
   gt?: string;
   gte?: string;
   in?: string[];
+  notIn?: string[];
   lt?: string;
   lte?: string;
   neq?: string;
@@ -64,6 +70,7 @@ export type DateTimeFilter = {
   gt?: string;
   gte?: string;
   in?: string[];
+  notIn?: string[];
   lt?: string;
   lte?: string;
   neq?: string;
@@ -119,6 +126,7 @@ export type PhonesFilter = {
 export type SelectFilter = {
   is?: IsFilter;
   in?: string[];
+  notIn?: string[];
   eq?: string;
   neq?: string;
 };

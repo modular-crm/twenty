@@ -10,6 +10,8 @@ import { prefillLeadProductAssociations } from 'src/engine/workspace-manager/sta
 import { prefillLeads } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-leads';
 import { prefillPeople } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-people';
 import { prefillProducts } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-products';
+import { prefillPipeline } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-pipeline';
+import { prefillPipelineStages } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-pipelineStages';
 import { prefillWorkflows } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-workflows';
 
 export const standardObjectsPrefillData = async (
@@ -30,6 +32,9 @@ export const standardObjectsPrefillData = async (
 
     await prefillDeals(entityManager, schemaName);
     await prefillDealProductAssociations(entityManager, schemaName);
+
+    await prefillPipeline(entityManager, schemaName);
+    await prefillPipelineStages(entityManager, schemaName);
 
     await prefillWorkflows(
       entityManager,

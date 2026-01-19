@@ -453,11 +453,9 @@ export const turnRecordFilterIntoRecordGqlOperationFilter = ({
           return {
             or: [
               {
-                not: {
-                  [correspondingFieldMetadataItem.name + 'Id']: {
-                    in: recordIds,
-                  } as RelationFilter,
-                },
+                [correspondingFieldMetadataItem.name + 'Id']: {
+                  notIn: recordIds,
+                } as RelationFilter,
               },
               {
                 [correspondingFieldMetadataItem.name + 'Id']: {
@@ -964,11 +962,9 @@ export const turnRecordFilterIntoRecordGqlOperationFilter = ({
 
           if (nonEmptyOptions.length > 0) {
             conditions.push({
-              not: {
-                [correspondingFieldMetadataItem.name]: {
-                  in: nonEmptyOptions,
-                } as SelectFilter,
-              },
+              [correspondingFieldMetadataItem.name]: {
+                notIn: nonEmptyOptions,
+              } as SelectFilter,
             });
           }
 
@@ -1310,6 +1306,12 @@ export const turnRecordFilterIntoRecordGqlOperationFilter = ({
           return {
             [correspondingFieldMetadataItem.name]: {
               in: recordIds,
+            } as UUIDFilter,
+          };
+        case RecordFilterOperand.IS_NOT:
+          return {
+            [correspondingFieldMetadataItem.name]: {
+              notIn: recordIds,
             } as UUIDFilter,
           };
         default:
