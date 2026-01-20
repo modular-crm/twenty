@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmQueryService } from '@ptc-org/nestjs-query-typeorm';
 import { type APP_LOCALES, SOURCE_LOCALE } from 'twenty-shared/translations';
 import { assertIsDefinedOrThrow, isDefined } from 'twenty-shared/utils';
-import { type QueryRunner, IsNull, Not, Repository } from 'typeorm';
+import { IsNull, Not, type QueryRunner, type Repository } from 'typeorm';
 
 import { FileStorageExceptionCode } from 'src/engine/core-modules/file-storage/interfaces/file-storage-exception';
 import { FileFolder } from 'src/engine/core-modules/file/interfaces/file-folder.interface';
@@ -24,7 +24,7 @@ import { UserWorkspaceEntity } from 'src/engine/core-modules/user-workspace/user
 import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { WorkspaceInvitationService } from 'src/engine/core-modules/workspace-invitation/services/workspace-invitation.service';
 import { AuthProviderEnum } from 'src/engine/core-modules/workspace/types/workspace.type';
-import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
+import { type WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { workspaceValidator } from 'src/engine/core-modules/workspace/workspace.validate';
 import {
   PermissionsException,
@@ -32,9 +32,10 @@ import {
   PermissionsExceptionMessage,
 } from 'src/engine/metadata-modules/permissions/permissions.exception';
 import { RoleTargetEntity } from 'src/engine/metadata-modules/role-target/role-target.entity';
+import { RoleEntity } from 'src/engine/metadata-modules/role/role.entity';
 import { UserRoleService } from 'src/engine/metadata-modules/user-role/user-role.service';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
-import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
+import { type WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 import { assert } from 'src/utils/assert';
 import { getDomainNameByEmail } from 'src/utils/get-domain-name-by-email';
 
@@ -46,6 +47,8 @@ export class UserWorkspaceService extends TypeOrmQueryService<UserWorkspaceEntit
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(RoleTargetEntity)
     private readonly roleTargetRepository: Repository<RoleTargetEntity>,
+    @InjectRepository(RoleEntity)
+    private readonly roleRepository: Repository<RoleEntity>,
     private readonly workspaceInvitationService: WorkspaceInvitationService,
     private readonly workspaceDomainsService: WorkspaceDomainsService,
     private readonly loginTokenService: LoginTokenService,
@@ -174,6 +177,129 @@ export class UserWorkspaceService extends TypeOrmQueryService<UserWorkspaceEntit
         value: true,
       });
     }
+  }
+
+  async addUserToWorkspace({
+    user,
+    workspace,
+    roleId,
+  }: {
+    user: UserEntity;
+    workspace: WorkspaceEntity;
+    roleId?: string;
+  }): Promise<{
+    workspaceMember: WorkspaceMemberWorkspaceEntity;
+    isNewMember: boolean;
+  }> {
+    const workspaceMemberRepository =
+      await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
+        workspace.id,
+        'workspaceMember',
+        { shouldBypassPermissionChecks: true },
+      );
+
+    // Check if user already exists in workspace
+    const existingUserWorkspace = await this.checkUserWorkspaceExists(
+      user.id,
+      workspace.id,
+    );
+
+    if (existingUserWorkspace) {
+      const existingWorkspaceMember = await workspaceMemberRepository.findOne({
+        where: { userId: user.id },
+      });
+
+      if (!existingWorkspaceMember) {
+        throw new Error(
+          `User workspace exists but workspace member not found for user ${user.email}`,
+        );
+      }
+
+      return {
+        workspaceMember: existingWorkspaceMember,
+        isNewMember: false,
+      };
+    }
+
+    // Determine which role to assign
+    const effectiveRoleId = roleId ?? workspace.defaultRoleId;
+
+    if (!isDefined(effectiveRoleId)) {
+      throw new PermissionsException(
+        PermissionsExceptionMessage.DEFAULT_ROLE_NOT_FOUND,
+        PermissionsExceptionCode.DEFAULT_ROLE_NOT_FOUND,
+      );
+    }
+
+    // Create UserWorkspace record
+    const userWorkspace = await this.create({
+      userId: user.id,
+      workspaceId: workspace.id,
+      isExistingUser: true,
+    });
+
+    // Create WorkspaceMember record
+    await this.createWorkspaceMember(workspace.id, user);
+
+    // Assign role
+    await this.userRoleService.assignRoleToUserWorkspace({
+      workspaceId: workspace.id,
+      userWorkspaceId: userWorkspace.id,
+      roleId: effectiveRoleId,
+    });
+
+    // Invalidate any pending invitation
+    await this.workspaceInvitationService.invalidateWorkspaceInvitation(
+      workspace.id,
+      user.email,
+    );
+
+    // Set onboarding pending flag
+    await this.onboardingService.setOnboardingCreateProfilePending({
+      userId: user.id,
+      workspaceId: workspace.id,
+      value: true,
+    });
+
+    // Fetch the newly created workspace member
+    const workspaceMember = await workspaceMemberRepository.findOne({
+      where: { userId: user.id },
+    });
+
+    if (!workspaceMember) {
+      throw new Error(
+        `Failed to create workspace member for user ${user.email}`,
+      );
+    }
+
+    return {
+      workspaceMember,
+      isNewMember: true,
+    };
+  }
+
+  async findUserById(userId: string): Promise<UserEntity | null> {
+    return this.userRepository.findOne({
+      where: { id: userId },
+    });
+  }
+
+  async findUserByEmail(email: string): Promise<UserEntity | null> {
+    return this.userRepository.findOne({
+      where: { email },
+    });
+  }
+
+  async findRoleByIdInWorkspace(
+    roleId: string,
+    workspaceId: string,
+  ): Promise<RoleEntity | null> {
+    return this.roleRepository.findOne({
+      where: {
+        id: roleId,
+        workspaceId,
+      },
+    });
   }
 
   public async getUserCount(workspaceId: string): Promise<number | undefined> {
