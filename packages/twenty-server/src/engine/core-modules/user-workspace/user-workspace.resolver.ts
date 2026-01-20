@@ -1,4 +1,4 @@
-import { UseFilters, UseGuards, UsePipes } from '@nestjs/common';
+import { Logger, UseFilters, UseGuards, UsePipes } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 import { type FileUpload } from 'graphql-upload/processRequest.mjs';
@@ -38,6 +38,8 @@ import { streamToBuffer } from 'src/utils/stream-to-buffer';
 
 @Resolver()
 export class UserWorkspaceResolver {
+  private readonly logger = new Logger(UserWorkspaceResolver.name);
+
   constructor(
     private readonly fileUploadService: FileUploadService,
     private readonly fileService: FileService,
@@ -164,16 +166,26 @@ export class UserWorkspaceResolver {
         workspaceMember.numberFormat as WorkspaceMemberNumberFormatEnum,
     };
 
-    const loginToken = await this.loginTokenService.generateLoginToken(
-      user.email,
-      workspace.id,
-      AuthProviderEnum.Password,
-    );
+    let loginToken: string | undefined;
+
+    if (isNewMember) {
+      const token = await this.loginTokenService.generateLoginToken(
+        user.email,
+        workspace.id,
+        AuthProviderEnum.Password,
+      );
+
+      loginToken = token.token;
+
+      this.logger.log(
+        `Login token generated for user ${user.email} (userId: ${user.id}) in workspace ${workspace.id}`,
+      );
+    }
 
     return {
       success: true,
       workspaceMember: workspaceMemberDto,
-      loginToken: loginToken.token,
+      loginToken,
       error: isNewMember
         ? undefined
         : 'User was already a member of this workspace',
