@@ -16,7 +16,7 @@ import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-re
 import { TASK_TARGET_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
+// import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
@@ -81,21 +81,21 @@ export class TaskTargetWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceJoinColumn('company')
   companyId: string | null;
 
-  @WorkspaceRelation({
-    standardId: TASK_TARGET_STANDARD_FIELD_IDS.opportunity,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Opportunity`,
-    description: msg`TaskTarget opportunity`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    inverseSideFieldKey: 'taskTargets',
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsNullable()
-  opportunity: Relation<OpportunityWorkspaceEntity> | null;
+  // @WorkspaceRelation({
+  //   standardId: TASK_TARGET_STANDARD_FIELD_IDS.opportunity,
+  //   type: RelationType.MANY_TO_ONE,
+  //   label: msg`Opportunity`,
+  //   description: msg`TaskTarget opportunity`,
+  //   icon: 'IconTargetArrow',
+  //   inverseSideTarget: () => OpportunityWorkspaceEntity,
+  //   inverseSideFieldKey: 'taskTargets',
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsNullable()
+  // opportunity: Relation<OpportunityWorkspaceEntity> | null;
 
-  @WorkspaceJoinColumn('opportunity')
-  opportunityId: string | null;
+  // @WorkspaceJoinColumn('opportunity')
+  // opportunityId: string | null;
 
   @WorkspaceRelation({
     standardId: TASK_TARGET_STANDARD_FIELD_IDS.lead,

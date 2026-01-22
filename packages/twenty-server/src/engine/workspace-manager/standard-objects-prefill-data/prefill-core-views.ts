@@ -26,8 +26,8 @@ import { dashboardsAllView } from 'src/engine/workspace-manager/standard-objects
 import { messageThreadsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/message-threads-all.view';
 import { messagesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/messages-all.view';
 import { notesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/notes-all.view';
-import { opportunitiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view';
-import { opportunitiesByStageView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunity-by-stage.view';
+// import { opportunitiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view';
+// import { opportunitiesByStageView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunity-by-stage.view';
 import { peopleAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view';
 import { productsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/products-all.view';
 import { leadsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads-all.view';
@@ -89,8 +89,8 @@ export const prefillCoreViews = async ({
   const views = [
     companiesAllView,
     peopleAllView,
-    opportunitiesAllView,
-    opportunitiesByStageView,
+    // opportunitiesAllView,
+    // opportunitiesByStageView,
     notesAllView,
     tasksAllView,
     tasksAssignedToMeView,

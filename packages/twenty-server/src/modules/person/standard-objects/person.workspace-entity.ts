@@ -41,7 +41,7 @@ import { DealWorkspaceEntity } from 'src/modules/deal/standard-objects/deal.work
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { MessageParticipantWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-participant.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
+// import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 
@@ -213,17 +213,17 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceJoinColumn('company')
   companyId: string | null;
 
-  @WorkspaceRelation({
-    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForOpportunities,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Opportunities`,
-    description: msg`List of opportunities for which that person is the point of contact`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    inverseSideFieldKey: 'pointOfContact',
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  pointOfContactForOpportunities: Relation<OpportunityWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForOpportunities,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Opportunities`,
+  //   description: msg`List of opportunities for which that person is the point of contact`,
+  //   icon: 'IconTargetArrow',
+  //   inverseSideTarget: () => OpportunityWorkspaceEntity,
+  //   inverseSideFieldKey: 'pointOfContact',
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // pointOfContactForOpportunities: Relation<OpportunityWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForDeals,

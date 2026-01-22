@@ -20,7 +20,7 @@ import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sy
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
 import { DashboardWorkspaceEntity } from 'src/modules/dashboard/standard-objects/dashboard.workspace-entity';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
+// import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
@@ -156,21 +156,21 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceJoinColumn('company')
   companyId: string | null;
 
-  @WorkspaceRelation({
-    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.opportunity,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Opportunity`,
-    description: msg`Event opportunity`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    inverseSideFieldKey: 'timelineActivities',
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  opportunity: Relation<OpportunityWorkspaceEntity> | null;
+  // @WorkspaceRelation({
+  //   standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.opportunity,
+  //   type: RelationType.MANY_TO_ONE,
+  //   label: msg`Opportunity`,
+  //   description: msg`Event opportunity`,
+  //   icon: 'IconTargetArrow',
+  //   inverseSideTarget: () => OpportunityWorkspaceEntity,
+  //   inverseSideFieldKey: 'timelineActivities',
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // @WorkspaceIsNullable()
+  // opportunity: Relation<OpportunityWorkspaceEntity> | null;
 
-  @WorkspaceJoinColumn('opportunity')
-  opportunityId: string | null;
+  // @WorkspaceJoinColumn('opportunity')
+  // opportunityId: string | null;
 
   @WorkspaceRelation({
     standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.lead,

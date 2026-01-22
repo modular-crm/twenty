@@ -34,7 +34,6 @@ import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/com
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
-import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 const NAME_FIELD_NAME = 'name';
@@ -130,111 +129,111 @@ export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsFieldUIReadOnly()
   createdBy: ActorMetadata;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.pointOfContact,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Point of Contact`,
-    description: msg`Opportunity point of contact`,
-    icon: 'IconUser',
-    inverseSideTarget: () => PersonWorkspaceEntity,
-    inverseSideFieldKey: 'pointOfContactForOpportunities',
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  pointOfContact: Relation<PersonWorkspaceEntity> | null;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.pointOfContact,
+  //   type: RelationType.MANY_TO_ONE,
+  //   label: msg`Point of Contact`,
+  //   description: msg`Opportunity point of contact`,
+  //   icon: 'IconUser',
+  //   inverseSideTarget: () => PersonWorkspaceEntity,
+  //   inverseSideFieldKey: 'pointOfContactForOpportunities',
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // @WorkspaceIsNullable()
+  // pointOfContact: Relation<PersonWorkspaceEntity> | null;
 
-  @WorkspaceJoinColumn('pointOfContact')
-  pointOfContactId: string | null;
+  // @WorkspaceJoinColumn('pointOfContact')
+  // pointOfContactId: string | null;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.company,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Company`,
-    description: msg`Opportunity company`,
-    icon: 'IconBuildingSkyscraper',
-    inverseSideTarget: () => CompanyWorkspaceEntity,
-    inverseSideFieldKey: 'opportunities',
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  company: Relation<CompanyWorkspaceEntity> | null;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.company,
+  //   type: RelationType.MANY_TO_ONE,
+  //   label: msg`Company`,
+  //   description: msg`Opportunity company`,
+  //   icon: 'IconBuildingSkyscraper',
+  //   inverseSideTarget: () => CompanyWorkspaceEntity,
+  //   inverseSideFieldKey: 'opportunities',
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // @WorkspaceIsNullable()
+  // company: Relation<CompanyWorkspaceEntity> | null;
 
-  @WorkspaceJoinColumn('company')
-  companyId: string | null;
+  // @WorkspaceJoinColumn('company')
+  // companyId: string | null;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Product`,
-    description: msg`Products linked to this Opportunity`,
-    icon: 'IconPackage',
-    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.opportunityProducts,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Product`,
+  //   description: msg`Products linked to this Opportunity`,
+  //   icon: 'IconPackage',
+  //   inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Favorites`,
-    description: msg`Favorites linked to the opportunity`,
-    icon: 'IconHeart',
-    inverseSideTarget: () => FavoriteWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsNullable()
-  @WorkspaceIsSystem()
-  favorites: Relation<FavoriteWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.favorites,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Favorites`,
+  //   description: msg`Favorites linked to the opportunity`,
+  //   icon: 'IconHeart',
+  //   inverseSideTarget: () => FavoriteWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsNullable()
+  // @WorkspaceIsSystem()
+  // favorites: Relation<FavoriteWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.taskTargets,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Tasks`,
-    description: msg`Tasks tied to the opportunity`,
-    icon: 'IconCheckbox',
-    inverseSideTarget: () => TaskTargetWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsFieldUIReadOnly()
-  taskTargets: Relation<TaskTargetWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.taskTargets,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Tasks`,
+  //   description: msg`Tasks tied to the opportunity`,
+  //   icon: 'IconCheckbox',
+  //   inverseSideTarget: () => TaskTargetWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsFieldUIReadOnly()
+  // taskTargets: Relation<TaskTargetWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.noteTargets,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Notes`,
-    description: msg`Notes tied to the opportunity`,
-    icon: 'IconNotes',
-    inverseSideTarget: () => NoteTargetWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsFieldUIReadOnly()
-  noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.noteTargets,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Notes`,
+  //   description: msg`Notes tied to the opportunity`,
+  //   icon: 'IconNotes',
+  //   inverseSideTarget: () => NoteTargetWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsFieldUIReadOnly()
+  // noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.attachments,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Attachments`,
-    description: msg`Attachments linked to the opportunity`,
-    icon: 'IconFileImport',
-    inverseSideTarget: () => AttachmentWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsNullable()
-  @WorkspaceIsSystem()
-  attachments: Relation<AttachmentWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.attachments,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Attachments`,
+  //   description: msg`Attachments linked to the opportunity`,
+  //   icon: 'IconFileImport',
+  //   inverseSideTarget: () => AttachmentWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsNullable()
+  // @WorkspaceIsSystem()
+  // attachments: Relation<AttachmentWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: OPPORTUNITY_STANDARD_FIELD_IDS.timelineActivities,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Timeline Activities`,
-    description: msg`Timeline Activities linked to the opportunity.`,
-    icon: 'IconTimelineEvent',
-    inverseSideTarget: () => TimelineActivityWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  @WorkspaceIsSystem()
-  timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: OPPORTUNITY_STANDARD_FIELD_IDS.timelineActivities,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Timeline Activities`,
+  //   description: msg`Timeline Activities linked to the opportunity.`,
+  //   icon: 'IconTimelineEvent',
+  //   inverseSideTarget: () => TimelineActivityWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // @WorkspaceIsNullable()
+  // @WorkspaceIsSystem()
+  // timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
 
   @WorkspaceField({
     standardId: OPPORTUNITY_STANDARD_FIELD_IDS.probabilityDeprecated,
