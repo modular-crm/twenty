@@ -1,5 +1,12 @@
 name: twenty
 
+# ===========================================
+# DATABASE NOTE:
+# This app uses a Coolify-managed PostgreSQL database (external).
+# Create the database in Coolify UI: Project → "+ New" → "Database" → PostgreSQL
+# Set PG_DATABASE_URL environment variable from Coolify's provided connection string.
+# ===========================================
+
 services:
   server:
     build:
@@ -13,7 +20,10 @@ services:
       - "3000"
     environment:
       NODE_PORT: 3000
-      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
+      # Database (Coolify-managed PostgreSQL)
+      # REQUIRED: Set PG_DATABASE_URL from Coolify database page (click eye icon)
+      # Format: postgres://user:password@hostname:5432/database
+      PG_DATABASE_URL: ${PG_DATABASE_URL}
       SERVER_URL: ${SERVER_URL}
       REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
 
@@ -21,18 +31,7 @@ services:
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
       DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
       MIGRATION_DRY_RUN: ${MIGRATION_DRY_RUN:-false}
-      ENABLE_DB_BACKUP: ${ENABLE_DB_BACKUP:-false}
       FAIL_ON_CRON_ERROR: ${FAIL_ON_CRON_ERROR:-false}
-
-      # Synchronized deployment ID (ensures NYCE + Twenty backups are matched)
-      # Set this to git commit SHA or timestamp for synchronized backups
-      DEPLOYMENT_ID: ${DEPLOYMENT_ID:-}
-
-      # Cloudflare R2 Backup Configuration
-      R2_BACKUP_BUCKET: ${R2_BACKUP_BUCKET:-}
-      R2_ENDPOINT_URL: ${R2_ENDPOINT_URL:-}
-      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
-      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
 
       STORAGE_TYPE: ${STORAGE_TYPE}
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
@@ -65,8 +64,6 @@ services:
       # EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
 
     depends_on:
-      db:
-        condition: service_healthy
       twenty-redis:
         condition: service_healthy
     healthcheck:
@@ -85,11 +82,12 @@ services:
       - server-local-data:/app/packages/twenty-server/.local-storage
     command: ["yarn", "worker:prod"]
     environment:
-      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
+      # Database (same Coolify-managed PostgreSQL as server)
+      PG_DATABASE_URL: ${PG_DATABASE_URL}
       SERVER_URL: ${SERVER_URL}
       REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
-      DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
-      DISABLE_CRON_JOBS_REGISTRATION: "true" # it already runs on the server
+      DISABLE_DB_MIGRATIONS: "true" # migrations run on server only
+      DISABLE_CRON_JOBS_REGISTRATION: "true" # cron runs on server only
 
       STORAGE_TYPE: ${STORAGE_TYPE}
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
@@ -122,25 +120,8 @@ services:
       # EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
 
     depends_on:
-      db:
-        condition: service_healthy
       server:
         condition: service_healthy
-    restart: always
-
-  db:
-    image: postgres:16
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: ${PG_DATABASE_NAME:-default}
-      POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD:-postgres}
-      POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
-    healthcheck:
-      test: pg_isready -U "${PG_DATABASE_USER:-postgres}" -h localhost -d postgres
-      interval: 5s
-      timeout: 5s
-      retries: 10
     restart: always
 
   twenty-redis:
@@ -154,5 +135,4 @@ services:
       retries: 10
 
 volumes:
-  db-data:
   server-local-data:
