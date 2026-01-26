@@ -55,7 +55,8 @@ RUN npm install -g tsx
 RUN apk add --no-cache postgresql-client aws-cli
 
 COPY ./packages/twenty-docker/twenty/entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+COPY ./packages/twenty-docker/scripts /app/packages/twenty-docker/scripts
+RUN chmod +x /app/entrypoint.sh /app/packages/twenty-docker/scripts/*.sh
 WORKDIR /app/packages/twenty-server
 
 # Frontend env vars commented out - API-only deployment
