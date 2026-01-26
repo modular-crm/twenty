@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Manual backup script for Twenty database
 # Usage: ./scripts/backup.sh [optional-deployment-id]
 
