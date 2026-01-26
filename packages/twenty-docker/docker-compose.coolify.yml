@@ -7,6 +7,7 @@ services:
       dockerfile: packages/twenty-docker/twenty/Dockerfile
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
+      - backup-data:/backups
     # Internal-only: use expose instead of ports for no public access
     # Networking handled by Coolify's "Connect to Predefined Network" feature
     expose:
@@ -16,9 +17,13 @@ services:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
       SERVER_URL: ${SERVER_URL}
       REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
+
+      # Deployment safety controls
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
       DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
       MIGRATION_DRY_RUN: ${MIGRATION_DRY_RUN:-false}
+      ENABLE_DB_BACKUP: ${ENABLE_DB_BACKUP:-false}
+      FAIL_ON_CRON_ERROR: ${FAIL_ON_CRON_ERROR:-false}
 
       STORAGE_TYPE: ${STORAGE_TYPE}
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
@@ -142,3 +147,4 @@ services:
 volumes:
   db-data:
   server-local-data:
+  backup-data:

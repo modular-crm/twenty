@@ -7,11 +7,45 @@ show_pending_migrations() {
     npx -y typeorm migration:show -d dist/database/typeorm/core/core.datasource 2>/dev/null || echo "Unable to show migration status (this is normal on first run)"
 }
 
+backup_database() {
+    if [ "${ENABLE_DB_BACKUP}" != "true" ]; then
+        echo "Database backup disabled, skipping..."
+        return
+    fi
+
+    echo "Creating pre-migration database backup..."
+
+    # Create backups directory if it doesn't exist
+    mkdir -p /backups
+
+    # Generate timestamp for backup filename
+    timestamp=$(date +%Y%m%d_%H%M%S)
+    backup_file="/backups/twenty_${timestamp}.sql"
+
+    # Create backup using pg_dump
+    if pg_dump "${PG_DATABASE_URL}" > "${backup_file}"; then
+        echo "Database backed up to: ${backup_file}"
+
+        # Cleanup old backups (keep last 7)
+        echo "Cleaning up old backups (keeping last 7)..."
+        ls -t /backups/twenty_*.sql 2>/dev/null | tail -n +8 | xargs -r rm -f
+
+        backup_count=$(ls -1 /backups/twenty_*.sql 2>/dev/null | wc -l)
+        echo "Current backup count: ${backup_count}"
+    else
+        echo "Warning: Database backup failed, but continuing with migrations..."
+        echo "This is acceptable for first-run when database is empty"
+    fi
+}
+
 setup_and_migrate_db() {
     if [ "${DISABLE_DB_MIGRATIONS}" = "true" ]; then
         echo "Database setup and migrations are disabled, skipping..."
         return
     fi
+
+    # Create migration lock file to signal migrations in progress
+    touch /tmp/migrations.lock
 
     echo "Running database setup and migrations..."
 
@@ -27,11 +61,15 @@ setup_and_migrate_db() {
         echo "=== DRY RUN MODE: Showing pending migrations ==="
         show_pending_migrations
         echo "=== Dry run complete. Set MIGRATION_DRY_RUN=false to apply migrations. ==="
+        rm -f /tmp/migrations.lock
         exit 0
     fi
 
     # Show pending migrations before applying (informational)
     show_pending_migrations
+
+    # Backup database before migrations
+    backup_database
 
     # Always run migrations (idempotent - safe to run multiple times)
     # TypeORM tracks applied migrations in _typeorm_migrations table
@@ -41,6 +79,9 @@ setup_and_migrate_db() {
     # Run workspace upgrade commands (data migrations for multi-tenant workspaces)
     yarn command:prod upgrade
     echo "Successfully completed database migrations!"
+
+    # Remove migration lock file to signal completion
+    rm -f /tmp/migrations.lock
 }
 
 register_background_jobs() {
@@ -53,7 +94,14 @@ register_background_jobs() {
     if yarn command:prod cron:register:all; then
         echo "Successfully registered all background sync jobs!"
     else
-        echo "Warning: Failed to register background jobs, but continuing startup..."
+        echo "ERROR: Failed to register background jobs"
+        echo "Background tasks (calendar sync, messaging) will not run automatically"
+        if [ "${FAIL_ON_CRON_ERROR}" = "true" ]; then
+            echo "FAIL_ON_CRON_ERROR is set, exiting..."
+            exit 1
+        else
+            echo "Continuing startup despite cron registration failure..."
+        fi
     fi
 }
 

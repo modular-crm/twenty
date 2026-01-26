@@ -3,9 +3,11 @@ import {
   Controller,
   Get,
   Param,
+  ServiceUnavailableException,
   UseGuards,
 } from '@nestjs/common';
 import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
+import { existsSync } from 'fs';
 
 import { HealthIndicatorId } from 'src/engine/core-modules/health/enums/health-indicator-id.enum';
 import { AppHealthIndicator } from 'src/engine/core-modules/health/indicators/app.health';
@@ -31,7 +33,21 @@ export class HealthController {
   @UseGuards(PublicEndpointGuard, NoPermissionGuard)
   @HealthCheck()
   check() {
+    // Check if migrations are still in progress
+    if (this.areMigrationsInProgress()) {
+      throw new ServiceUnavailableException('Migrations in progress');
+    }
+
     return this.health.check([]);
+  }
+
+  /**
+   * Check if database migrations are currently running.
+   * The entrypoint script creates /tmp/migrations.lock before migrations
+   * and removes it after completion.
+   */
+  private areMigrationsInProgress(): boolean {
+    return existsSync('/tmp/migrations.lock');
   }
 
   @Get(':indicatorId')
