@@ -51,12 +51,11 @@ RUN apk add --no-cache curl jq
 
 RUN npm install -g tsx
 
-# Install PostgreSQL client and AWS CLI for database backups to R2
-RUN apk add --no-cache postgresql-client aws-cli
+# Install PostgreSQL client for database operations
+RUN apk add --no-cache postgresql-client
 
 COPY ./packages/twenty-docker/twenty/entrypoint.sh /app/entrypoint.sh
-COPY ./packages/twenty-docker/scripts /app/packages/twenty-docker/scripts
-RUN chmod +x /app/entrypoint.sh /app/packages/twenty-docker/scripts/*.sh
+RUN chmod +x /app/entrypoint.sh
 WORKDIR /app/packages/twenty-server
 
 # Frontend env vars commented out - API-only deployment
