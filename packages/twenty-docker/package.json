@@ -1,0 +1,8 @@
+{
+  "name": "twenty-docker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "backup": "bash scripts/backup.sh"
+  }
+}
