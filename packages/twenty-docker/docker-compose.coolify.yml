@@ -16,8 +16,9 @@ services:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/default
       SERVER_URL: ${SERVER_URL}
       REDIS_URL: ${REDIS_URL:-redis://twenty-redis:6379}
-      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
-      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION}
+      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
+      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
+      MIGRATION_DRY_RUN: ${MIGRATION_DRY_RUN:-false}
 
       STORAGE_TYPE: ${STORAGE_TYPE}
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
@@ -59,7 +60,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 30
-      start_period: 60s
+      start_period: 120s  # Increased to allow time for database migrations
     restart: always
 
   worker:
