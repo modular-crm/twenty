@@ -67,32 +67,6 @@ export class DealWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsNullable()
   name: string;
 
-    @WorkspaceField({
-        standardId: DEAL_STANDARD_FIELD_IDS.status,
-        type: FieldMetadataType.SELECT,
-        label: msg`Status`,
-        description: msg`Deal status`,
-        icon: 'IconCheck',
-        defaultValue: "'TODO'",
-        options: [
-            { value: 'TODO', label: 'To do', position: 0, color: 'sky' },
-            {
-                value: 'IN_PROGRESS',
-                label: 'In progress',
-                position: 1,
-                color: 'purple',
-            },
-            {
-                value: 'DONE',
-                label: 'Done',
-                position: 2,
-                color: 'green',
-            },
-        ],
-    })
-    @WorkspaceIsNullable()
-    status: string | null;
-
   @WorkspaceField({
     standardId: DEAL_STANDARD_FIELD_IDS.estimatedAmount,
     type: FieldMetadataType.CURRENCY,
@@ -123,32 +97,6 @@ export class DealWorkspaceEntity extends BaseWorkspaceEntity {
   })
   @WorkspaceIsNullable()
   referralAttribution: string | null;
-
-  @WorkspaceField({
-    standardId: DEAL_STANDARD_FIELD_IDS.approvalStatus,
-    type: FieldMetadataType.SELECT,
-    label: msg`Approval Status`,
-    description: msg`Deal approval status`,
-    icon: 'IconCheck',
-    defaultValue: "'PENDING'",
-    options: [
-        { value: 'PENDING', label: 'Pending', position: 0, color: 'sky' },
-        {
-            value: 'APPROVED',
-            label: 'Approved',
-            position: 1,
-            color: 'purple',
-        },
-        {
-            value: 'REJECTED',
-            label: 'Rejected',
-            position: 2,
-            color: 'red',
-        },
-    ],
-  })
-  @WorkspaceIsNullable()
-  approvalStatus: string | null;
 
   @WorkspaceField({
     standardId: DEAL_STANDARD_FIELD_IDS.position,

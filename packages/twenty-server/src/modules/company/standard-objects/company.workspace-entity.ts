@@ -36,7 +36,7 @@ import {
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
+// import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
@@ -224,17 +224,17 @@ export class CompanyWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsFieldUIReadOnly()
   noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
 
-  @WorkspaceRelation({
-    standardId: COMPANY_STANDARD_FIELD_IDS.opportunities,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Opportunities`,
-    description: msg`Opportunities linked to the company.`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.SET_NULL,
-  })
-  @WorkspaceIsNullable()
-  opportunities: Relation<OpportunityWorkspaceEntity[]>;
+  // @WorkspaceRelation({
+  //   standardId: COMPANY_STANDARD_FIELD_IDS.opportunities,
+  //   type: RelationType.ONE_TO_MANY,
+  //   label: msg`Opportunities`,
+  //   description: msg`Opportunities linked to the company.`,
+  //   icon: 'IconTargetArrow',
+  //   inverseSideTarget: () => OpportunityWorkspaceEntity,
+  //   onDelete: RelationOnDeleteAction.SET_NULL,
+  // })
+  // @WorkspaceIsNullable()
+  // opportunities: Relation<OpportunityWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: COMPANY_STANDARD_FIELD_IDS.leads,

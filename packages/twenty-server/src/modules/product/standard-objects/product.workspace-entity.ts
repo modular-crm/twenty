@@ -33,7 +33,6 @@ import { DealProductAssociationWorkspaceEntity } from 'src/modules/deal/standard
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { LeadProductAssociationWorkspaceEntity } from 'src/modules/lead/standard-objects/lead-product-association.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
-import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 
@@ -119,17 +118,6 @@ export class ProductWorkspaceEntity extends BaseWorkspaceEntity {
   createdBy: ActorMetadata;
 
   // Relations
-  @WorkspaceRelation({
-    standardId: PRODUCT_STANDARD_FIELD_IDS.opportunityProducts,
-    type: RelationType.ONE_TO_MANY,
-    label: msg`Opportunity`,
-    description: msg`Opportunities linked to this product`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityProductAssociationWorkspaceEntity,
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  opportunityProducts: Relation<OpportunityProductAssociationWorkspaceEntity[]>;
-
   @WorkspaceRelation({
     standardId: PRODUCT_STANDARD_FIELD_IDS.leadProducts,
     type: RelationType.ONE_TO_MANY,

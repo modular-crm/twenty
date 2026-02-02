@@ -654,6 +654,7 @@ export const PIPELINE_STANDARD_FIELD_IDS = {
   leads: '8a86c0cd-41e8-486b-9d48-2b45a7897c5e',
   deals: '79156b9a-9a8e-42d1-8baf-52cc4b9e3b58',
   timelineActivities: '2d78bd57-f6fd-4219-8188-87e957fa77a3',
+  createdBy: '20202020-0100-0001-0000-000000000002',
 } as const;
 
 export const PIPELINE_STAGE_STANDARD_FIELD_IDS = {

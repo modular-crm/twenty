@@ -17,9 +17,7 @@ import { MessageThreadWorkspaceEntity } from 'src/modules/messaging/common/stand
 import { MessageWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
-import { OpportunityProductAssociationWorkspaceEntity } from 'src/modules/product/standard-objects/opportunity-product-association.workspace-entity';
 import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
@@ -63,10 +61,8 @@ export const standardObjectMetadataDefinitions = [
   MessageChannelMessageAssociationWorkspaceEntity,
   NoteWorkspaceEntity,
   NoteTargetWorkspaceEntity,
-  OpportunityWorkspaceEntity,
   PersonWorkspaceEntity,
   ProductWorkspaceEntity,
-  OpportunityProductAssociationWorkspaceEntity,
   TaskWorkspaceEntity,
   TaskTargetWorkspaceEntity,
   LeadWorkspaceEntity,

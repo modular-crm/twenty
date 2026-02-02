@@ -20,7 +20,7 @@ import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/com
 import { DashboardWorkspaceEntity } from 'src/modules/dashboard/standard-objects/dashboard.workspace-entity';
 import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
-import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
+// import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { ProductWorkspaceEntity } from 'src/modules/product/standard-objects/product.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
@@ -118,21 +118,21 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceJoinColumn('favoriteFolder')
   favoriteFolderId: string;
 
-  @WorkspaceRelation({
-    standardId: FAVORITE_STANDARD_FIELD_IDS.opportunity,
-    type: RelationType.MANY_TO_ONE,
-    label: msg`Opportunity`,
-    description: msg`Favorite opportunity`,
-    icon: 'IconTargetArrow',
-    inverseSideTarget: () => OpportunityWorkspaceEntity,
-    inverseSideFieldKey: 'favorites',
-    onDelete: RelationOnDeleteAction.CASCADE,
-  })
-  @WorkspaceIsNullable()
-  opportunity: Relation<OpportunityWorkspaceEntity> | null;
+  // @WorkspaceRelation({
+  //   standardId: FAVORITE_STANDARD_FIELD_IDS.opportunity,
+  //   type: RelationType.MANY_TO_ONE,
+  //   label: msg`Opportunity`,
+  //   description: msg`Favorite opportunity`,
+  //   icon: 'IconTargetArrow',
+  //   inverseSideTarget: () => OpportunityWorkspaceEntity,
+  //   inverseSideFieldKey: 'favorites',
+  //   onDelete: RelationOnDeleteAction.CASCADE,
+  // })
+  // @WorkspaceIsNullable()
+  // opportunity: Relation<OpportunityWorkspaceEntity> | null;
 
-  @WorkspaceJoinColumn('opportunity')
-  opportunityId: string;
+  // @WorkspaceJoinColumn('opportunity')
+  // opportunityId: string;
 
   @WorkspaceRelation({
     standardId: FAVORITE_STANDARD_FIELD_IDS.lead,

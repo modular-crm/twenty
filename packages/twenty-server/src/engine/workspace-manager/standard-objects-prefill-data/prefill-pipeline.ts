@@ -12,14 +12,20 @@ export const prefillPipeline = async (
     .into(`${schemaName}.pipeline`, [
       'id',
       'name',
-      'isDefault'
+      'isDefault',
+      'createdBySource',
+      'createdByWorkspaceMemberId',
+      'createdByName',
     ])
     .orIgnore()
     .values([
       {
         id: PIPELINE_1_ID,
         name: 'Sales',
-        isDefault: true
+        isDefault: true,
+        createdBySource: 'SYSTEM',
+        createdByWorkspaceMemberId: null,
+        createdByName: 'System',
       },
     ])
     .execute();
