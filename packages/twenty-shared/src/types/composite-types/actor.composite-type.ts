@@ -43,6 +43,12 @@ export const actorCompositeType: CompositeType = {
       isRequired: false,
     },
     {
+      name: 'userGroupId',
+      type: FieldMetadataType.TEXT,
+      hidden: false,
+      isRequired: false,
+    },
+    {
       name: 'name',
       type: FieldMetadataType.TEXT,
       hidden: 'input',
@@ -59,6 +65,7 @@ export const actorCompositeType: CompositeType = {
 
 export type ActorMetadata = {
   source: FieldActorSource;
+  userGroupId: string | null;
   workspaceMemberId: string | null;
   name: string;
   context: {

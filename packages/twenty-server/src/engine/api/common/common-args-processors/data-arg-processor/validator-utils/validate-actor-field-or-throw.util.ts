@@ -36,6 +36,9 @@ export const validateActorFieldOrThrow = (
       case 'workspaceMemberId':
         validateUUIDFieldOrThrow(subFieldValue, `${fieldName}.${subField}`);
         break;
+      case 'userGroupId':
+        validateTextFieldOrThrow(subFieldValue, `${fieldName}.${subField}`);
+        break;
       default:
         throw new CommonQueryRunnerException(
           `Invalid subfield ${subField} for actor field "${fieldName}"`,
@@ -47,5 +50,6 @@ export const validateActorFieldOrThrow = (
   return value as {
     source: FieldActorSource;
     context: Record<string, unknown>;
+    userGroupId: string | null;
   };
 };
