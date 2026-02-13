@@ -37,7 +37,7 @@ export const validateActorFieldOrThrow = (
         validateUUIDFieldOrThrow(subFieldValue, `${fieldName}.${subField}`);
         break;
       case 'userGroupId':
-        validateTextFieldOrThrow(subFieldValue, `${fieldName}.${subField}`);
+        validateUUIDFieldOrThrow(subFieldValue, `${fieldName}.${subField}`);
         break;
       default:
         throw new CommonQueryRunnerException(

@@ -44,8 +44,8 @@ export const actorCompositeType: CompositeType = {
     },
     {
       name: 'userGroupId',
-      type: FieldMetadataType.TEXT,
-      hidden: false,
+      type: FieldMetadataType.UUID,
+      hidden: 'input',
       isRequired: false,
     },
     {
