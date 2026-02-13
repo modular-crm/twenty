@@ -10,12 +10,14 @@ export const transformActorField = (
     context?: object | string | null;
     name?: string | null;
     workspaceMemberId?: string | null;
+    userGroupId?: string | null;
   } | null,
 ): {
   source?: FieldActorSource | null;
   context?: object | string | null;
   name?: string | null;
   workspaceMemberId?: string | null;
+  userGroupId?: string | null;
 } | null => {
   if (isNull(value)) return null;
 
@@ -28,5 +30,8 @@ export const transformActorField = (
     workspaceMemberId: isUndefined(value.workspaceMemberId)
       ? undefined
       : value.workspaceMemberId,
+    userGroupId: isUndefined(value.userGroupId)
+      ? undefined
+      : value.userGroupId,
   };
 };

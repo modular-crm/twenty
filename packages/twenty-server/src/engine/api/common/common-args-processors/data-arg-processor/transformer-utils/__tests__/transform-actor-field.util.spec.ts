@@ -55,6 +55,28 @@ describe('transformActorField', () => {
     });
   });
 
+  it('should transform actor with userGroupId', () => {
+    const result = transformActorField({
+      source: FieldActorSource.MANUAL,
+      userGroupId: '20202020-1234-5678-9abc-def012345678',
+    });
+
+    expect(result).toEqual({
+      source: FieldActorSource.MANUAL,
+      userGroupId: '20202020-1234-5678-9abc-def012345678',
+    });
+  });
+
+  it('should handle undefined userGroupId', () => {
+    const result = transformActorField({
+      source: FieldActorSource.EMAIL,
+    });
+
+    expect(result).toEqual({
+      source: FieldActorSource.EMAIL,
+    });
+  });
+
   it('should transform empty context object to null', () => {
     const result = transformActorField({
       source: FieldActorSource.EMAIL,
