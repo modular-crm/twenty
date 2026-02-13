@@ -115,7 +115,7 @@ services:
       POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD:-postgres}
       POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
     healthcheck:
-      test: pg_isready -U ${PG_DATABASE_USER:-postgres} -h localhost -d postgres
+      test: pg_isready -U "${PG_DATABASE_USER:-postgres}" -h localhost -d postgres
       interval: 5s
       timeout: 5s
       retries: 10

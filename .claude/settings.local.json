@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx nx typecheck:*)",
+      "Bash(npx nx lint:*)",
+      "Bash(npx tsc:*)",
+      "Bash(coderabbit review:*)",
       "Bash(npx nx test:*)"
-    ]
+    ],
+    "deny": [],
+    "ask": []
   }
 }

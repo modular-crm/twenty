@@ -13,10 +13,13 @@ setup_and_migrate_db() {
         return
     fi
 
+    # Create migration lock file to signal migrations in progress
+    touch /tmp/migrations.lock
+
     echo "Running database setup and migrations..."
 
     # Check if database needs initial setup (first deployment only)
-    has_schema=$(psql -tAc "SELECT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = 'core')" ${PG_DATABASE_URL})
+    has_schema=$(psql -tAc "SELECT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = 'core')" "${PG_DATABASE_URL}")
     if [ "$has_schema" = "f" ]; then
         echo "Database appears to be empty, running initial setup..."
         NODE_OPTIONS="--max-old-space-size=1500" tsx ./scripts/setup-db.ts
@@ -27,11 +30,15 @@ setup_and_migrate_db() {
         echo "=== DRY RUN MODE: Showing pending migrations ==="
         show_pending_migrations
         echo "=== Dry run complete. Set MIGRATION_DRY_RUN=false to apply migrations. ==="
+        rm -f /tmp/migrations.lock
         exit 0
     fi
 
     # Show pending migrations before applying (informational)
     show_pending_migrations
+
+    # Note: Database backups are handled by Coolify's native backup feature
+    # Configure automatic backups in Coolify UI: Database > Backups tab
 
     # Always run migrations (idempotent - safe to run multiple times)
     # TypeORM tracks applied migrations in _typeorm_migrations table
@@ -41,6 +48,9 @@ setup_and_migrate_db() {
     # Run workspace upgrade commands (data migrations for multi-tenant workspaces)
     yarn command:prod upgrade
     echo "Successfully completed database migrations!"
+
+    # Remove migration lock file to signal completion
+    rm -f /tmp/migrations.lock
 }
 
 register_background_jobs() {
@@ -53,7 +63,14 @@ register_background_jobs() {
     if yarn command:prod cron:register:all; then
         echo "Successfully registered all background sync jobs!"
     else
-        echo "Warning: Failed to register background jobs, but continuing startup..."
+        echo "ERROR: Failed to register background jobs"
+        echo "Background tasks (calendar sync, messaging) will not run automatically"
+        if [ "${FAIL_ON_CRON_ERROR}" = "true" ]; then
+            echo "FAIL_ON_CRON_ERROR is set, exiting..."
+            exit 1
+        else
+            echo "Continuing startup despite cron registration failure..."
+        fi
     fi
 }
 

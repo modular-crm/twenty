@@ -51,6 +51,7 @@ RUN apk add --no-cache curl jq
 
 RUN npm install -g tsx
 
+# Install PostgreSQL client for database operations
 RUN apk add --no-cache postgresql-client
 
 COPY ./packages/twenty-docker/twenty/entrypoint.sh /app/entrypoint.sh
