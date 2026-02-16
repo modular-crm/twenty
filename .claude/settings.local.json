@@ -8,7 +8,8 @@
       "Bash(npx nx lint:*)",
       "Bash(npx tsc:*)",
       "Bash(coderabbit review:*)",
-      "Bash(npx nx test:*)"
+      "Bash(npx nx test:*)",
+      "Bash(git show:*)"
     ],
     "deny": [],
     "ask": []
