@@ -622,7 +622,7 @@ export class AuthResolver {
       );
 
     // If workspace not found by origin, try to get it directly by token's workspace ID
-    // This supports external applications (like NYCE) that don't use Twenty's subdomain system
+    // This supports external applications (like Anvil) that don't use Twenty's subdomain system
     if (!workspace) {
       const workspaceRepository =
         this.userWorkspaceRepository.manager.getRepository(WorkspaceEntity);
