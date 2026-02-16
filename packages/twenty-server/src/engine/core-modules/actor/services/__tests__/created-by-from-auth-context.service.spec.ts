@@ -137,6 +137,7 @@ describe('CreatedByFromAuthContextService', () => {
             context: {},
             name: fromFullNameMetadataToName(mockedWorkspaceMember.name),
             workspaceMemberId: authContext.workspaceMemberId,
+            userGroupId: null,
             source: FieldActorSource.MANUAL,
           },
         },
@@ -177,6 +178,7 @@ describe('CreatedByFromAuthContextService', () => {
             context: {},
             name: fromFullNameMetadataToName(mockedWorkspaceMember.name),
             workspaceMemberId: mockedWorkspaceMember.id,
+            userGroupId: null,
             source: FieldActorSource.MANUAL,
           },
         },
@@ -203,6 +205,7 @@ describe('CreatedByFromAuthContextService', () => {
           createdBy: {
             source: FieldActorSource.API,
             workspaceMemberId: null,
+            userGroupId: null,
             name: authContext.apiKey.name,
             context: {},
           },

@@ -18,6 +18,7 @@ const baseNote = {
     name: 'Test',
     source: FieldActorSource.MANUAL,
     workspaceMemberId: '1',
+    userGroupId: null,
     context: {},
   },
   createdAt: '2021-01-01',

@@ -22,11 +22,12 @@ describe('validateActorFieldOrThrow', () => {
       expect(result).toEqual(validActor);
     });
 
-    it('should accept valid actor with userGroupId as UUID', () => {
+    it('should accept valid actor with userGroupId as text', () => {
       const validActor = {
         source: FieldActorSource.EMAIL,
         context: {},
-        userGroupId: '20202020-1234-5678-9abc-def012345678',
+        userGroupId:
+          'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
       };
 
       const result = validateActorFieldOrThrow(validActor, 'testField');
@@ -74,18 +75,6 @@ describe('validateActorFieldOrThrow', () => {
       const invalidActor = {
         source: FieldActorSource.EMAIL,
         context: 'invalid',
-      };
-
-      expect(() =>
-        validateActorFieldOrThrow(invalidActor, 'testField'),
-      ).toThrow(CommonQueryRunnerException);
-    });
-
-    it('should throw when userGroupId is not a valid UUID', () => {
-      const invalidActor = {
-        source: FieldActorSource.EMAIL,
-        context: {},
-        userGroupId: 'not-a-uuid',
       };
 
       expect(() =>

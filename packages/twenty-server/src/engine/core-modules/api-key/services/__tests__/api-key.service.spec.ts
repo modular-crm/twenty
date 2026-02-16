@@ -30,7 +30,7 @@ describe('ApiKeyService', () => {
   const mockApiKey: ApiKeyEntity = {
     id: mockApiKeyId,
     name: 'Test API Key',
-    expiresAt: new Date('2025-12-31'),
+    expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
     revokedAt: undefined,
     workspaceId: mockWorkspaceId,
     createdAt: new Date('2024-01-01'),
@@ -47,7 +47,7 @@ describe('ApiKeyService', () => {
   const mockExpiredApiKey: ApiKeyEntity = {
     ...mockApiKey,
     id: 'expired-api-key',
-    expiresAt: new Date('2024-01-01'),
+    expiresAt: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000),
   };
 
   beforeEach(async () => {
@@ -380,7 +380,7 @@ describe('ApiKeyService', () => {
 
     it('should generate a JWT token for a valid API key', async () => {
       mockApiKeyRepository.findOne.mockResolvedValue(mockApiKey);
-      const expiresAt = new Date('2025-12-31');
+      const expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
 
       const result = await service.generateApiKeyToken(
         mockWorkspaceId,

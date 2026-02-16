@@ -103,6 +103,7 @@ export class WorkflowTriggerJob {
               : DEFAULT_WORKFLOW_NAME,
           context: {},
           workspaceMemberId: null,
+          userGroupId: null,
         },
       });
     } catch (e) {

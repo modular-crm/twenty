@@ -42,7 +42,6 @@ type TimelineActivitySeedData = Pick<
   | 'personId'
   | 'noteId'
   | 'taskId'
-  | 'opportunityId'
 > & {
   properties: string; // JSON stringified for raw insertion
   createdAt: string; // ISO string for raw insertion
@@ -257,7 +256,6 @@ export class TimelineActivitySeederService {
           'personId',
           'noteId',
           'taskId',
-          'opportunityId',
           'createdAt',
           'updatedAt',
           'happensAt',
@@ -294,7 +292,6 @@ export class TimelineActivitySeederService {
       personId: null,
       noteId: null,
       taskId: null,
-      opportunityId: null,
       createdAt: creationDate,
       updatedAt: creationDate,
       happensAt: creationDate,
@@ -580,7 +577,6 @@ export class TimelineActivitySeederService {
       personId: null,
       noteId: null,
       taskId: null,
-      opportunityId: null,
       createdAt: creationDate,
       updatedAt: creationDate,
       happensAt: creationDate,

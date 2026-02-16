@@ -58,12 +58,14 @@ describe('transformActorField', () => {
   it('should transform actor with userGroupId', () => {
     const result = transformActorField({
       source: FieldActorSource.MANUAL,
-      userGroupId: '20202020-1234-5678-9abc-def012345678',
+      userGroupId:
+        'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
     });
 
     expect(result).toEqual({
       source: FieldActorSource.MANUAL,
-      userGroupId: '20202020-1234-5678-9abc-def012345678',
+      userGroupId:
+        'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
     });
   });
 
