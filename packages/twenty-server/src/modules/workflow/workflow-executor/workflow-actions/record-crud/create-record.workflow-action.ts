@@ -87,6 +87,7 @@ export class CreateRecordWorkflowAction implements WorkflowAction {
       source: FieldActorSource.WORKFLOW,
       name: 'Workflow',
       workspaceMemberId: null,
+      userGroupId: null,
       context: {},
     };
   }

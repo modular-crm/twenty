@@ -5,7 +5,6 @@ import { type TimelineThreadsWithTotalDTO } from 'src/engine/core-modules/messag
 import { TimelineMessagingService } from 'src/engine/core-modules/messaging/services/timeline-messaging.service';
 import { formatThreads } from 'src/engine/core-modules/messaging/utils/format-threads.util';
 import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
-import { type OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { type PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 
 @Injectable()
@@ -106,34 +105,11 @@ export class GetMessagesService {
     page = 1,
     pageSize: number = TIMELINE_THREADS_DEFAULT_PAGE_SIZE,
   ): Promise<TimelineThreadsWithTotalDTO> {
-    const opportunityRepository =
-      await this.twentyORMManager.getRepository<OpportunityWorkspaceEntity>(
-        'opportunity',
-      );
-
-    const opportunity = await opportunityRepository.findOne({
-      where: {
-        id: opportunityId,
-      },
-      select: {
-        companyId: true,
-      },
-    });
-
-    if (!opportunity?.companyId) {
-      return {
-        totalNumberOfThreads: 0,
-        timelineThreads: [],
-      };
-    }
-
-    const messageThreads = await this.getMessagesFromCompanyId(
-      workspaceMemberId,
-      opportunity.companyId,
-      page,
-      pageSize,
-    );
-
-    return messageThreads;
+    // companyId was removed from OpportunityWorkspaceEntity,
+    // so we can no longer resolve messages through opportunity → company.
+    return {
+      totalNumberOfThreads: 0,
+      timelineThreads: [],
+    };
   }
 }

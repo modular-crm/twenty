@@ -15,5 +15,6 @@ export const buildCreatedByFromFullNameMetadata = ({
   workspaceMemberId,
   source: FieldActorSource.MANUAL,
   name: `${fullNameMetadata.firstName} ${fullNameMetadata.lastName}`,
+  userGroupId: null,
   context: {},
 });

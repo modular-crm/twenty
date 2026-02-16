@@ -9,7 +9,6 @@ import { type TimelineCalendarEventsWithTotalDTO } from 'src/engine/core-modules
 import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 import { CalendarChannelVisibility } from 'src/modules/calendar/common/standard-objects/calendar-channel.workspace-entity';
 import { type CalendarEventWorkspaceEntity } from 'src/modules/calendar/common/standard-objects/calendar-event.workspace-entity';
-import { type OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { type PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 
 @Injectable()
@@ -214,34 +213,11 @@ export class TimelineCalendarEventService {
     page: number;
     pageSize: number;
   }): Promise<TimelineCalendarEventsWithTotalDTO> {
-    const opportunityRepository =
-      await this.twentyORMManager.getRepository<OpportunityWorkspaceEntity>(
-        'opportunity',
-      );
-
-    const opportunity = await opportunityRepository.findOne({
-      where: {
-        id: opportunityId,
-      },
-      select: {
-        companyId: true,
-      },
-    });
-
-    if (!opportunity?.companyId) {
-      return {
-        totalNumberOfCalendarEvents: 0,
-        timelineCalendarEvents: [],
-      };
-    }
-
-    const calendarEvents = await this.getCalendarEventsFromCompanyId({
-      currentWorkspaceMemberId,
-      companyId: opportunity.companyId,
-      page,
-      pageSize,
-    });
-
-    return calendarEvents;
+    // companyId was removed from OpportunityWorkspaceEntity,
+    // so we can no longer resolve calendar events through opportunity → company.
+    return {
+      totalNumberOfCalendarEvents: 0,
+      timelineCalendarEvents: [],
+    };
   }
 }
