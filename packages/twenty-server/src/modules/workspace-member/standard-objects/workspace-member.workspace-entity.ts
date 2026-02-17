@@ -190,6 +190,17 @@ export class WorkspaceMemberWorkspaceEntity extends BaseWorkspaceEntity {
   userId: string;
 
   @WorkspaceField({
+    standardId: WORKSPACE_MEMBER_STANDARD_FIELD_IDS.userGroupId,
+    type: FieldMetadataType.TEXT,
+    label: msg`User Group Id`,
+    description: msg`External user group identifier for hierarchy-based access control`,
+    icon: 'IconUsers',
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  userGroupId: string | null;
+
+  @WorkspaceField({
     standardId: WORKSPACE_MEMBER_STANDARD_FIELD_IDS.timeZone,
     type: FieldMetadataType.TEXT,
     label: msg`Time zone`,

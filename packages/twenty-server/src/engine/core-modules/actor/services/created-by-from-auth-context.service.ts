@@ -125,6 +125,7 @@ export class CreatedByFromAuthContextService {
       return buildCreatedByFromFullNameMetadata({
         fullNameMetadata: workspaceMember.name,
         workspaceMemberId: workspaceMember.id,
+        userGroupId: workspaceMember.userGroupId,
       });
     }
 

@@ -45,7 +45,7 @@ export const actorCompositeType: CompositeType = {
     {
       name: 'userGroupId',
       type: FieldMetadataType.TEXT,
-      hidden: false,
+      hidden: 'input',
       isRequired: false,
     },
     {
