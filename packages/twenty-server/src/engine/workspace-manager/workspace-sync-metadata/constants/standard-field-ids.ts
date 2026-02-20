@@ -532,6 +532,7 @@ export const WORKSPACE_MEMBER_STANDARD_FIELD_IDS = {
   searchVector: '20202020-46d0-4e7f-bc26-74c0edaeb619',
   calendarStartDay: '20202020-92d0-1d7f-a126-25ededa6b142',
   numberFormat: '20202020-7f40-4e7f-b126-11c0eda6b141',
+  userGroupId: 'b2dcb9f9-c193-4e8d-b4a1-97abbe4e8899',
 } as const;
 export const CUSTOM_OBJECT_STANDARD_FIELD_IDS = {
   name: '20202020-ba07-4ffd-ba63-009491f5749c',

@@ -185,6 +185,49 @@ describe('CreatedByFromAuthContextService', () => {
       ]);
     });
 
+    it('should pass userGroupId from workspace member to createdBy', async () => {
+      const authContext = {
+        workspaceMemberId: '20202020-0b5c-4178-bed7-d371f6411eaa',
+        user: {
+          firstName: '',
+          lastName: '',
+          id: '20202020-9aae-49a8-bafc-ac44bae62d6d',
+        },
+        workspace: { id: '20202020-bdec-497f-847a-1bb334fefe58' },
+      } as const satisfies TestingAuthContext;
+
+      const mockedWorkspaceMember = {
+        id: '20202020-0b5c-4178-bed7-d371f6411eaa',
+        name: {
+          firstName: 'John',
+          lastName: 'Doe',
+        },
+        userGroupId: 'group-abc-123',
+      };
+
+      mockWorkspaceMemberRepository.findOneOrFail.mockResolvedValueOnce(
+        mockedWorkspaceMember,
+      );
+
+      const result = await service.injectCreatedBy(
+        [{}],
+        'person',
+        authContext as AuthContext,
+      );
+
+      expect(result).toEqual<ExpectedResult>([
+        {
+          createdBy: {
+            context: {},
+            name: fromFullNameMetadataToName(mockedWorkspaceMember.name),
+            workspaceMemberId: authContext.workspaceMemberId,
+            userGroupId: 'group-abc-123',
+            source: FieldActorSource.MANUAL,
+          },
+        },
+      ]);
+    });
+
     it('should build metadata from apiKey when only apiKey is present', async () => {
       const authContext = {
         apiKey: {
