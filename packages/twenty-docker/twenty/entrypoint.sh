@@ -40,13 +40,14 @@ setup_and_migrate_db() {
     # Note: Database backups are handled by Coolify's native backup feature
     # Configure automatic backups in Coolify UI: Database > Backups tab
 
-    # Always run migrations (idempotent - safe to run multiple times)
-    # TypeORM tracks applied migrations in _typeorm_migrations table
+    # Run core TypeORM migrations (idempotent - safe to run multiple times)
     echo "Running database migrations..."
     yarn database:migrate:prod
 
-    # Run workspace upgrade commands (data migrations for multi-tenant workspaces)
-    yarn command:prod upgrade
+    # Sync workspace metadata schema to database (idempotent - adds any missing columns/fields)
+    echo "Syncing workspace metadata..."
+    yarn command:prod workspace:sync-metadata
+
     echo "Successfully completed database migrations!"
 
     # Remove migration lock file to signal completion
