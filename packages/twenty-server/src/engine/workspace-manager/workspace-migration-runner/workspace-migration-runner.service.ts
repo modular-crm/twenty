@@ -173,7 +173,9 @@ export class WorkspaceMigrationRunnerService {
         break;
       }
       case WorkspaceMigrationTableActionType.DROP:
-        await queryRunner.dropTable(`${schemaName}.${tableMigration.name}`);
+        await queryRunner.query(
+          `DROP TABLE IF EXISTS ${schemaName}."${tableMigration.name}" CASCADE`,
+        );
         break;
       case 'create_foreign_table':
         await this.createForeignTable(
