@@ -44,7 +44,12 @@ setup_and_migrate_db() {
     echo "Running database migrations..."
     yarn database:migrate:prod
 
-    # Sync workspace metadata schema to database (idempotent - adds any missing columns/fields)
+    # Run version-specific workspace data migrations (backfills, deduplication, etc.)
+    # Internally calls workspace:sync-metadata for each version step
+    echo "Running upgrade command..."
+    yarn command:prod upgrade
+
+    # Safety net: re-sync workspace metadata in case upgrade skipped (version already current)
     echo "Syncing workspace metadata..."
     yarn command:prod workspace:sync-metadata
 
