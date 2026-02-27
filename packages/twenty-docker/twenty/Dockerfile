@@ -28,9 +28,19 @@ COPY ./packages/twenty-emails /app/packages/twenty-emails
 COPY ./packages/twenty-shared /app/packages/twenty-shared
 COPY ./packages/twenty-server /app/packages/twenty-server
 
+# Compile Lingui i18n catalogs before building (ensures compiled .ts matches .po source files)
+RUN npx nx run twenty-server:lingui:compile && npx nx run twenty-emails:lingui:compile
+
 RUN npx nx run twenty-server:build
 
 RUN yarn workspaces focus --production twenty-emails twenty-shared twenty-server
+
+# Clean up unnecessary files to reduce final image size
+RUN rm -rf /app/.yarn/cache /app/.yarn/install-state.gz /app/.nx \
+    /app/packages/twenty-emails/src /app/packages/twenty-shared/src \
+    /app/packages/twenty-server/src /app/packages/twenty-server/test \
+    /app/packages/twenty-ui /app/packages/twenty-front \
+    /tmp/* /root/.npm
 
 # Build the front (COMMENTED OUT - API-only deployment for internal access)
 # FROM common-deps AS twenty-front-build
@@ -65,9 +75,8 @@ WORKDIR /app/packages/twenty-server
 ARG APP_VERSION
 ENV APP_VERSION=$APP_VERSION
 
-# Copy built applications from previous stages
+# Copy built application from build stage
 COPY --chown=1000 --from=twenty-server-build /app /app
-COPY --chown=1000 --from=twenty-server-build /app/packages/twenty-server /app/packages/twenty-server
 # Frontend copy commented out - API-only deployment
 # COPY --chown=1000 --from=twenty-front-build /app/packages/twenty-front/build /app/packages/twenty-server/dist/front
 
