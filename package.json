@@ -208,22 +208,13 @@
   "version": "0.2.1",
   "nx": {},
   "scripts": {
-    "backup": "sh packages/twenty-docker/scripts/backup.sh",
-    "docs:generate": "tsx packages/twenty-docs/scripts/generate-docs-json.ts",
-    "docs:generate-navigation-template": "tsx packages/twenty-docs/scripts/generate-navigation-template.ts",
-    "start": "npx concurrently --kill-others 'npx nx run-many -t start -p twenty-server twenty-front' 'npx wait-on tcp:3000 && npx nx run twenty-server:worker'"
+    "start": "npx concurrently --kill-others 'npx nx start twenty-server' 'npx wait-on tcp:3000 && npx nx run twenty-server:worker'"
   },
   "workspaces": {
     "packages": [
-      "packages/twenty-front",
       "packages/twenty-server",
       "packages/twenty-emails",
-      "packages/twenty-ui",
-      "packages/twenty-utils",
-      "packages/twenty-docs",
-      "packages/twenty-e2e-testing",
       "packages/twenty-shared",
-      "packages/twenty-apps",
       "tools/eslint-rules"
     ]
   }
