@@ -249,6 +249,7 @@ export class WorkspaceService extends TypeOrmQueryService<WorkspaceEntity> {
     await this.workspaceManagerService.init({
       workspace,
       userId: user.id,
+      skipSampleData: data.skipSampleData ?? false,
     });
     await this.userWorkspaceService.createWorkspaceMember(workspace.id, user);
 

@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 
-import { IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 @InputType()
 export class ActivateWorkspaceInput {
@@ -8,4 +8,9 @@ export class ActivateWorkspaceInput {
   @IsString()
   @IsOptional()
   displayName?: string;
+
+  @Field({ nullable: true })
+  @IsBoolean()
+  @IsOptional()
+  skipSampleData?: boolean;
 }
