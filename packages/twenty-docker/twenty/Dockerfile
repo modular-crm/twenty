@@ -28,6 +28,9 @@ COPY ./packages/twenty-emails /app/packages/twenty-emails
 COPY ./packages/twenty-shared /app/packages/twenty-shared
 COPY ./packages/twenty-server /app/packages/twenty-server
 
+# Build twenty-shared first (lingui configs import from twenty-shared/translations which requires compiled dist)
+RUN npx nx build twenty-shared
+
 # Compile Lingui i18n catalogs before building (ensures compiled .ts matches .po source files)
 RUN npx nx run twenty-server:lingui:compile && npx nx run twenty-emails:lingui:compile
 
