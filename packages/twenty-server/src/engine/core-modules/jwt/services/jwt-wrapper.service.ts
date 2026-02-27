@@ -95,7 +95,9 @@ export class JwtWrapperService {
       }
 
       const appSecretBody =
-        'workspaceId' in payload ? payload.workspaceId : payload.userId;
+        ('workspaceId' in payload && isDefined(payload.workspaceId))
+          ? payload.workspaceId
+          : payload.userId;
 
       if (!isDefined(appSecretBody)) {
         throw new AuthException(
@@ -109,6 +111,9 @@ export class JwtWrapperService {
         secret: this.generateAppSecret(type, appSecretBody),
       });
     } catch (error) {
+      if (error instanceof AuthException) {
+        throw error;
+      }
       if (error instanceof jwt.TokenExpiredError) {
         throw new AuthException(
           'Token has expired.',
