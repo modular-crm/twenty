@@ -55,9 +55,11 @@ export class WorkspaceManagerService {
   public async init({
     workspace,
     userId,
+    skipSampleData = false,
   }: {
     workspace: WorkspaceEntity;
     userId: string;
+    skipSampleData?: boolean;
   }): Promise<void> {
     const workspaceId = workspace.id;
     const schemaCreationStart = performance.now();
@@ -115,12 +117,33 @@ export class WorkspaceManagerService {
 
     const prefillStandardObjectsStart = performance.now();
 
-    await this.prefillWorkspaceWithStandardObjectsRecords(
-      dataSourceMetadata,
-      workspaceId,
-      featureFlags,
-      twentyStandardApplication,
-    );
+    if (skipSampleData) {
+      // Skip demo data but still create core views (structural, not demo data)
+      const { flatObjectMetadataMaps, flatFieldMetadataMaps } =
+        await this.flatEntityMapsCacheService.getOrRecomputeManyOrAllFlatEntityMaps(
+          {
+            workspaceId,
+            flatMapsKeys: ['flatObjectMetadataMaps', 'flatFieldMetadataMaps'],
+          },
+        );
+
+      await prefillCoreViews({
+        twentyStandardFlatApplication: twentyStandardApplication,
+        coreDataSource: this.coreDataSource,
+        workspaceId,
+        flatObjectMetadataMaps,
+        flatFieldMetadataMaps,
+        workspaceSchemaName: dataSourceMetadata.schema,
+        featureFlags,
+      });
+    } else {
+      await this.prefillWorkspaceWithStandardObjectsRecords(
+        dataSourceMetadata,
+        workspaceId,
+        featureFlags,
+        twentyStandardApplication,
+      );
+    }
 
     const prefillStandardObjectsEnd = performance.now();
 

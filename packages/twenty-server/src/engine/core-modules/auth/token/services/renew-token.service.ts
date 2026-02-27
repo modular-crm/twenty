@@ -75,7 +75,7 @@ export class RenewTokenService {
           )
         : await this.accessTokenService.generateAccessToken({
             userId: user.id,
-            workspaceId: workspaceId as string,
+            workspaceId: (workspaceId ?? undefined) as string,
             authProvider: resolvedAuthProvider,
             isImpersonating,
             impersonatorUserWorkspaceId,
@@ -84,7 +84,7 @@ export class RenewTokenService {
 
     const refreshToken = await this.refreshTokenService.generateRefreshToken({
       userId: user.id,
-      workspaceId,
+      workspaceId: workspaceId ?? undefined,
       authProvider: resolvedAuthProvider,
       targetedTokenType,
       isImpersonating,
